@@ -20,3 +20,7 @@ DATABASES = {
         'PORT': '5432',
     }
 }
+
+# Api keys
+GOODREADS_API_KEY = 'hwYP09p0h6SR1MhNTiDVDA'
+NYTIMES_API_KEY = 'eXcTvaXGos5A211SGhXlpZJeyhNiWGb0'
