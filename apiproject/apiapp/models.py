@@ -6,15 +6,15 @@ from django.contrib.auth.models import User
 
 # Create your models here.
 class Author(models.Model):
-    first_name = models.CharField(max_length=30)
-    last_name = models.CharField(max_length=30)
+    first_name = models.CharField(max_length=100)
+    last_name = models.CharField(max_length=100)
 
     def __str__(self):
         return "{last_name}, {first_name}".format(last_name=self.last_name, first_name=self.first_name)
 
 class Book(models.Model):
-    title = models.CharField(max_length=50)
-    isbn = models.CharField(max_length=50)
+    title = models.CharField(max_length=100)
+    isbn = models.CharField(max_length=13)
     author = models.ForeignKey(Author, on_delete=models.CASCADE)
 
     def __str__(self):
@@ -30,7 +30,7 @@ class Review(models.Model):
         return self.title
 
 class Meetup(models.Model):
-    name = models.CharField(max_length=30)
+    name = models.CharField(max_length=50)
     location = models.CharField(max_length=50)
     date = models.DateTimeField()
     users = models.ManyToManyField(User)
