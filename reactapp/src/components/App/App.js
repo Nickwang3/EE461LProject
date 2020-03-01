@@ -6,6 +6,7 @@ import BookPage from '../Page/BookPage/BookPage'
 import AboutPage from '../Page/AboutPage/AboutPage'
 import HomePage from '../Page/HomePage/HomePage'
 import Navbar from "../Navbar/Navbar";
+require('dotenv').config()
 
 function App() {
   return (
