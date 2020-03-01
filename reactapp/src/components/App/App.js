@@ -5,14 +5,14 @@ import './App.css';
 import BookPage from '../Page/BookPage/BookPage'
 import AboutPage from '../Page/AboutPage/AboutPage'
 import HomePage from '../Page/HomePage/HomePage'
-import Navbar from "../Navbar/Navbar";
+import MyNavbar from "../Navbar/MyNavbar";
 require('dotenv').config()
 
 function App() {
   return (
     <Router>
       <div className="App">
-        <Navbar/>
+        <MyNavbar/>
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
           <Switch>
