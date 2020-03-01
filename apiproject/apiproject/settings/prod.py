@@ -7,6 +7,10 @@ DEBUG = False
 
 ALLOWED_HOSTS = ['ec2-13-59-7-216.us-east-2.compute.amazonaws.com']
 
+CORS_ORIGIN_WHITELIST = [
+    'ec2-13-59-7-216.us-east-2.compute.amazonaws.com'
+]
+
 # Database
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
 
