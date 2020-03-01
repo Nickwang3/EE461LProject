@@ -66,3 +66,13 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/de
 ### `npm run build` fails to minify
 
 This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+
+### React app is hosted on S3
+
+* `npm run build`
+
+* Navigate to s3 bucket
+
+* add all files inside build directory created earlier
+
+* navigate to [reactapp](http://reactapp-ee461l.s3-website-us-east-1.amazonaws.com/)
