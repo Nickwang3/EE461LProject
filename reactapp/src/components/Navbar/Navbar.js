@@ -7,7 +7,7 @@ class Navbar extends React.Component {
       <div>
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
           <a class="navbar-brand">
-            Navbar
+            Welcome
           </a>
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
