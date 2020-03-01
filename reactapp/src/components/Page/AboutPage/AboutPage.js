@@ -1,6 +1,6 @@
 import React from "react";
 
-class HomePage extends React.Component {
+class AboutPage extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -24,11 +24,11 @@ class HomePage extends React.Component {
         } else {
             return (
                 <div>
-                    <h1>Welcome</h1>
+                    <h1>About our Project</h1>
                 </div>
             )
         }
     }
 }
 
-export default HomePage;
+export default AboutPage;
