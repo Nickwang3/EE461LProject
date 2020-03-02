@@ -6,12 +6,14 @@ SECRET_KEY = 'm)7m6c9&_92esq_kb9aix(f@%fq=*hbu4ic+f7i4n!r1&fijr@'
 DEBUG = False
 
 ALLOWED_HOSTS = [
-    'ec2-13-59-7-216.us-east-2.compute.amazonaws.com', 
+    # 'ec2-13-59-7-216.us-east-2.compute.amazonaws.com',
+    'django-env.zphgcpmf2t.us-west-2.elasticbeanstalk.com',
     'http://reactapp-ee461l.s3-website-us-east-1.amazonaws.com'
 ]
 
 CORS_ORIGIN_WHITELIST = [
-    'ec2-13-59-7-216.us-east-2.compute.amazonaws.com',
+    # 'ec2-13-59-7-216.us-east-2.compute.amazonaws.com',
+    'django-env.zphgcpmf2t.us-west-2.elasticbeanstalk.com',
     'http://reactapp-ee461l.s3-website-us-east-1.amazonaws.com'
 ]
 

@@ -1,3 +1,5 @@
+# DEPRECATED in favor of Elastic Beanstalk hosting
+
 # This contains apache2 server config files for django and react applications
 
 #### apache2 config located on ec2 at 

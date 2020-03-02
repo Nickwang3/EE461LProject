@@ -1,6 +1,6 @@
 import axios from "axios";
 // axios.defaults.baseURL = "http://localhost:8000/api/v1";
-axios.defaults.baseURL = "http://ec2-13-59-7-216.us-east-2.compute.amazonaws.com/api/v1";
+axios.defaults.baseURL = "http://http://django-env.zphgcpmf2t.us-west-2.elasticbeanstalk.com/api/v1";
 
 export default class ApiService {
   constructor() {}
