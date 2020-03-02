@@ -15,7 +15,7 @@ class Book extends React.Component {
         return (
             <div className="container">
                 <h1>{this.props.title}</h1>
-                <h3>{this.props.authorurl}</h3>
+                <h3>{this.props.author_id}</h3>
                 <p>{this.props.description}</p>
                 <button className="btn btn-primary">Click Me!</button>
             </div>
