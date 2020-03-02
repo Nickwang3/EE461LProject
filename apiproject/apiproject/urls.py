@@ -5,11 +5,11 @@ from django.contrib import admin
 
 #register api endpoints and their views
 router = routers.DefaultRouter()
-router.register(r'users/getusers', views.UserViewSet)
-router.register(r'authors/getauthors', views.AuthorViewSet)
-router.register(r'books/getbooks', views.BookViewSet)
-router.register(r'reviews/getreviews', views.ReviewViewSet)
-router.register(r'meetups/getmeetups', views.MeetupViewSet)
+router.register(r'users', views.UserViewSet, basename='user')
+router.register(r'authors', views.AuthorViewSet, basename='author')
+router.register(r'books', views.BookViewSet, basename='book')
+# router.register(r'reviews/getreviews', views.ReviewViewSet.list)
+# router.register(r'meetups/getmeetups', views.MeetupViewSet.list)
 
 
 urlpatterns = [

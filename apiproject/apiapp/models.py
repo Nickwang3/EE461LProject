@@ -15,7 +15,7 @@ class Author(models.Model):
 class Book(models.Model):
     title = models.CharField(max_length=100)
     isbn = models.CharField(max_length=13)
-    author = models.ForeignKey(Author, on_delete=models.CASCADE)
+    author_id = models.ForeignKey(Author, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.title
@@ -23,8 +23,8 @@ class Book(models.Model):
 class Review(models.Model):
     title = models.CharField(max_length=50)
     body = models.TextField()
-    book = models.ForeignKey(Book, on_delete=models.CASCADE)
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    book_id = models.ForeignKey(Book, on_delete=models.CASCADE)
+    user_id = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.title
@@ -33,7 +33,7 @@ class Meetup(models.Model):
     name = models.CharField(max_length=50)
     location = models.CharField(max_length=50)
     date = models.DateTimeField()
-    users = models.ManyToManyField(User)
+    user_ids = models.ManyToManyField(User)
 
     def __str__(self):
         return self.name

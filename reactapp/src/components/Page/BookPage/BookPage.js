@@ -42,8 +42,8 @@ class BookPage extends React.Component {
         <div>
           <h1>Hello there</h1>
           <ul>
-            {this.state.books.map(book => (
-              <Book title={book.title} author={book.author} description="" />
+            {books.map(book => (
+              <Book title={book.title} authorurl={book.author} description="" />
             ))}
           </ul>
         </div>
