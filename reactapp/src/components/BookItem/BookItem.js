@@ -2,8 +2,9 @@ import React from 'react'
 // import './Book.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
-class Book extends React.Component {
+class BookItem extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -17,10 +18,12 @@ class Book extends React.Component {
                 <h1>{this.props.title}</h1>
                 <h3>{this.props.author_id}</h3>
                 <p>{this.props.description}</p>
-                <button className="btn btn-primary">Click Me!</button>
+                <Link to={`/books/${this.props.isbn}`}>
+                    <button className="btn btn-primary">Click Me!</button>
+                </Link>
             </div>
         )
     }
 }
 
-export default Book;
+export default BookItem;

@@ -5,6 +5,7 @@ from django.shortcuts import render
 from rest_framework import viewsets
 from rest_framework.response import Response
 from apiapp.serializers import *
+from rest_framework.decorators import api_view
 
 # Create your views here.
 class UserViewSet(viewsets.ModelViewSet):
@@ -28,6 +29,7 @@ class BookViewSet(viewsets.ModelViewSet):
     def get_queryset(self):
         return Book.objects.all()
 
+
 class ReviewViewSet(viewsets.ModelViewSet):
     
     serializer_class = ReviewSerializer
@@ -41,4 +43,12 @@ class MeetupViewSet(viewsets.ModelViewSet):
 
     def get_queryset(self):
         return Meetup.objects.all()
-    
+
+
+@api_view(['GET'])
+def get_book_by_isbn(request, isbn):
+    book = Book.objects.get(isbn=isbn)
+    data = BookSerializer(book).data
+    return Response(data)
+
+
