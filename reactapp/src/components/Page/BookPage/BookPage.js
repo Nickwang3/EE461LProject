@@ -1,5 +1,5 @@
 import React from "react";
-import Book from "../../Book/Book";
+import BookItem from "../../BookItem/BookItem";
 import ApiService from "../../../api/ApiService";
 
 const apiService = new ApiService();
@@ -43,7 +43,7 @@ class BookPage extends React.Component {
           <h1>Hello there</h1>
           <ul>
             {books.map(book => (
-              <Book title={book.title} author_id={book.author_id} description="" />
+              <BookItem isbn={book.isbn} title={book.title} author_id={book.author_id} description="" />
             ))}
           </ul>
         </div>
