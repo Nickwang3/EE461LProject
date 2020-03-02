@@ -2,27 +2,27 @@ from django.contrib.auth.models import User
 from .models import Author, Book, Review, Meetup
 from rest_framework import serializers
 
-class UserSerializer(serializers.HyperlinkedModelSerializer):
+class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = ['username', 'email']
 
-class AuthorSerializer(serializers.HyperlinkedModelSerializer):
+class AuthorSerializer(serializers.ModelSerializer):
     class Meta:
         model = Author
         fields = ['first_name', 'last_name']
 
-class BookSerializer(serializers.HyperlinkedModelSerializer):
+class BookSerializer(serializers.ModelSerializer):
     class Meta:
         model = Book
-        fields = ['title', 'isbn', 'author']
+        fields = ['title', 'isbn', 'author_id']
 
-class ReviewSerializer(serializers.HyperlinkedModelSerializer):
+class ReviewSerializer(serializers.ModelSerializer):
     class Meta:
-        models = Review
-        fields = ['title', 'body', 'book', 'user']
+        model = Review
+        fields = ['title', 'body', 'book_id', 'user_id']
 
-class MeetupSerializer(serializers.HyperlinkedModelSerializer):
+class MeetupSerializer(serializers.ModelSerializer):
     class Meta:
-        models = Meetup
-        fields = ['name', 'location', 'date', 'users']
+        model = Meetup
+        fields = ['name', 'location', 'date', 'user_ids']

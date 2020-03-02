@@ -1,8 +1,8 @@
 import React from "react";
 import Book from "../../Book/Book";
-import BookService from "../../../api/BookService";
+import ApiService from "../../../api/ApiService";
 
-const bookService = new BookService();
+const apiService = new ApiService();
 
 class BookPage extends React.Component {
   constructor(props) {
@@ -15,7 +15,7 @@ class BookPage extends React.Component {
   }
 
   componentDidMount() {
-    bookService
+    apiService
       .getBooks()
       .then(result => {
         this.setState({
@@ -42,8 +42,8 @@ class BookPage extends React.Component {
         <div>
           <h1>Hello there</h1>
           <ul>
-            {this.state.books.map(book => (
-              <Book title={book.title} author={book.author} description="" />
+            {books.map(book => (
+              <Book title={book.title} author_id={book.author_id} description="" />
             ))}
           </ul>
         </div>
