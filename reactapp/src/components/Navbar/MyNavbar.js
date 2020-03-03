@@ -7,19 +7,25 @@ class MyNavbar extends React.Component {
     return (
       <div>
         <Navbar bg="light" expand="lg">
-          <Navbar.Brand>Welcome</Navbar.Brand>
+          <Navbar.Brand>Baseball Site</Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="mr-auto">
-              <Link to="/">
-                  <li class="nav-link">Home</li>
-              </Link>
-              <Link to="/about">
-                  <li class="nav-link">About</li>
-              </Link>
-              <Link to="/books">
-                  <li class="nav-link">Books</li>
-              </Link>
+                <Link to="/">
+                    <li class="nav-link">Home</li>
+                </Link>
+                <Link to="/about">
+                    <li class="nav-link">About</li>
+                </Link>
+                <Link to="/teams">
+                    <li class="nav-link">Teams</li>
+                </Link>
+                <Link to="/players">
+                    <li class="nav-link">Players</li>
+                </Link>
+                <Link to="/scores">
+                    <li class="nav-link">Scores</li>
+                </Link>
             </Nav>
           </Navbar.Collapse>
         </Navbar>
