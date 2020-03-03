@@ -1,0 +1,16 @@
+version: '3'
+
+services:
+  app:
+    build: .
+    command: python3 manage.py runserver 0.0.0.0:8000 --settings=apiproject.settings.local
+    volumes:
+        - .:/code
+    ports:
+        - "8000:8000"
+    depends_on:
+        - db
+  db:
+    image: postgres
+    environment: 
+      POSTGRES_HOST_AUTH_METHOD: "trust"

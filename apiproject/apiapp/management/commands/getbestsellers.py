@@ -40,5 +40,5 @@ class Command(BaseCommand):
                 try:
                     book = Book.objects.get(isbn=isbn)
                 except:
-                    book = Book(title=title, isbn=isbn, author=author)
+                    book = Book(title=title, isbn=isbn, author_id=author)
                     book.save()
