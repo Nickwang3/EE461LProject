@@ -19,10 +19,11 @@ class Command(BaseCommand):
                 name = team['name']
                 venue = team['venue']['name']
                 division = team['division']['name']
-                # print(team_id,name,venue,division,i)
 
                 try:
                     team = Team.objects.get(team_id=team_id)
+                    print("found")
                 except:
                     team = Team(team_id=team_id, name=name, venue=venue, division=division)
                     team.save()
+                    print(team_id,name,venue,division)

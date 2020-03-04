@@ -44,6 +44,32 @@ class MeetupViewSet(viewsets.ModelViewSet):
     def get_queryset(self):
         return Meetup.objects.all()
 
+class PlayerViewSet(viewsets.ModelViewSet):
+
+    serializer_class = PlayerSerializer
+
+    def get_queryset(self):
+        return Player.objects.all()
+
+class TeamViewSet(viewsets.ModelViewSet):
+
+    serializer_class = TeamSerializer
+
+    def get_queryset(self):
+        return Team.objects.all()
+
+
+@api_view(['GET'])
+def get_players(request):
+    player = Player.objects.all()
+    data = PlayerSerializer(player, many=True).data
+    return Response(data)
+
+@api_view(['GET'])
+def get_teams(request):
+    teams = Team.objects.all()
+    data = TeamSerializer(teams, many=True).data
+    return Response(data)
 
 @api_view(['GET'])
 def get_book_by_isbn(request, isbn):

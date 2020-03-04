@@ -2,7 +2,7 @@ import requests
 import json
 import time
 import statsapi
-from apiapp.models import Player
+from apiapp.models import Player, Team
 from django.conf import settings
 from django.core.management.base import BaseCommand
 
@@ -15,6 +15,7 @@ class Command(BaseCommand):
 
         if (players):
             for player in players:
+
                 try:
                     player_id = player['id']
                     name = player['fullName']
@@ -25,14 +26,19 @@ class Command(BaseCommand):
                     birthdate = player['birthDate']
                     age = player['currentAge']
                     team_id = player['currentTeam']['id']
-                    # print(player_id,name,number,position,height,weight,birthdate,age,team_id)
 
                     try: 
                         player = Player.objects.get(player_id = player_id)
+                        print("found")
                     except:
-                        player = Player(player_id=player_id, name=name, number=number, position=position, height=height, weight=weight, birthdate=birthdate, age=age, team_id=team_id)
-                        player.save()
+                        team = Team.objects.get(team_id=team_id)
 
-                except:
-                    print("not valid player")
+                        player = Player(player_id=player_id, name=name, number=number, position=position, height=height, weight=weight, birthdate=birthdate, age=age, team=team)
+                        player.save()
+                        print("saved")
+                
+                except: 
+                    print("bad player")
+
+
 
