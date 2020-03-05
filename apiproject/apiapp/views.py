@@ -60,15 +60,15 @@ class TeamViewSet(viewsets.ModelViewSet):
 
 
 @api_view(['GET'])
-def get_players(request):
-    player = Player.objects.all()
+def get_players_by_team_id(request, team_id):
+    player = Player.objects.filter(team=team_id)
     data = PlayerSerializer(player, many=True).data
     return Response(data)
 
 @api_view(['GET'])
-def get_teams(request):
-    teams = Team.objects.all()
-    data = TeamSerializer(teams, many=True).data
+def get_team_by_team_id(request, team_id):
+    team = Team.objects.get(team_id=team_id)
+    data = TeamSerializer(team, many=False).data
     return Response(data)
 
 @api_view(['GET'])

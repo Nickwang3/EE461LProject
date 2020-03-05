@@ -57,7 +57,7 @@ class Player(models.Model):
     weight = models.CharField(max_length=30)
     birthdate = models.CharField(max_length=50)
     age = models.CharField(max_length=5)
-    team = models.ForeignKey(Team, on_delete=models.CASCADE)
+    team_id = models.ForeignKey(Team, on_delete=models.CASCADE)
     # picture = models.ImageField()
 
     def __str__(self):
