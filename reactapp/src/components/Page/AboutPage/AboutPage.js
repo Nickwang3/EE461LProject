@@ -1,9 +1,9 @@
 import React, {useEffect, useState} from "react";
+import './AboutPage.css';
+import Contributor from './Contributor.js'
 import {
-    Card, CardImg, CardText, CardBody,
-    CardTitle, CardSubtitle, Button
+    Container, Row
   } from 'reactstrap';
-
 
 class AboutPage extends React.Component {
 
@@ -12,21 +12,18 @@ class AboutPage extends React.Component {
         this.state = {
             error: null,
             isLoaded: false,
-            name: null,
-            avatar: null,
-            contributions: null,
-            // issues: null
+            cardArray: null,
+            cardResponse: null
         }
 
-        this.setData = this.setData.bind(this);
+        this.setData = this.setData.bind(this)
     }
   
   
-    setData(name, contributions, avatar) {
-        this.setState({avatar: avatar});
-        this.setState({name: name});
-        this.setState({contributions: contributions});
-        console.log(avatar)
+    setData(cardResponse) {
+        this.setState({cardResponse: cardResponse});
+        this.setState({cardArray: this.state.cardResponse.slice(0).map((item, i) => <Contributor key={i} name={item.login} avatar={item.avatar_url} contributions={item.contributions} />) });
+        console.log(this.state.cardArray)
     };
 
 
@@ -35,14 +32,17 @@ class AboutPage extends React.Component {
 
         fetch('https://api.github.com/repos/Nickwang3/EE461LProject/contributors')
             .then(res => res.json())
-            .then(data => {this.setData(data[0].login, data[0].contributions, data[0].avatar_url)});
+            .then(data => {this.setData(data)});
 
         this.setState({
             isLoaded: true,
         })
     }
 
+    
+
     render() {
+
         const {error, isLoaded } = this.state;
         if (error) {
             return <div>Error: {error.message}</div>
@@ -50,16 +50,15 @@ class AboutPage extends React.Component {
             return <div>Loading...</div>
         } else {
             return (
+                // loop through all of rendered cards
                 <div>
-                    <Card>
-                        <CardImg top width="20%" src={this.state.avatar} alt="Card image cap" />
-                        <CardBody>
-                            <CardTitle style={{color:"black"}}>{this.state.name}</CardTitle>
-                            {/* <CardSubtitle>Card subtitle</CardSubtitle> */}
-                            <CardText style={{color:"black"}}>Contributions: {this.state.contributions}</CardText>
-                        </CardBody>
-                    </Card>
-                </div>
+                    <h1 className="header">About our team...</h1>
+                    <Container>
+                        <Row>
+                            {this.state.cardArray}
+                        </Row>
+                    </Container> 
+                </div>               
             )
         }
     }
