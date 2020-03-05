@@ -39,7 +39,7 @@ class Meetup(models.Model):
         return self.name
 
 class Team(models.Model):
-    team_id = models.CharField(max_length=50)
+    team_id = models.CharField(max_length=50, primary_key=True)
     name = models.CharField(max_length=50)
     venue = models.CharField(max_length=50)
     division = models.CharField(max_length=50)
@@ -49,7 +49,7 @@ class Team(models.Model):
         return self.name
 
 class Player(models.Model):
-    player_id = models.CharField(max_length=50)
+    player_id = models.CharField(max_length=50, primary_key=True)
     name = models.CharField(max_length=100)
     number = models.CharField(max_length=2)
     position = models.CharField(max_length=30)
@@ -57,7 +57,7 @@ class Player(models.Model):
     weight = models.CharField(max_length=30)
     birthdate = models.CharField(max_length=50)
     age = models.CharField(max_length=5)
-    team = models.ForeignKey(Team, on_delete=models.CASCADE)
+    team = models.ForeignKey(Team, to_field="team_id", on_delete=models.CASCADE)
     # picture = models.ImageField()
 
     def __str__(self):
