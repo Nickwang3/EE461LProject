@@ -66,7 +66,7 @@ def get_players_by_team_id(request, team_id):
     return Response(data)
 
 @api_view(['GET'])
-def get_team_by_team_id(request, team_id):
+def get_team_by_team_id(request, team_id):  
     team = Team.objects.get(team_id=team_id)
     data = TeamSerializer(team, many=False).data
     return Response(data)
