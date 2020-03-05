@@ -12,7 +12,7 @@ $ source env/bin/activate
 
 * Install django modules
 ```bash
-$ pip3 -r install requirements.txt
+$ pip3 install -r requirements.txt
 ```
 
 * Run api locally

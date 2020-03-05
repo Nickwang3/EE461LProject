@@ -38,3 +38,28 @@ class Meetup(models.Model):
     def __str__(self):
         return self.name
 
+class Team(models.Model):
+    team_id = models.CharField(max_length=50, primary_key=True)
+    name = models.CharField(max_length=50)
+    venue = models.CharField(max_length=50)
+    division = models.CharField(max_length=50)
+    # picture = models.ImageField()
+
+    def __str__(self):
+        return self.name
+
+class Player(models.Model):
+    player_id = models.CharField(max_length=50, primary_key=True)
+    name = models.CharField(max_length=100)
+    number = models.CharField(max_length=2)
+    position = models.CharField(max_length=30)
+    height = models.CharField(max_length=30)
+    weight = models.CharField(max_length=30)
+    birthdate = models.CharField(max_length=50)
+    age = models.CharField(max_length=5)
+    team = models.ForeignKey(Team, to_field="team_id", on_delete=models.CASCADE)
+    # picture = models.ImageField()
+
+    def __str__(self):
+        return self.name
+

@@ -1,5 +1,5 @@
 from django.contrib.auth.models import User
-from .models import Author, Book, Review, Meetup
+from .models import Author, Book, Review, Meetup, Team, Player
 from rest_framework import serializers
 
 class UserSerializer(serializers.ModelSerializer):
@@ -26,3 +26,13 @@ class MeetupSerializer(serializers.ModelSerializer):
     class Meta:
         model = Meetup
         fields = ['name', 'location', 'date', 'user_ids']
+
+class TeamSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Team
+        fields = ['team_id', 'name', 'venue', 'division']
+
+class PlayerSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Player
+        fields = ['player_id', 'name', 'number', 'position', 'height', 'weight', 'birthdate', 'age', 'team']
