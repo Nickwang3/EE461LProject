@@ -42,7 +42,7 @@ class PlayersPage extends React.Component {
     } else {
       return (
         <div className="PlayersPage">
-          <h1>Hello there</h1>
+          <h1>MLB Players</h1>
             <Container>
             {players.map(player => (
                 <Player player={player}/>
