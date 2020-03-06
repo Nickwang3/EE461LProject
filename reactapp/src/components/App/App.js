@@ -10,8 +10,8 @@ import TeamsPage from '../Page/TeamsPage/TeamsPage'
 import PlayersPage from '../Page/PlayersPage/PlayersPage'
 import ScoresPage from '../Page/ScoresPage/ScoresPage'
 
-import DetailedBookPage from '../Page/BookPage/DetailedBookPage';
-import BookPage from '../Page/BookPage/BookPage'
+import DetailedTeamPage from '../Page/TeamsPage/DetailedTeamPage';
+import DetailedPlayerPage from '../Page/PlayersPage/DetailedPlayerPage';
 
 require('dotenv').config();
 
@@ -24,11 +24,11 @@ function App() {
           <Switch>
             <Route path="/" exact component={HomePage}/>
             <Route path="/about" component={AboutPage}/>
-            <Route path="/teams" component={TeamsPage}/>
-            <Route path="/players" component={PlayersPage}/>
+            <Route path="/teams" exact component={TeamsPage}/>
+            <Route path="/teams/:team_id" component={DetailedTeamPage}/>
+            <Route path="/players" exact component={PlayersPage}/>
+            <Route path="/players/:player_id" component={DetailedPlayerPage}/>
             <Route path="/scores" exact component={ScoresPage}/>
-            <Route path="/books" component={BookPage}/>
-            <Route path="/books/:isbn" component={DetailedBookPage}/>
           </Switch>
         </header>
       </div>

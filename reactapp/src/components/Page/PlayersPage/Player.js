@@ -3,8 +3,10 @@ import {
     Card, CardImg, CardText, CardBody,
     CardTitle, CardSubtitle, Button
   } from 'reactstrap';
+import { Link } from 'react-router-dom';
 
-class Team extends React.Component {
+
+class Player extends React.Component {
 
     constructor(props) {
         super(props);
@@ -31,12 +33,15 @@ class Team extends React.Component {
 
             return (
                 <Card style={cardStyle}>
-                    <CardImg style={{width:200, height:200}} src={this.props.picture} alt="Card image cap" />
+                    <CardImg style={{width:200, height:200}} src={this.props.player.picture} alt="Card image cap" />
                     <CardBody>
-                        <CardTitle style={cardTitleStyle}>{this.props.name}</CardTitle>
-                        <CardText style={cardTextStyle}>#{this.props.number}</CardText>
+                        <CardTitle style={cardTitleStyle}>{this.props.player.name}</CardTitle>
+                        <CardText style={cardTextStyle}>#{this.props.player.number}</CardText>
                         {/* <CardText style={cardTextStyle}>Division: {this.props.division}</CardText>
                         <CardText style={cardTextStyle}>Venue: {this.props.venue}</CardText> */}
+                        <Link to={`/players/${this.props.player.player_id}`}>
+                            <button className="btn btn-primary">Go to Player Page!</button>
+                        </Link>
                     </CardBody>
                 </Card>
             )
@@ -45,4 +50,4 @@ class Team extends React.Component {
     }
 }
 
-export default Team;
+export default Player;

@@ -41,10 +41,10 @@ class TeamsPage extends React.Component {
     } else {
       return (
         <div>
-          <h1>Hello there</h1>
+          <h1>MLB Teams</h1>
           <Container>
             {teams.map(team => (
-              <Team logo={team.logo} team_id={team.team_id} name={team.name} division={team.division} venue={team.venue} />
+              <Team team={team} />
             ))}
           </Container>
         </div>

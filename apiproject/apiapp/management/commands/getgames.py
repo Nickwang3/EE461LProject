@@ -1,19 +1,26 @@
+# Install the Python Requests library:
+# `pip install requests`
+
+import base64
 import requests
-import json
-from apiapp.models import Game
-from django.conf import settings
-from django.core.management.base import BaseCommand
 
-class Command(BaseCommand):
 
-    help = 'grabs player info from statsapi'
-    def handle(self, *args, **options):
-        url = "https://api.sportsdata.io/v3/mlb/scores/json/GamesByDate/2020-MAR-06"
+def send_request():
+    # Request
 
-        headers = {
-            "Ocp-Apim-Subscription-Key": "05e50d65198f43fb82f5963440929051"
+    try:
+        response = requests.get(
+            url="https://api.mysportsfeeds.com/v2.1/pull/mlb/current/date/{date}/games.xml",
+            params={
+                "fordate": "20161121"
+            },
+            headers={
+                "Authorization": "Basic " + base64.b64encode('{}:{}'.format('2ac8aad0-1217-4677-854c-83b952',MYSPORTSFEEDS).encode('utf-8')).decode('ascii')
             }
-
-        response = requests.request("GET", url, headers=headers)
-        games = response.json()
-        print(games)
+        )
+        print('Response HTTP Status Code: {status_code}'.format(
+            status_code=response.status_code))
+        print('Response HTTP Response Body: {content}'.format(
+            content=response.content))
+    except requests.exceptions.RequestException:
+        print('HTTP Request failed')
