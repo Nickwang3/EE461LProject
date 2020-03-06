@@ -6,8 +6,6 @@ from django.contrib import admin
 #register api endpoints and their views
 router = routers.DefaultRouter()
 router.register(r'users', views.UserViewSet, basename='user')
-router.register(r'authors', views.AuthorViewSet, basename='author')
-router.register(r'books', views.BookViewSet, basename='book')
 router.register(r'reviews', views.ReviewViewSet, basename='review')
 router.register(r'meetups', views.MeetupViewSet, basename='meetup')
 router.register(r'teams', views.TeamViewSet, basename='team')
