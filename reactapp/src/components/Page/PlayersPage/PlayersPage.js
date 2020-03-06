@@ -1,5 +1,5 @@
 import React from "react";
-import BookItem from "../../BookItem/BookItem";
+import Player from "./Player";
 import ApiService from "../../../api/ApiService";
 
 const apiService = new ApiService();
@@ -10,17 +10,17 @@ class PlayersPage extends React.Component {
     this.state = {
       error: null,
       isLoaded: false,
-      books: []
+      players: []
     };
   }
 
   componentDidMount() {
     apiService
-      .getBooks()
+      .getPlayers()
       .then(result => {
         this.setState({
           isLoaded: true,
-          books: result.data
+          players: result.data
         });
       })
       .catch(error => {
@@ -32,7 +32,7 @@ class PlayersPage extends React.Component {
   }
 
   render() {
-    const { error, isLoaded, books } = this.state;
+    const { error, isLoaded, players } = this.state;
     if (error) {
       return <div>Error: {error.message}</div>;
     } else if (!isLoaded) {
@@ -42,8 +42,8 @@ class PlayersPage extends React.Component {
         <div>
           <h1>Hello there</h1>
           <ul>
-            {books.map(book => (
-              <BookItem isbn={book.isbn} title={book.title} author_id={book.author_id} description="" />
+            {players.map(player => (
+              <Player name={player.name}/>
             ))}
           </ul>
         </div>
