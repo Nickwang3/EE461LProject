@@ -16,7 +16,7 @@ class Team extends React.Component {
 
     render() {
         const cardStyle = {
-            margin: 50, 
+            margin: 10, 
             width: 200, 
             height: 320,
         }

@@ -16,7 +16,7 @@ class Contributor extends React.Component {
 
     render() {
         const cardStyle = {
-            margin: 50, 
+            margin: 15, 
             width: 200, 
             height: 320,
         }

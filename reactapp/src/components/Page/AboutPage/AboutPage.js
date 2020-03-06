@@ -51,12 +51,10 @@ class AboutPage extends React.Component {
         } else {
             return (
                 // loop through all of rendered cards
-                <div>
+                <div className="AboutPage">
                     <h1 className="header">About our team...</h1>
                     <Container>
-                        <Row>
                             {this.state.cardArray}
-                        </Row>
                     </Container> 
                 </div>               
             )

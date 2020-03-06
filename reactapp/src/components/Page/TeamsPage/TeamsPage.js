@@ -1,6 +1,7 @@
 import React from "react";
 import Team from "./Team.js";
 import ApiService from "../../../api/ApiService";
+import { Container } from "reactstrap";
 
 const apiService = new ApiService();
 
@@ -41,11 +42,11 @@ class TeamsPage extends React.Component {
       return (
         <div>
           <h1>Hello there</h1>
-          <ul>
+          <Container>
             {teams.map(team => (
               <Team team_id={team.team_id} name={team.name} division={team.division} venue={team.venue} />
             ))}
-          </ul>
+          </Container>
         </div>
       );
     }
