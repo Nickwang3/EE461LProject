@@ -20,4 +20,8 @@ export default class ApiService {
   getTeamById(id) {
     return axios.get(`/teams/id/${id}`);
   }
+
+  getPlayers(){
+    return axios.get('/players/');
+  }
 }
