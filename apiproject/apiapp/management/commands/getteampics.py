@@ -26,6 +26,6 @@ class Command(BaseCommand):
                 db_team = Team.objects.get(name=team['name'])
                 db_team.logo = team['logo']
                 db_team.save(update_fields=["logo"])
-                print(db_team.logo)
+                # print(db_team.logo)
             except:
                 print("team not in db")
