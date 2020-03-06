@@ -18,7 +18,7 @@ class Player extends React.Component {
         const cardStyle = {
             margin: 10, 
             width: 200, 
-            height: 200,
+            height: 300,
         }
 
         const cardTextStyle = {
@@ -33,7 +33,7 @@ class Player extends React.Component {
 
             return (
                 <Card style={cardStyle}>
-                    {/* <CardImg style={{width:199, height:200}} src={this.props.avatar} alt="Card image cap" /> */}
+                    <CardImg style={{width:200, height:200}} src={this.props.player.picture} alt="Card image cap" />
                     <CardBody>
                         <CardTitle style={cardTitleStyle}>{this.props.player.name}</CardTitle>
                         <CardText style={cardTextStyle}>#{this.props.player.number}</CardText>
