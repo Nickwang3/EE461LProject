@@ -45,7 +45,7 @@ class PlayersPage extends React.Component {
           <h1>Hello there</h1>
             <Container>
             {players.map(player => (
-                <Player name={player.name} number={player.number}/>
+                <Player picture={player.picture} name={player.name} number={player.number}/>
             ))}
             </Container>
         </div>
