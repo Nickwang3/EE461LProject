@@ -58,6 +58,12 @@ class TeamViewSet(viewsets.ModelViewSet):
     def get_queryset(self):
         return Team.objects.all()
 
+class GameViewSet(viewsets.ModelViewSet):
+    serializer_class = GameSerializer
+
+    def get_queryset(self):
+        return Game.objects.all()
+
 
 @api_view(['GET'])
 def get_players_by_team_id(request, team_id):
@@ -75,6 +81,12 @@ def get_team_by_team_id(request, team_id):
 def get_book_by_isbn(request, isbn):
     book = Book.objects.get(isbn=isbn)
     data = BookSerializer(book).data
+    return Response(data)
+
+@api_view(['GET'])
+def get_games_by_date(request, date):
+    game = Game.objects.get(game_date = date)
+    data = GameSerializer(game).data
     return Response(data)
 
 

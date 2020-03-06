@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="82b45928-ea1b-4f1f-ba58-3551b7f4e334" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/reactapp/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EE461LProject.iws" beforeDir="false" afterPath="$PROJECT_DIR$/EE461LProject.iws" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -53,7 +53,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1583511957097</updated>
-      <workItem from="1583511960005" duration="2465000" />
+      <workItem from="1583511960005" duration="2819000" />
     </task>
     <task id="LOCAL-00001" summary="Deleted router register authors and book.">
       <created>1583512156585</created>
