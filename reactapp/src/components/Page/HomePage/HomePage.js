@@ -1,4 +1,6 @@
 import React from "react";
+import {Jumbotron, Container} from 'react-bootstrap';
+import baseballImg from "./baseballHomePage.jpeg";
 
 class HomePage extends React.Component {
     constructor(props) {
@@ -23,9 +25,13 @@ class HomePage extends React.Component {
             return <div>Loading...</div>
         } else {
             return (
-                <div>
-                    <h1>Welcome</h1>
-                </div>
+
+                    <Jumbotron>
+                        <h1>Baseball Website</h1>
+                        <img id="baseballImg" src={baseballImg} alt="baseball"/>
+                        <br/>
+                        <p>This website was developed by UT students as a project for our Software Design Lab. The site features live updates of baseball data.</p>
+                    </Jumbotron>
             )
         }
     }
