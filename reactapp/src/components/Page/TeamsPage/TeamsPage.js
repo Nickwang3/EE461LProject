@@ -44,7 +44,7 @@ class TeamsPage extends React.Component {
           <h1>Hello there</h1>
           <Container>
             {teams.map(team => (
-              <Team team_id={team.team_id} name={team.name} division={team.division} venue={team.venue} />
+              <Team logo={team.logo} team_id={team.team_id} name={team.name} division={team.division} venue={team.venue} />
             ))}
           </Container>
         </div>
