@@ -43,7 +43,7 @@ class Team(models.Model):
     name = models.CharField(max_length=50)
     venue = models.CharField(max_length=50)
     division = models.CharField(max_length=50)
-    # picture = models.ImageField()
+    logo = models.CharField(max_length=300)
 
     def __str__(self):
         return self.name
