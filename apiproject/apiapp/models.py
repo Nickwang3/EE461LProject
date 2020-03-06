@@ -63,3 +63,36 @@ class Player(models.Model):
     def __str__(self):
         return self.name
 
+
+class Score(models.Model):
+    game_id = models.CharField(max_length=50, primary_key=True)
+    home_team = models.CharField(max_length=30)
+    away_team = models.CharField(max_length=30)
+    home_score = models.IntegerField()
+    away_score = models.IntegerField()
+    game_date = models.DateTimeField()
+    inning_1H = models.IntegerField()
+    inning_2H = models.IntegerField()
+    inning_3H = models.IntegerField()
+    inning_4H = models.IntegerField()
+    inning_5H = models.IntegerField()
+    inning_6H = models.IntegerField()
+    inning_7H = models.IntegerField()
+    inning_8H = models.IntegerField()
+    inning_9H = models.IntegerField()
+    inning_OTH = models.IntegerField()
+    inning_1A = models.IntegerField()
+    inning_2A = models.IntegerField()
+    inning_3A = models.IntegerField()
+    inning_4A = models.IntegerField()
+    inning_5A = models.IntegerField()
+    inning_6A = models.IntegerField()
+    inning_7A = models.IntegerField()
+    inning_8A = models.IntegerField()
+    inning_9A = models.IntegerField()
+    inning_OTA = models.IntegerField()
+
+    def __str__(self):
+        return self.home_team + " v " + self.away_team
+
+
