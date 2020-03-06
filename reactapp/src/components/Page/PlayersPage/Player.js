@@ -34,7 +34,7 @@ class Team extends React.Component {
                     {/* <CardImg style={{width:199, height:200}} src={this.props.avatar} alt="Card image cap" /> */}
                     <CardBody>
                         <CardTitle style={cardTitleStyle}>{this.props.name}</CardTitle>
-                        {/* <CardSubtitle>Card subtitle</CardSubtitle> */}
+                        <CardText style={cardTextStyle}>#{this.props.number}</CardText>
                         {/* <CardText style={cardTextStyle}>Division: {this.props.division}</CardText>
                         <CardText style={cardTextStyle}>Venue: {this.props.venue}</CardText> */}
                     </CardBody>
