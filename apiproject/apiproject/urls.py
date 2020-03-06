@@ -10,6 +10,7 @@ router.register(r'reviews', views.ReviewViewSet, basename='review')
 router.register(r'meetups', views.MeetupViewSet, basename='meetup')
 router.register(r'teams', views.TeamViewSet, basename='team')
 router.register(r'players', views.PlayerViewSet, basename='player')
+router.register(r'game',views.GameViewSet, basename='game')
 
 
 urlpatterns = [
@@ -18,5 +19,6 @@ urlpatterns = [
     path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     path('api/v1/books/isbn/<str:isbn>', views.get_book_by_isbn, name='get_book_by_isbn'),
     path('api/v1/players/team_id/<str:team_id>', views.get_players_by_team_id, name="get_players_by_team_id"),
-    path('api/v1/teams/team_id/<str:team_id>', views.get_team_by_team_id, name="get_team_by_team_id")
+    path('api/v1/teams/team_id/<str:team_id>', views.get_team_by_team_id, name="get_team_by_team_id"),
+    path('api/v1/game',views.get_games_by_date, name ="get_games_by_date")
 ]
