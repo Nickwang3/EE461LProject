@@ -17,11 +17,15 @@ export default class ApiService {
     return axios.get("/teams/");
   }
 
-  getTeamById(id) {
-    return axios.get(`/teams/id/${id}`);
+  getTeamById(team_id) {
+    return axios.get(`/teams/${team_id}`);
   }
 
   getPlayers(){
     return axios.get('/players/');
+  }
+
+  getPlayerById(player_id) {
+    return axios.get(`/players/${player_id}`);
   }
 }
