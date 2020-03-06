@@ -66,8 +66,8 @@ class Player(models.Model):
 
 class Score(models.Model):
     game_id = models.CharField(max_length=50, primary_key=True)
-    home_team = models.CharField(max_length=30)
-    away_team = models.CharField(max_length=30)
+    home_team = models.ForeignKey(Team, to_field="team_id", on_delete=models.CASCADE)
+    away_team = models.ForeignKey(Team, to_field="team_id", on_delete=models.CASCADE)
     home_score = models.IntegerField()
     away_score = models.IntegerField()
     game_date = models.DateTimeField()
