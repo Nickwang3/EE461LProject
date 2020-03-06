@@ -13,7 +13,7 @@ ALLOWED_HOSTS = [
 
 CORS_ORIGIN_WHITELIST = [
     # 'ec2-13-59-7-216.us-east-2.compute.amazonaws.com',
-    'django-env.zphgcpmf2t.us-west-2.elasticbeanstalk.com',
+    'http://django-env.zphgcpmf2t.us-west-2.elasticbeanstalk.com',
     'http://reactapp-ee461l.s3-website-us-east-1.amazonaws.com'
 ]
 
