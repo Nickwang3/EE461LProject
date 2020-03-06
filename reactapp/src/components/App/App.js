@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import logo from '../../logo.svg';
 import './App.css';
 import MyNavbar from "../Navbar/MyNavbar";
+import MyFooter from "../Footer/MyFooter"
 import AboutPage from '../Page/AboutPage/AboutPage'
 import HomePage from '../Page/HomePage/HomePage'
 
@@ -30,7 +31,10 @@ function App() {
             <Route path="/players/:player_id" component={DetailedPlayerPage}/>
             <Route path="/scores" exact component={ScoresPage}/>
           </Switch>
+
+          <MyFooter />
         </header>
+      
       </div>
     </Router>
   );

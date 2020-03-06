@@ -1,9 +1,7 @@
 import React from "react";
 import Player from "./Player";
 import ApiService from "../../../api/ApiService";
-import {
-  Col, Row, Container
-} from 'reactstrap';
+
 const apiService = new ApiService();
 
 class PlayersPage extends React.Component {
@@ -41,13 +39,13 @@ class PlayersPage extends React.Component {
       return <div>Loading...</div>;
     } else {
       return (
-        <div className="PlayersPage">
-          <h1>MLB Players</h1>
-            <Container>
+        <div>
+          <h1>Hello there</h1>
+          <ul>
             {players.map(player => (
-                <Player player={player}/>
+              <Player name={player.name}/>
             ))}
-            </Container>
+          </ul>
         </div>
       );
     }
