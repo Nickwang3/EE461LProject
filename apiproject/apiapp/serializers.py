@@ -30,7 +30,7 @@ class MeetupSerializer(serializers.ModelSerializer):
 class TeamSerializer(serializers.ModelSerializer):
     class Meta:
         model = Team
-        fields = ['team_id', 'name', 'venue', 'division']
+        fields = ['team_id', 'name', 'venue', 'division','logo']
 
 class PlayerSerializer(serializers.ModelSerializer):
     class Meta:
