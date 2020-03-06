@@ -31,19 +31,24 @@ class Player extends React.Component {
             fontSize: 20
         }
 
+        const playerPictureStyle = {
+            width: "75%",
+        }
+
             return (
-                <Card style={cardStyle}>
-                    <CardImg style={{width:200, height:200}} src={this.props.player.picture} alt="Card image cap" />
-                    <CardBody>
-                        <CardTitle style={cardTitleStyle}>{this.props.player.name}</CardTitle>
-                        <CardText style={cardTextStyle}>#{this.props.player.number}</CardText>
-                        {/* <CardText style={cardTextStyle}>Division: {this.props.division}</CardText>
-                        <CardText style={cardTextStyle}>Venue: {this.props.venue}</CardText> */}
-                        <Link to={`/players/${this.props.player.player_id}`}>
-                            <button className="btn btn-primary">Go to Player Page!</button>
-                        </Link>
-                    </CardBody>
-                </Card>
+                <Link to={`/players/${this.props.player.player_id}`}>
+                    <Card style={cardStyle}>
+                        <CardBody>
+                            <CardImg style={playerPictureStyle} src={this.props.player.picture} alt="Card image cap" />
+                        </CardBody>
+                        <CardBody>
+                            <CardTitle style={cardTitleStyle}>{this.props.player.name}</CardTitle>
+                            <CardText style={cardTextStyle}>#{this.props.player.number}</CardText>
+                            {/* <CardText style={cardTextStyle}>Division: {this.props.division}</CardText>
+                            <CardText style={cardTextStyle}>Venue: {this.props.venue}</CardText> */}
+                        </CardBody>
+                    </Card>
+                </Link>
             )
             
         
