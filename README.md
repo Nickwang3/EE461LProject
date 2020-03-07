@@ -10,7 +10,7 @@
 # Contributors (Name, EID, GitHub Username)
 
 * Roger Terrezas, rat2359, RogerTerrazas
-* Joey Tombari, , Jombari
+* Joey Tombari, jjt2563, Jombari
 * Nick Wang, , Nickwang3
 * Jacob Medeiros, jrm7276 , JacobMedeiros
 * Prajwal Chummar, , pc24495
@@ -19,7 +19,7 @@
 # Phase 1 Time Spent (Expected:Actual)
 
 * Roger Terrezas - (10hrs:4hrs)
-* Joey Tombari - (:)
+* Joey Tombari - (11hrs:5hrs)
 * Nick Wang - (:)
 * Jacob Medeiros - (15hrs:5hrs)
 * Prajwal Chummar - (:)
