@@ -70,6 +70,8 @@ class Game(models.Model):
     away_team = models.CharField(max_length=25)
     home_score = models.IntegerField()
     away_score = models.IntegerField()
+    finished = models.BooleanField()
+    current_inning = models.CharField(max_length=20)
     game_date = models.DateTimeField()
 
     def __str__(self):
