@@ -11,7 +11,7 @@
 
 * Roger Terrezas, rat2359, RogerTerrazas
 * Joey Tombari, jjt2563, Jombari
-* Nick Wang, , Nickwang3
+* Nick Wang, ngw294, Nickwang3
 * Jacob Medeiros, jrm7276 , JacobMedeiros
 * Prajwal Chummar, , pc24495
 * Andrew Annestrand, ata758, aannestrand
