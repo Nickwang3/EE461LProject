@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { Container, Row, Col, Card , CardBody,
-    CardTitle, Badge } from 'reactstrap';
+    CardTitle, Badge, CardText } from 'reactstrap';
 
 
 
@@ -14,40 +14,34 @@ class ScoreBoard extends React.Component {
         }
     }
     render(){
-        const { match, home, visitor } = this.props
+
+        const cardStyle = {
+            margin: 10, 
+            width: 200, 
+            height: 320,
+        }
+
+        const cardTextStyle = {
+            color:"black",
+            fontSize: 20
+        }
+
+        const cardTitleStyle = {
+            color:"black", 
+            fontSize: 20
+        }
+
+
+        const {game} = this.props
  
          return(
-            <Container>
-                <Row>
-                    <Col md={4}>
-                    <Card>
-                        <CardBody>
-                            <CardTitle><Badge color="info">Mandante</Badge></CardTitle>
-                            <div>
-                                    <Team name={home.name} 
-                                    gols={this.state.gols_home} 
-                                    marcarGol={this.marcarGolHome.bind(this)}/>
-                            </div>
-                        </CardBody>
-                    </Card>
-                    </Col>
-                    <Col md={4}>
-                        <Match {...match}/>
-                    </Col>
-                    <Col md={4}>
-                    <Card>
-                        <CardBody>
-                        <CardTitle><Badge color="info">Visitante</Badge></CardTitle>
-                            <div>
-                                    <Team name={visitor.name} 
-                                    gols={this.state.gols_visitor} 
-                                    marcarGol={this.marcarGolvisitor.bind(this)}/>
-                        </div>
-                        </CardBody>
-                    </Card>
-                    </Col>
-                </Row>
-            </Container>
+            <div>
+                <Card>
+                    <CardTitle style={cardTitleStyle}>{game.home_team} vs. {game.away_team}</CardTitle>
+                    <CardText style={cardTextStyle}>{game.home_score} {game.away_score}</CardText>
+                    <CardText style={cardTextStyle}>Current Inning: {game.current_inning}</CardText>
+                </Card>
+            </div>
         );
     }
 }

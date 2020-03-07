@@ -1,6 +1,7 @@
 import React from "react";
 import BookItem from "../../BookItem/BookItem";
 import ApiService from "../../../api/ApiService";
+import ScoreBoard from "./Scoreboard";
 
 const apiService = new ApiService();
 
@@ -10,17 +11,17 @@ class ScoresPage extends React.Component {
     this.state = {
       error: null,
       isLoaded: false,
-      books: []
+      games: []
     };
   }
 
   componentDidMount() {
     apiService
-      .getBooks()
+      .getGames()
       .then(result => {
         this.setState({
           isLoaded: true,
-          books: result.data
+          games: result.data
         });
       })
       .catch(error => {
@@ -32,7 +33,7 @@ class ScoresPage extends React.Component {
   }
 
   render() {
-    const { error, isLoaded, books } = this.state;
+    const { error, isLoaded, games } = this.state;
     if (error) {
       return <div>Error: {error.message}</div>;
     } else if (!isLoaded) {
@@ -40,10 +41,10 @@ class ScoresPage extends React.Component {
     } else {
       return (
         <div>
-          <h1>Hello there</h1>
+          <h1>Today's Scores</h1>
           <ul>
-            {books.map(book => (
-              <BookItem isbn={book.isbn} title={book.title} author_id={book.author_id} description="" />
+            {games.map(game => (
+              <ScoreBoard game={game}/>
             ))}
           </ul>
         </div>
