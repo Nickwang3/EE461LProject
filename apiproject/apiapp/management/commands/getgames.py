@@ -1,52 +1,26 @@
+# Install the Python Requests library:
+# `pip install requests`
+
+import base64
 import requests
-import json
-from apiapp.models import Game
-from django.conf import settings
-from django.core.management.base import BaseCommand
 
-class Command(BaseCommand):
 
-    help = 'grabs player info from statsapi'
-    def handle(self, *args, **options):
-        url = "https://api.sportsdata.io/v3/mlb/scores/json/GamesByDate/2020-MAR-06"
+def send_request():
+    # Request
 
-        # querystring = {"league":"1","season":"2020"}
-
-        headers = {
-            "Ocp-Apim-Subscription-Key": "05e50d65198f43fb82f5963440929051"
+    try:
+        response = requests.get(
+            url="https://api.mysportsfeeds.com/v2.1/pull/mlb/current/date/{date}/games.xml",
+            params={
+                "fordate": "20161121"
+            },
+            headers={
+                "Authorization": "Basic " + base64.b64encode('{}:{}'.format('2ac8aad0-1217-4677-854c-83b952',MYSPORTSFEEDS).encode('utf-8')).decode('ascii')
             }
-
-        response = requests.request("GET", url, headers=headers)
-        games = response.json()
-
-        for game in games:
-            game_id = game['GameID']
-            home_team = game['HomeTeam']
-            away_team = game['AwayTeam']
-            home_score = game['HomeTeamRuns']
-            away_score = game['AwayTeamRuns']
-            current_inning = game['Inning']
-            finished = game['IsClosed']
-            game_date =  game['DateTime']
-
-            if not(away_score):
-                away_score = 0
-            if not(home_score):
-                home_score = 0
-            if not(current_inning):
-                current_inning = "Today"
-
-            # Check if game is already in the database
-            try:
-                db_game = Game.objects.get(game_id=game_id)
-                
-                # Check if game is still going and should be updated
-                if not(finished):
-                    db_game.home_score = home_score 
-                    db_game.away_score = away_score    
-                    db_game.current_inning = current_inning   
-                    db_game.save(update_fields=['home_score','away_score','current_inning'])    
-            except:
-                db_game = Game(game_id=game_id, home_team=home_team, away_team=away_team, home_score=home_score, away_score=away_score, current_inning=current_inning, finished=finished, game_date=game_date)
-                db_game.save()
-            
+        )
+        print('Response HTTP Status Code: {status_code}'.format(
+            status_code=response.status_code))
+        print('Response HTTP Response Body: {content}'.format(
+            content=response.content))
+    except requests.exceptions.RequestException:
+        print('HTTP Request failed')
