@@ -18,7 +18,7 @@
 
 # Phase 1 Time Spent (Expected:Actual)
 
-* Roger Terrezas - (:)
+* Roger Terrezas - (10hrs:4hrs)
 * Joey Tombari - (:)
 * Nick Wang - (:)
 * Jacob Medeiros - (15hrs:5hrs)
