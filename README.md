@@ -12,15 +12,15 @@
 * Roger Terrezas, rat2359, RogerTerrazas
 * Joey Tombari, , Jombari
 * Nick Wang, , Nickwang3
-* Jacob Medeiros, , JacobMedeiros
+* Jacob Medeiros, jrm7276 , JacobMedeiros
 * Prajwal Chummar, , pc24495
 * Andrew Annestrand, ata758, aannestrand
 
-# Phase 1 Time Spend (Expected:Actual)
+# Phase 1 Time Spent (Expected:Actual)
 
 * Roger Terrezas - (:)
 * Joey Tombari - (:)
 * Nick Wang - (:)
-* Jacob Medeiros - (:)
+* Jacob Medeiros - (15hrs:5hrs)
 * Prajwal Chummar - (:)
 * Andrew Annestrand - (15hrs:25hrs)
