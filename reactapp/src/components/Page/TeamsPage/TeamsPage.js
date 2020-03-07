@@ -1,6 +1,7 @@
 import React from "react";
-import BookItem from "../../BookItem/BookItem";
+import Team from "./Team.js";
 import ApiService from "../../../api/ApiService";
+import { Container } from "reactstrap";
 
 const apiService = new ApiService();
 
@@ -10,17 +11,17 @@ class TeamsPage extends React.Component {
     this.state = {
       error: null,
       isLoaded: false,
-      books: []
+      teams: []
     };
   }
 
   componentDidMount() {
     apiService
-      .getBooks()
+      .getTeams()
       .then(result => {
         this.setState({
           isLoaded: true,
-          books: result.data
+          teams: result.data
         });
       })
       .catch(error => {
@@ -32,7 +33,7 @@ class TeamsPage extends React.Component {
   }
 
   render() {
-    const { error, isLoaded, books } = this.state;
+    const { error, isLoaded, teams } = this.state;
     if (error) {
       return <div>Error: {error.message}</div>;
     } else if (!isLoaded) {
@@ -40,12 +41,12 @@ class TeamsPage extends React.Component {
     } else {
       return (
         <div>
-          <h1>Hello there</h1>
-          <ul>
-            {books.map(book => (
-              <BookItem isbn={book.isbn} title={book.title} author_id={book.author_id} description="" />
+          <h1>MLB Teams</h1>
+          <Container>
+            {teams.map(team => (
+              <Team team={team} />
             ))}
-          </ul>
+          </Container>
         </div>
       );
     }

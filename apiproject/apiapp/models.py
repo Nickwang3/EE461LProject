@@ -43,7 +43,7 @@ class Team(models.Model):
     name = models.CharField(max_length=50)
     venue = models.CharField(max_length=50)
     division = models.CharField(max_length=50)
-    # picture = models.ImageField()
+    logo = models.CharField(max_length=300)
 
     def __str__(self):
         return self.name
@@ -58,8 +58,23 @@ class Player(models.Model):
     birthdate = models.CharField(max_length=50)
     age = models.CharField(max_length=5)
     team = models.ForeignKey(Team, to_field="team_id", on_delete=models.CASCADE)
-    # picture = models.ImageField()
+    picture = models.CharField(max_length=300)
 
     def __str__(self):
         return self.name
+
+
+class Game(models.Model):
+    game_id = models.CharField(max_length=50, primary_key=True)
+    home_team = models.CharField(max_length=25)
+    away_team = models.CharField(max_length=25)
+    home_score = models.IntegerField()
+    away_score = models.IntegerField()
+    finished = models.BooleanField()
+    current_inning = models.CharField(max_length=30)
+    game_date = models.DateTimeField()
+
+    def __str__(self):
+        return self.home_team + " v " + self.away_team
+
 

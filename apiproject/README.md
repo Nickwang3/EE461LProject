@@ -80,6 +80,11 @@ $ sudo systemctl status apache2
 ```bash
 $ sudo docker-compose up
 ```
+If you are getting an Error:Network Error try the following
+```bash
+$ sudo docker-compose build
+$ sudo docker-compose up
+```
 * open [API running locally](http://127.0.0.1:8000/api/v1)
 
 ### run manage.py command

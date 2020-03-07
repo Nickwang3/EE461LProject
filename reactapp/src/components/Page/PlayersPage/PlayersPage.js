@@ -1,6 +1,7 @@
 import React from "react";
-import BookItem from "../../BookItem/BookItem";
+import Player from "./Player";
 import ApiService from "../../../api/ApiService";
+import {Container} from "reactstrap"
 
 const apiService = new ApiService();
 
@@ -10,17 +11,17 @@ class PlayersPage extends React.Component {
     this.state = {
       error: null,
       isLoaded: false,
-      books: []
+      players: []
     };
   }
 
   componentDidMount() {
     apiService
-      .getBooks()
+      .getPlayers()
       .then(result => {
         this.setState({
           isLoaded: true,
-          books: result.data
+          players: result.data
         });
       })
       .catch(error => {
@@ -32,20 +33,20 @@ class PlayersPage extends React.Component {
   }
 
   render() {
-    const { error, isLoaded, books } = this.state;
+    const { error, isLoaded, players } = this.state;
     if (error) {
       return <div>Error: {error.message}</div>;
     } else if (!isLoaded) {
       return <div>Loading...</div>;
     } else {
       return (
-        <div>
-          <h1>Hello there</h1>
-          <ul>
-            {books.map(book => (
-              <BookItem isbn={book.isbn} title={book.title} author_id={book.author_id} description="" />
+        <div className="PlayersPage">
+          <h1>MLB Players</h1>
+          <Container>
+            {players.map(player => (
+              <Player player={player}/>
             ))}
-          </ul>
+          </Container>
         </div>
       );
     }

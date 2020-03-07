@@ -1,6 +1,8 @@
 env/**
 __pycache__/
 **/static/**
+venv
+venv/**
 
 # Elastic Beanstalk Files
 .elasticbeanstalk/*
