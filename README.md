@@ -20,7 +20,7 @@
 
 * Roger Terrezas - (10hrs:4hrs)
 * Joey Tombari - (11hrs:5hrs)
-* Nick Wang - (:)
+* Nick Wang - (20hrs:30hrs)
 * Jacob Medeiros - (15hrs:5hrs)
 * Prajwal Chummar - (:)
 * Andrew Annestrand - (15hrs:25hrs)
