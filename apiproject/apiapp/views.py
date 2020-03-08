@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from rest_framework import viewsets
 from rest_framework.response import Response
 from apiapp.serializers import *
@@ -15,48 +15,19 @@ class UserViewSet(viewsets.ModelViewSet):
     def get_queryset(self):
         return User.objects.all()
 
-class AuthorViewSet(viewsets.ModelViewSet):
-
-    serializer_class = AuthorSerializer
-
-    def get_queryset(self):
-        return Author.objects.all()
-
-class BookViewSet(viewsets.ModelViewSet):
-
-    serializer_class = BookSerializer
-
-    def get_queryset(self):
-        return Book.objects.all()
-
-
-class ReviewViewSet(viewsets.ModelViewSet):
-    
-    serializer_class = ReviewSerializer
-
-    def get_queryset(self):
-        return Review.objects.all()
-
-class MeetupViewSet(viewsets.ModelViewSet):
-  
-    serializer_class = MeetupSerializer
-
-    def get_queryset(self):
-        return Meetup.objects.all()
-
 class PlayerViewSet(viewsets.ModelViewSet):
 
     serializer_class = PlayerSerializer
 
     def get_queryset(self):
-        return Player.objects.all()
+        return Player.objects.all().order_by('player_id')
 
 class TeamViewSet(viewsets.ModelViewSet):
 
     serializer_class = TeamSerializer
 
     def get_queryset(self):
-        return Team.objects.all()
+        return Team.objects.all().order_by('team_id')
 
 class GameViewSet(viewsets.ModelViewSet):
     serializer_class = GameSerializer
@@ -90,3 +61,5 @@ def get_games_by_date(request, date):
     return Response(data)
 
 
+def redirect_to_api(request):
+    return redirect('/api/v1')

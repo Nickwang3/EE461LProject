@@ -6,14 +6,13 @@ from django.contrib import admin
 #register api endpoints and their views
 router = routers.DefaultRouter()
 router.register(r'users', views.UserViewSet, basename='user')
-router.register(r'reviews', views.ReviewViewSet, basename='review')
-router.register(r'meetups', views.MeetupViewSet, basename='meetup')
 router.register(r'teams', views.TeamViewSet, basename='team')
 router.register(r'players', views.PlayerViewSet, basename='player')
 router.register(r'games',views.GameViewSet, basename='game')
 
 
 urlpatterns = [
+    path('', views.redirect_to_api),
     path('admin/', admin.site.urls),
     path('api/v1/', include(router.urls)),
     path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
