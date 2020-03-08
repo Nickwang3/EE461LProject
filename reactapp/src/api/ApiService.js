@@ -5,24 +5,24 @@ axios.defaults.baseURL = "http://django-env.zphgcpmf2t.us-west-2.elasticbeanstal
 export default class ApiService {
   constructor() {}
 
-  getBooks() {
-    return axios.get("/books/");
-  }
-
-  getBookByIsbn(isbn) {
-    return axios.get(`/books/isbn/${isbn}`);
-  }
-
-  getTeams() {
-    return axios.get("/teams/");
+  getTeams(page) {
+    return axios.get("/teams/", {
+      params: {
+        page: page 
+      }
+    });
   }
 
   getTeamById(team_id) {
     return axios.get(`/teams/${team_id}/`);
   }
 
-  getPlayers(){
-    return axios.get('/players/');
+  getPlayers(page){
+    return axios.get('/players/', {
+      params: {
+        page: page 
+      }
+    });
   }
 
   getPlayerById(player_id) {
@@ -30,10 +30,14 @@ export default class ApiService {
   }
 
   getGames() {
-    return axios.get("/games/")
+    return axios.get("/games/", {
+      params: {
+        page: 1 //change to page variable later
+      }
+    })
   }
 
   getGamesByDate(game_date) {
-    return axios.get(`/games/${game_date}`)
+    return axios.get(`/games/${game_date}`);
   }
 }
