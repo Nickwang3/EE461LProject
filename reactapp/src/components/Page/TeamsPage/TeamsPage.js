@@ -1,7 +1,7 @@
 import React from "react";
 import Team from "./Team.js";
 import ApiService from "../../../api/ApiService";
-import { Container } from "reactstrap";
+import { Container, Button } from "reactstrap";
 
 const apiService = new ApiService();
 
@@ -11,7 +11,11 @@ class TeamsPage extends React.Component {
     this.state = {
       error: null,
       isLoaded: false,
-      teams: []
+      teams: [],
+      page: 1,
+      prevPage: null,
+      nextPage: null,
+      count: null,
     };
   }
 
@@ -21,7 +25,59 @@ class TeamsPage extends React.Component {
       .then(result => {
         this.setState({
           isLoaded: true,
-          teams: result.data
+          teams: result.data.results
+        });
+      })
+      .catch(error => {
+        this.setState({
+          isLoaded: true,
+          error
+        });
+      });
+  }
+
+  nextPage() {
+    if (this.state.nextPage == null) {
+      return;
+    }
+    this.setState({
+      isLoaded: false,
+    })
+    apiService
+      .getTeams(this.state.page + 1)
+      .then(result => {
+        this.setState({
+          isLoaded: true,
+          teams: result.data.results,
+          page: this.state.page + 1,
+          prevPage: result.data.previous,
+          nextPage: result.data.next,
+        });
+      })
+      .catch(error => {
+        this.setState({
+          isLoaded: true,
+          error
+        });
+      });
+  }
+
+  prevPage() {
+    if (this.state.prevPage == null) {
+      return;
+    }
+    this.setState({
+      isLoaded: false,
+    })
+    apiService
+      .getTeams(this.state.page - 1)
+      .then(result => {
+        this.setState({
+          isLoaded: true,
+          teams: result.data.results,
+          page: this.state.page - 1,
+          prevPage: result.data.previous,
+          nextPage: result.data.next,
         });
       })
       .catch(error => {
@@ -46,6 +102,11 @@ class TeamsPage extends React.Component {
             {teams.map(team => (
               <Team team={team} />
             ))}
+          </Container>
+          <Container>
+            <Button onClick={() => this.prevPage()} disabled={this.state.prevPage == null}>Previous</Button>
+            <h5>Current Page: {this.state.page}</h5>
+            <Button onClick={() => this.nextPage()} disabled={this.state.nextPage == null}>Next</Button>
           </Container>
         </div>
       );
