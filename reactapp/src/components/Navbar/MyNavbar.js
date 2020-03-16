@@ -7,24 +7,24 @@ class MyNavbar extends React.Component {
   render() {
     return (
       <div>
-        <Navbar bg="light" expand="lg">
-          <Link to="/">
-            <Navbar.Brand className="siteName">Home Plate</Navbar.Brand>
-            </Link>
+        <Navbar className="bgColor" expand="lg">
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="mr-auto">
+                <Link to="/">
+                  <li className="links">Home</li>
+                </Link> 
                 <Link to="/about">
-                    <li class="nav-link">About</li>
+                    <li class="links">About</li>
                 </Link>
                 <Link to="/teams">
-                    <li class="nav-link">Teams</li>
+                    <li class="links">Teams</li>
                 </Link>
                 <Link to="/players">
-                    <li class="nav-link">Players</li>
+                    <li class="links">Players</li>
                 </Link>
                 <Link to="/scores">
-                    <li class="nav-link">Scores</li>
+                    <li class="links">Scores</li>
                 </Link>
             </Nav>
           </Navbar.Collapse>

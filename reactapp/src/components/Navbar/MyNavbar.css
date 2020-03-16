@@ -3,9 +3,19 @@
   	border: none;
 }
 
+.bgColor {
+  background-color: #111b1d;
+}
+
 .siteName {
-  font: 400 100px/1.5 'Pacifico', Helvetica, sans-serif;
-  font-size: 100px;
-  color: black;
+  font: 400 30px/1.5 'Pacifico', Helvetica, sans-serif;
+  color: white;
+  margin: 1ex;
+}
+
+.links {
+  font: 400 20px/1.5 'Pacifico', Helvetica, sans-serif;
+  color: white;
+  margin: 1ex;
 }
 
