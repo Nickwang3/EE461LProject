@@ -1,0 +1,11 @@
+.navbar-default {
+    background: none;
+  	border: none;
+}
+
+.siteName {
+  font: 400 100px/1.5 'Pacifico', Helvetica, sans-serif;
+  font-size: 100px;
+  color: black;
+}
+

@@ -1,6 +1,6 @@
 import React from "react";
-import {Jumbotron, Container} from 'react-bootstrap';
-import baseballImg from "./baseballHomePage.jpeg";
+import {Jumbotron, Container, Form, FormGroup, Label, Input} from 'reactstrap';
+import "./HomePage.css";
 
 class HomePage extends React.Component {
     constructor(props) {
@@ -25,13 +25,22 @@ class HomePage extends React.Component {
             return <div>Loading...</div>
         } else {
             return (
-
-                    <Jumbotron>
-                        <h1>Baseball Website</h1>
-                        <img id="baseballImg" src={baseballImg} alt="baseball"/>
-                        <br/>
-                        <p>This website was developed by UT students as a project for our Software Design Lab. The site features live updates of baseball data.</p>
+                <div className="searchContainer">
+                    <Jumbotron className="jumboTron" fluid>
+                            <h1 className="title">Home Plate</h1>
+                            <Form className="searchBarContainer">
+                                <FormGroup className="searchBar">
+                                    {/* <Label for="exampleSearch">Search</Label> */}
+                                    <Input
+                                    type="search"
+                                    name="search"
+                                    id="exampleSearch"
+                                    placeholder="Search our website..."
+                                    />
+                                </FormGroup>
+                            </Form>                        
                     </Jumbotron>
+                </div>
             )
         }
     }
