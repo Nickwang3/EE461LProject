@@ -2,3 +2,56 @@
     color: "red";
     margin: 100px;
 }
+
+.aboutContainer {
+    padding-top: 100px;
+    padding-bottom: 100px;
+}
+
+.mainAboutRow {
+    padding: 4%;
+    background-color: rgba(14, 156, 161, 0.26);
+    border-radius: 1%;
+    border: solid rgb(207, 193, 193);
+    border-width: 3px 3px;
+
+    display: flex;
+    align-content: center;
+}
+
+.siteRow {
+    /* font: 400 30px/1.5 'Pacifico', Helvetica, sans-serif; */
+    width: 100%;
+    padding-left: 80px;
+    padding-right: 80px;
+    margin-bottom: 80px;
+    display: flex;
+    justify-content: center;
+}
+
+.rowTitle {
+    font: 400 50px/1.5 'Pacifico', Helvetica, sans-serif;
+}
+
+.dataSourcesRow {
+    width: 100%;
+    padding-left: 80px;
+    padding-right: 80px;
+    margin-bottom: 50px;
+    display: flex;
+    justify-content: center;
+}
+
+.toolsRow {
+    width: 100%;
+    padding-left: 80px;
+    padding-right: 80px;
+    margin-bottom: 50px;
+    display: flex;
+    justify-content: center;
+}
+
+.cols {
+    height: 300px;
+    align-self: center;
+}
