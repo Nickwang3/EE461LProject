@@ -2,7 +2,7 @@ import React, {useEffect, useState} from "react";
 import './AboutPage.css';
 import Contributor from './Contributor.js'
 import {
-    Container, Row, Col
+    Container, Row, Col, CardDeck
   } from 'reactstrap';
 
 import mlbstatsapi from "../../../statics/mlbstatsapi.png";
@@ -54,7 +54,6 @@ class AboutPage extends React.Component {
             return (
                 // loop through all of rendered cards
                 <div className="AboutPage">
-                    {/* <h1 className="header">About our team...</h1> */}
                     <Container className="aboutContainer">
                         <Row className="mainAboutRow">
                             <Row className="siteRow">
@@ -64,24 +63,58 @@ class AboutPage extends React.Component {
                             <Row className="dataSourcesRow">
                                 <h1 className="rowTitle" style={{width: "100%",marginBottom: "30px"}}>Data Sources</h1>
                                 <Col className="cols">
-                                    <img style={{width: "100%", height: "60%", marginBottom: "10px"}}src={require("./../../../statics/mlbstatsapi.png")}></img>
+                                    <img style={{width: "80%", height: "60%", marginBottom: "10px"}}src={require("./../../../statics/mlbstatsapi.png")}></img>
                                     <h4>MLBStats API</h4>
                                 </Col>
                                 <Col className="cols">
-                                    <img style={{width: "100%", height: "60%", marginBottom: "10px"}} src={require("./../../../statics/sportsdata_io.png")}></img>
+                                    <img style={{width: "80%", height: "60%", marginBottom: "10px"}} src={require("./../../../statics/sportsdata_io.png")}></img>
                                     <h4>Sportsdata.io API</h4>
                                 </Col>
                                 <Col className="cols">
-                                    <img style={{width: "100%", height: "60%", marginBottom: "10px"}} src={require("./../../../statics/api_baseball.png")}></img>
+                                    <img style={{width: "80%", height: "60%", marginBottom: "10px"}} src={require("./../../../statics/api_baseball.png")}></img>
                                     <h4>Api-Baseball (from Rapidapis)</h4>
                                 </Col>
                             </Row>
                             <Row className="teamRow">
                                 <h1 className="rowTitle" style={{width: "100%",marginBottom: "30px"}}>The Team</h1>
-                                {this.state.cardArray}
+                                <CardDeck className="cardDeckRow">
+                                    {this.state.cardArray ? this.state.cardArray.slice(0,3):console.log("Not loaded")}
+                                </CardDeck>
+                                <CardDeck className="cardDeckRow">
+                                    {this.state.cardArray ? this.state.cardArray.slice(3,6):console.log("Not loaded")}
+                                </CardDeck>                                
                             </Row> 
                             <Row className="toolsRow">
-                                <h1 className="rowTitle" style={{width: "100%",marginBottom: "30px"}}>Tools</h1>
+                                <h1 className="rowTitle" style={{width: "100%",marginBottom: "50px"}}>Tools</h1>
+                                <Row>
+                                    <Col className="cols">
+                                        <img style={{width: "100%", height: "50%", marginBottom: "10px"}}src={require("./../../../statics/react.png")}></img>
+                                        <h4>React</h4>
+                                    </Col>
+                                    <Col className="cols">
+                                        <img style={{width: "70%", height: "50%", marginBottom: "10px"}} src={require("./../../../statics/django.png")}></img>
+                                        <h4>Django</h4>
+                                    </Col>
+                                    <Col className="cols">
+                                        <img style={{width: "70%", height: "50%", marginBottom: "10px"}} src={require("./../../../statics/postgresql.png")}></img>
+                                        <h4>PostgreSQL</h4>
+                                    </Col>
+                                </Row>
+                                    <Col className="cols">
+                                        <img style={{width: "70%", height: "50%", marginBottom: "15px"}}src={require("./../../../statics/docker.png")}></img>
+                                        <h4>Docker</h4>
+                                    </Col>
+                                    <Col className="cols">
+                                        <img style={{width: "70%", height: "50%", marginBottom: "15px"}} src={require("./../../../statics/slack.png")}></img>
+                                        <h4>Slack</h4>
+                                    </Col>
+                                    <Col className="cols">
+                                        <img style={{width: "70%", height: "50%", marginBottom: "15px"}} src={require("./../../../statics/aws.png")}></img>
+                                        <h4>AWS</h4>
+                                    </Col>
+                                <Row>
+
+                                </Row>
                             </Row> 
                         </Row>
 

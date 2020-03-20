@@ -16,28 +16,46 @@ class Contributor extends React.Component {
 
     render() {
         const cardStyle = {
-            margin: 15, 
-            width: 200, 
-            height: 320,
+            margin: 20, 
+            width: 250, 
+            height: 400,
+            border: "solid rgb(207, 193, 193)",
+            borderWidth: 2
         }
 
         const cardTextStyle = {
             color:"black",
-            fontSize: 20
+            fontSize: 12,
+            margin: 0
         }
 
         const cardTitleStyle = {
             color:"black", 
-            fontSize: 20
+            fontSize: 20,
+            marginBottom: 0
+        }
+
+        const CardSubtitleStyle = {
+            color: "black",
+            fontSize: 15,
+            color: "grey"
+        }
+
+        const cardImgStyle = {
+            width:246, 
+            height:200,
+            alignSelf: "center"
         }
 
             return (
                 <Card style={cardStyle}>
-                    <CardImg style={{width:199, height:200}} src={this.props.avatar} alt="Card image cap" />
+                    <CardImg style={cardImgStyle} src={this.props.avatar} alt="Card image cap" />
                     <CardBody>
                         <CardTitle style={cardTitleStyle}>{this.props.name}</CardTitle>
-                        {/* <CardSubtitle>Card subtitle</CardSubtitle> */}
-                        <CardText style={cardTextStyle}>Contributions: {this.props.contributions}</CardText>
+                        <CardSubtitle style={CardSubtitleStyle}>{this.props.description}</CardSubtitle>
+                        <CardText style={cardTextStyle}>Commits: {this.props.commits}</CardText>
+                        <CardText style={cardTextStyle}>Issues: {this.props.issues}</CardText>
+                        <CardText style={cardTextStyle}>Tests: {this.props.tests}</CardText>
                     </CardBody>
                 </Card>
             )
