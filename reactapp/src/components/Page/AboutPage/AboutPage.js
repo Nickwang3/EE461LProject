@@ -1,11 +1,14 @@
 import React, {useEffect, useState} from "react";
 import './AboutPage.css';
+import ApiService from "../../../api/ApiService";
 import Contributor from './Contributor.js'
 import {
     Container, Row, Col, CardDeck
   } from 'reactstrap';
 
 import mlbstatsapi from "../../../statics/mlbstatsapi.png";
+const apiService = new ApiService();
+
 
 class AboutPage extends React.Component {
 
@@ -18,24 +21,18 @@ class AboutPage extends React.Component {
             cardResponse: null
         }
 
-        this.setData = this.setData.bind(this)
     }
-  
-  
-    setData(cardResponse) {
-        this.setState({cardResponse: cardResponse});
-        this.setState({cardArray: this.state.cardResponse.slice(0).map((item, i) => <Contributor key={i} name={item.login} avatar={item.avatar_url} contributions={item.contributions} />) });
-        console.log(this.state.cardArray)
-    };
-
-
 
     componentDidMount() {
 
-        fetch('https://api.github.com/repos/Nickwang3/EE461LProject/contributors')
-            .then(res => res.json())
-            .then(data => {this.setData(data)});
-
+        apiService
+            .getTeammembers()
+            .then(res => {
+                this.setState({cardResponse: res.data.results});
+                this.setState({cardArray: this.state.cardResponse.slice(0).map((item, i) => <Contributor key={i} name={item.name} avatar={item.avatar} description={item.description} issues={item.issues} commits={item.commits} tests={item.tests} />) });
+                console.log(this.state.cardArray)
+            })
+                
         this.setState({
             isLoaded: true,
         })

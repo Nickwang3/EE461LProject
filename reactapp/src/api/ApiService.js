@@ -40,4 +40,10 @@ export default class ApiService {
   getGamesByDate(game_date) {
     return axios.get(`/games/${game_date}`);
   }
+
+  getTeammembers() {
+    axios.put('/teammembers/update_git_stats').then()
+
+    return axios.get('/teammembers/')
+  }
 }

@@ -21,8 +21,9 @@ class ScoresPage extends React.Component {
       .then(result => {
         this.setState({
           isLoaded: true,
-          games: result.data
+          games: result.data.results
         });
+        console.log(result.data.results)
       })
       .catch(error => {
         this.setState({

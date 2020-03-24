@@ -45,4 +45,11 @@ class Game(models.Model):
     def __str__(self):
         return self.home_team + " v " + self.away_team
 
-
+class TeamMember(models.Model):
+    github_username = models.CharField(max_length=50, primary_key=True)
+    name = models.CharField(max_length=50)
+    description = models.CharField(max_length=1000)
+    avatar = models.CharField(max_length=500)
+    issues = models.CharField(max_length=10)
+    commits = models.CharField(max_length=10)
+    tests = models.CharField(max_length=10)

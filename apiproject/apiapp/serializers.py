@@ -1,5 +1,5 @@
 from django.contrib.auth.models import User
-from .models import Team, Player, Game
+from .models import Team, Player, Game, TeamMember
 from rest_framework import serializers
 
 class UserSerializer(serializers.ModelSerializer):
@@ -21,3 +21,8 @@ class GameSerializer(serializers.ModelSerializer):
     class Meta:
         model = Game
         fields = ['game_id', 'home_team', 'away_team', 'home_score','away_score','game_date','current_inning','finished']
+
+class TeamMemberSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = TeamMember
+        fields = ['github_username','name','description','avatar','issues','commits','tests']

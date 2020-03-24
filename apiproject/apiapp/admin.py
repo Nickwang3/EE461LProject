@@ -2,9 +2,10 @@
 from __future__ import unicode_literals
 
 from django.contrib import admin
-from .models import Team, Player, Game
+from .models import Team, Player, Game, TeamMember
 
 # Register your models here.
 admin.site.register(Player)
 admin.site.register(Team)
 admin.site.register(Game)
+admin.site.register(TeamMember)
