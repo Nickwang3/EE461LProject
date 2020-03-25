@@ -8,6 +8,8 @@ from rest_framework import viewsets
 from rest_framework.response import Response
 from apiapp.serializers import *
 from rest_framework.decorators import api_view
+from .models import TeamMember
+
 
 # Create your views here.
 class UserViewSet(viewsets.ModelViewSet):
@@ -94,21 +96,31 @@ def post_teammember(request):
 
 @api_view(['PUT'])
 def update_git_stats(request):
-    user_issues = {'aannestrand': 0, 'Nickwang3': 0, 'JacobMedeiros': 0, 'RogerTerrazas': 0, 'Jombari': 0, 'pc24495': 0}
-    user_commits = {'aannestrand': 0, 'Nickwang3': 0, 'JacobMedeiros': 0, 'RogerTerrazas': 0, 'Jombari': 0, 'pc24495': 0}
+    url = "http://django-env.zphgcpmf2t.us-west-2.elasticbeanstalk.com/api/v1/teammembers"
+    response = requests.request("GET", url)
+    teammembers = response.json()['results']
+
+    user_issues = {}
+    user_commits = {}
+
+    for teammember in teammembers:
+        user_issues[teammember['github_username']] = 0
+        user_commits[teammember['github_username']] = 0
+
 
     url = "https://api.github.com/repos/Nickwang3/EE461LProject/stats/contributors"
     res = requests.get(url)
 
     for user in res.json():
-        user_commits[user['author']['login']] = user['total']
+        if ((user['author']['login']) in user_commits):
+            user_commits[user['author']['login']] = user['total']
     
     params = {'state': 'closed'}
     url = "https://api.github.com/repos/Nickwang3/EE461LProject/issues"
     res = requests.get(url, params=params)
 
     for issue in res.json():
-        if (len(issue) == 23):
+        if (len(issue) == 23) and (issue['assignee']['login'] in user_issues):
             user_issues[issue['assignee']['login']] += 1
     
     # Now we update actual entries

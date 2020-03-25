@@ -39,6 +39,3 @@ class Command(BaseCommand):
                 
                 except: 
                     print("bad player")
-
-
-

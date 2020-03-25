@@ -3,6 +3,7 @@ from __future__ import unicode_literals
 
 from django.db import models
 from django.contrib.auth.models import User
+from django.contrib.postgres.fields import ArrayField
 
 # Create your models here.
 
@@ -12,6 +13,7 @@ class Team(models.Model):
     venue = models.CharField(max_length=50)
     division = models.CharField(max_length=50)
     logo = models.CharField(max_length=300)
+    # roster = ArrayField(Player)
 
     def __str__(self):
         return self.name
