@@ -107,7 +107,6 @@ def update_git_stats(request):
         user_issues[teammember['github_username']] = 0
         user_commits[teammember['github_username']] = 0
 
-
     url = "https://api.github.com/repos/Nickwang3/EE461LProject/stats/contributors"
     res = requests.get(url)
 
@@ -120,8 +119,15 @@ def update_git_stats(request):
     res = requests.get(url, params=params)
 
     for issue in res.json():
-        if (len(issue) == 23) and (issue['assignee']['login'] in user_issues):
-            user_issues[issue['assignee']['login']] += 1
+
+        #If a valid issue
+        try:
+            if (len(issue) == 23) and (issue['assignee']['login'] in user_issues):
+                user_issues[issue['assignee']['login']] += 1
+        
+        #If not valid just pass
+        except:
+            pass
     
     # Now we update actual entries
     for user in user_issues.keys():
