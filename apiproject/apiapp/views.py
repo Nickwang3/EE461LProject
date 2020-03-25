@@ -9,6 +9,13 @@ from rest_framework.response import Response
 from apiapp.serializers import *
 from rest_framework.decorators import api_view
 from .models import TeamMember
+from rest_framework import filters
+
+
+# For customm filtering options
+class DynamicSearchFilter(filters.SearchFilter):
+    def get_search_fields(self, view, request):
+        return request.GET.getlist('search_fields', [])
 
 
 # Create your views here.
@@ -20,7 +27,7 @@ class UserViewSet(viewsets.ModelViewSet):
         return User.objects.all()
 
 class PlayerViewSet(viewsets.ModelViewSet):
-
+    filter_backends = [DynamicSearchFilter, filters.OrderingFilter]
     serializer_class = PlayerSerializer
 
     def get_queryset(self):
