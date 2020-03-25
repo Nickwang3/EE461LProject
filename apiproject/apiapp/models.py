@@ -13,7 +13,6 @@ class Team(models.Model):
     venue = models.CharField(max_length=50)
     division = models.CharField(max_length=50)
     logo = models.CharField(max_length=300)
-    # roster = ArrayField(Player)
 
     def __str__(self):
         return self.name

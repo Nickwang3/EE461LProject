@@ -1,0 +1,41 @@
+.tableStyle {
+    color: white;
+    font-size: large;
+}
+
+.detailedTeamContainer {
+    display: flex;
+    justify-content: center;
+}
+
+.teamNameRow {
+    width: 100%;
+    padding-left: 80px;
+    padding-right: 80px;
+    margin-top: 50px;
+    margin-bottom: 40px;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+}
+
+.titleStyle{
+    font: 400 50px/1.5 'Pacifico', Helvetica, sans-serif;
+}
+
+.rosterRow {
+    background-color: rgba(14, 156, 161, 0.26);
+    width: 100%;
+    padding-left: 80px;
+    padding-right: 80px;
+    padding-top: 40px;
+    padding-bottom: 40px;
+    margin-bottom: 40px;
+    border-radius: 1%;
+    border: solid rgb(207, 193, 193);
+    border-width: 3px 3px;
+    
+    display: flex;
+    justify-content: center;
+    align-content: center;
+}

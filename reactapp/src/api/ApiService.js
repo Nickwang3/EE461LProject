@@ -1,6 +1,6 @@
 import axios from "axios";
-// axios.defaults.baseURL = "http://localhost:8000/api/v1";
-axios.defaults.baseURL = "http://django-env.zphgcpmf2t.us-west-2.elasticbeanstalk.com/api/v1";
+axios.defaults.baseURL = "http://localhost:8000/api/v1";
+// axios.defaults.baseURL = "http://django-env.zphgcpmf2t.us-west-2.elasticbeanstalk.com/api/v1";
 
 export default class ApiService {
   constructor() {}
@@ -27,6 +27,10 @@ export default class ApiService {
 
   getPlayerById(player_id) {
     return axios.get(`/players/${player_id}/`);
+  }
+
+  getPlayersByTeamId(team_id) {
+    return axios.get(`/players/team_id/${team_id}`);
   }
 
   getGames() {
