@@ -52,6 +52,12 @@ class TeamMemberViewSet(viewsets.ModelViewSet):
     def get_queryset(self):
         return TeamMember.objects.all()
 
+class TeamRecordViewSet(viewsets.ModelViewSet):
+    serializer_class = TeamRecordSerializer
+
+    def get_queryset(self):
+        return TeamRecord.objects.all()
+
 
 @api_view(['GET'])
 def get_players_by_team_id(request, team_id):
@@ -151,6 +157,24 @@ def get_current_weather_by_team_id(request, team_id):
     url = 'https://api.darksky.net/forecast/b411dfcc671baccec4d3b9e75d42ed21/{}, {}'.format(team.latitude, team.longitude)
     response = requests.get(url)
     return Response(response.json())
+
+@api_view(['GET'])
+def get_records_by_team_id(request, team_id):
+    records= TeamRecord.objects.filter(team=team_id)
+    data = TeamRecordSerializer(records, many=True).data
+    return Response(data)
+
+@api_view(['GET'])
+def get_records_by_season(request, season):
+    records = TeamRecord.objects.filter(season=season)
+    data = TeamRecordSerializer(records, many=True).data
+    return Response(data)
+
+@api_view(['GET'])
+def get_records_by_team_id_and_season(reqeust, team_id_and_season):
+    record = TeamRecord.objects.get(team_id_and_season=team_id_and_season)
+    data = TeamRecordSerializer(record).data
+    return Response(data)
 
 
 def redirect_to_api(request):

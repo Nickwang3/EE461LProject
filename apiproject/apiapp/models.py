@@ -56,3 +56,12 @@ class TeamMember(models.Model):
     issues = models.CharField(max_length=10)
     commits = models.CharField(max_length=10)
     tests = models.CharField(max_length=10)
+
+class TeamRecord(models.Model):
+    team_id_and_season = models.CharField(max_length=50, primary_key=True)
+    team = models.ForeignKey(Team, to_field="team_id", on_delete=models.CASCADE)
+    season = models.CharField(max_length=20)
+    wins = models.CharField(max_length=5)
+    losses = models.CharField(max_length=5)
+    division_rank = models.CharField(max_length=10)
+    league_rank = models.CharField(max_length=10)
