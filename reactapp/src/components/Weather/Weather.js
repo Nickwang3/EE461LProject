@@ -40,9 +40,11 @@ class Weather extends React.Component {
       return (
         <div>
           <h1>At the Ball Park</h1>
-          <h2>Summary: {weather.currently.summary}</h2>
+          <h2>Today's Weather: {weather.hourly.summary}</h2>
+          <h3>Currently: {weather.currently.summary}</h3>
           <h4>Current Temperature: {weather.currently.temperature} &#x2109;</h4>
           <h4>Feels Like: {weather.currently.apparentTemperature} &#x2109;</h4>
+          <h4>Precipitation Probability: {weather.currently.precipProbability}</h4>
           <h4>Humidity: {weather.currently.humidity}</h4>
           <h4>Cloud Coverage: {weather.currently.cloudCover}</h4>
         </div>
