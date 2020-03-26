@@ -23,5 +23,6 @@ urlpatterns = [
     path('api/v1/games/game_date/<str:game_date>',views.get_games_by_date, name ="get_games_by_date"),
     path('api/v1/teammembers/add_teammember/', views.post_teammember, name='post_teammember'),
     path('api/v1/teammembers/github_username/<str:github_username>', views.get_teammembers_by_github_username, name="get_teammembers_by_github_username"),
-    path('api/v1/teammembers/update_git_stats', views.update_git_stats, name='update_git_stats')
+    path('api/v1/teammembers/update_git_stats', views.update_git_stats, name='update_git_stats'),
+    path('api/v1/weather/current_weather/team_id/<str:team_id>', views.get_current_weather_by_team_id, name="get_current_weather_by_team_id")
 ]
