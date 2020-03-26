@@ -145,6 +145,13 @@ def update_git_stats(request):
         
     return Response(HTTPStatus.ACCEPTED)
 
+@api_view(['GET'])
+def get_current_weather_by_team_id(request, team_id):
+    team = Team.objects.get(team_id=team_id)
+    url = 'https://api.darksky.net/forecast/b411dfcc671baccec4d3b9e75d42ed21/{}, {}'.format(team.latitude, team.longitude)
+    response = requests.get(url)
+    return Response(response.json())
+
 
 def redirect_to_api(request):
     return redirect('/api/v1')

@@ -13,6 +13,8 @@ class Team(models.Model):
     venue = models.CharField(max_length=50)
     division = models.CharField(max_length=50)
     logo = models.CharField(max_length=300)
+    latitude = models.DecimalField(default=0, max_digits=20, decimal_places=15)
+    longitude = models.DecimalField(default=0, max_digits=20, decimal_places=15)
 
     def __str__(self):
         return self.name

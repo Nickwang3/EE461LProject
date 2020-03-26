@@ -4,6 +4,7 @@ import { withRouter } from 'react-router';
 import { Table, Container, Row } from 'reactstrap';
 import RosterPlayer from "./RosterPlayer";
 import "./DetailedTeamPage.css"
+import Weather from "../../Weather/Weather";
 
 const apiService = new ApiService();
 
@@ -50,6 +51,7 @@ class DetailedTeamPage extends React.Component {
             <h5 style={{width: "100%",marginBottom: "10px"}}>Division: {team.division}</h5>
             <h5 style={{width: "100%"}}>Stadium: {team.venue}</h5>
           </Row>
+          <Weather team_id={team.team_id}/>
 
           <Row className="rosterRow">
             <h2 style={{width: "100%",marginBottom: "30px"}}>Roster</h2>

@@ -62,4 +62,8 @@ export default class ApiService {
 
     return axios.get('/teammembers/')
   }
+
+  getCurrentWeatherByTeamId(team_id) {
+    return axios.get(`weather/current_weather/team_id/${team_id}`);
+  } 
 }
