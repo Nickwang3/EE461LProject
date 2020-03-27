@@ -1,5 +1,4 @@
 import React from "react";
-import BookItem from "../../BookItem/BookItem";
 import ApiService from "../../../api/ApiService";
 import ScoreBoard from "./Scoreboard";
 

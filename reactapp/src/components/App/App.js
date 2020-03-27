@@ -13,6 +13,7 @@ import ScoresPage from '../Page/ScoresPage/ScoresPage'
 
 import DetailedTeamPage from '../Page/TeamsPage/DetailedTeamPage';
 import DetailedPlayerPage from '../Page/PlayersPage/DetailedPlayerPage';
+import 'bootstrap/dist/css/bootstrap.min.css'; 
 
 require('dotenv').config();
 
