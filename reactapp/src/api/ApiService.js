@@ -1,6 +1,6 @@
 import axios from "axios";
-axios.defaults.baseURL = "http://localhost:8000/api/v1";
-// axios.defaults.baseURL = "http://django-env.zphgcpmf2t.us-west-2.elasticbeanstalk.com/api/v1";
+// axios.defaults.baseURL = "http://localhost:8000/api/v1";
+axios.defaults.baseURL = "http://django-env.zphgcpmf2t.us-west-2.elasticbeanstalk.com/api/v1";
 
 export default class ApiService {
   constructor() {}
@@ -66,4 +66,16 @@ export default class ApiService {
   getCurrentWeatherByTeamId(team_id) {
     return axios.get(`weather/current_weather/team_id/${team_id}`);
   } 
+
+  getRecordsByTeamId(team_id) {
+    return axios.get(`teamrecords/team_id/${team_id}`);
+  }
+
+  getRecordsBySeason(season) {
+    return axios.get(`teamrecords/season/${season}`);
+  }
+
+  getRecordByTeamIdAndSeason(combo) {
+    return axios.get(`teamrecords/team_id_and_season/${combo}`);
+  }
 }

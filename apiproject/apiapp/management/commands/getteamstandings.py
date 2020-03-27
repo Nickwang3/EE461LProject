@@ -10,7 +10,7 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
 
-        season = '2018'
+        season = '2020'
         
         al_standings = statsapi.get('standings', {'sportIds': 1, 'leagueId': 103, 'season':season})
         nl_standings = statsapi.get('standings', {'sportIds': 1, 'leagueId': 104, 'season':season})
