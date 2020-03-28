@@ -11,7 +11,8 @@ router.register(r'players', views.PlayerViewSet, basename='player')
 router.register(r'games',views.GameViewSet, basename='game')
 router.register(r'teammembers', views.TeamMemberViewSet, basename='teammember')
 router.register(r'teamrecords', views.TeamRecordViewSet, basename='teamrecord')
-
+router.register(r'pitcherstats', views.PitcherStatsViewSet, basename='pitcherstats')
+router.register(r'hitterstats', views.HitterStatsViewSet, basename='hitterstats')
 
 urlpatterns = [
     path('', views.redirect_to_api),
@@ -28,5 +29,7 @@ urlpatterns = [
     path('api/v1/weather/current_weather/team_id/<str:team_id>', views.get_current_weather_by_team_id, name="get_current_weather_by_team_id"),
     path('api/v1/teamrecords/team_id/<str:team_id>', views.get_records_by_team_id, name='get_records_by_team_id'),
     path('api/v1/teamrecords/season/<str:season>', views.get_records_by_season, name='get_records_by_season'),
-    path('api/v1/teamrecords/team_id_and_season/<str:team_id_and_season>', views.get_records_by_team_id_and_season, name='get_records_by_team_id_and_season')
+    path('api/v1/teamrecords/team_id_and_season/<str:team_id_and_season>', views.get_records_by_team_id_and_season, name='get_records_by_team_id_and_season'),
+    path('api/v1/pitcherstats/player_id/<str:player_id>', views.get_pitcher_stats_by_player_id, name='get_pitcher_stats_by_player_id'),
+    path('api/v1/hitterstats/player_id/<str:player_id>', views.get_hitter_stats_by_player_id, name='get_hitter_stats_by_player_id')
 ]
