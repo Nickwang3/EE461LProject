@@ -37,16 +37,14 @@ class Player(models.Model):
 
 class Game(models.Model):
     game_id = models.CharField(max_length=50, primary_key=True)
-    home_team = models.CharField(max_length=25)
-    away_team = models.CharField(max_length=25)
+    home_team = models.ForeignKey(Team, to_field="team_id", on_delete=models.CASCADE, related_name='home_team')
+    away_team = models.ForeignKey(Team, to_field="team_id", on_delete=models.CASCADE, related_name='away_team')
     home_score = models.IntegerField()
     away_score = models.IntegerField()
     finished = models.BooleanField()
     current_inning = models.CharField(max_length=30)
-    game_date = models.DateTimeField()
+    game_datetime = models.DateTimeField()
 
-    def __str__(self):
-        return self.home_team + " v " + self.away_team
 
 class TeamMember(models.Model):
     github_username = models.CharField(max_length=50, primary_key=True)
