@@ -1,6 +1,10 @@
 import React from "react";
 import ApiService from "../../../api/ApiService";
 import { withRouter } from 'react-router';
+import { Container, Row} from 'reactstrap'
+import PitcherTable from "./PitcherTable";
+import HitterTable from "./HitterTable";
+import './DetailedPlayerPage.css'
 
 const apiService = new ApiService();
 
@@ -25,10 +29,10 @@ class DetailedPlayerPage extends React.Component {
         })
         .then(() => {
           if (this.state.player.position.includes("P")) {
-            apiService.getPitcherStatsById(this.state.player.player_id)
+            return apiService.getPitcherStatsById(this.state.player.player_id)
           } 
           else {
-            apiService.getHitterStatsById(this.state.player.player_id)
+            return apiService.getHitterStatsById(this.state.player.player_id)
           }
         })
         .then(res => {
@@ -36,12 +40,11 @@ class DetailedPlayerPage extends React.Component {
             isLoaded: true,
             stats: res.data
           })
-          console.log(res.data)
         })
   }
 
   render() {
-    const { error, isLoaded, player } = this.state;
+    const { error, isLoaded, player, stats } = this.state;
     if (error) {
       return <div>Error: {error.message}</div>;
     } else if (!isLoaded) {
@@ -49,13 +52,33 @@ class DetailedPlayerPage extends React.Component {
     } else {
       return (
         <div>
-          <h1>Name: {player.name}</h1>
-          <h5>Team: {player.age}</h5>
-          <h5>Position: {player.position}</h5>
-          <h5>Number: {player.number}</h5>
-          <h5>Age: {player.age}</h5>
-          <h5>Height: {player.height}</h5>
-          <h5>Weight: {player.weight}</h5>
+
+
+          <Container className="detailedPlayerContainer">
+
+            <Row className="playerPictureRow">
+              <img className="playerPictureStyle" src={player.picture}></img>
+            </Row>
+            <Row className="playerNameRow">
+              <h1 className="titleStyle">{player.name}</h1>
+            </Row>
+
+              <h5> Team: {player.age} </h5>
+              <h5> Position: {player.position} </h5>
+              <h5> Number: {player.number} </h5>
+              <h5> Age: {player.age} </h5>
+              <h5> Height: {player.height} </h5>
+              <h5> Weight: {player.weight} </h5>
+
+            <Row className="playerInfoRow">
+              
+
+              <Row className="statsRow"> 
+                {(this.state.player.position.includes("P") ? <PitcherTable stats={stats}/>:<HitterTable stats={stats}/>)}
+              </Row>
+              
+            </Row>
+          </Container>
         </div>
       );
     }

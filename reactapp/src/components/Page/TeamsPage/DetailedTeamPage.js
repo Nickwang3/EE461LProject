@@ -69,13 +69,12 @@ class DetailedTeamPage extends React.Component {
       return <div>Loading...</div>;
     } else {
       return (
+
         <Container className="detailedTeamContainer">
+
           <Row className="teamNameRow">
             <h1 className="titleStyle">{team.name}</h1>
-
           </Row>
-          
-
 
           <Row className="teamInfoRow">
             <Row className="navRow">
@@ -113,7 +112,7 @@ class DetailedTeamPage extends React.Component {
                     <Row className="rosterRow">
                       {/* <h2 style={{width: "100%",marginBottom: "30px"}}>Roster</h2> */}
                       <Table className="tableStyle">
-                        <thead>
+                        <thead  style={{color: "white"}}>
                           <tr>
                             <th>Number</th>
                             <th>Name</th>
@@ -123,7 +122,7 @@ class DetailedTeamPage extends React.Component {
                             <th>Weight</th>
                           </tr>
                         </thead>
-                        <tbody>
+                        <tbody  style={{color: "white"}}>
                           {roster.map(player => (
                             <RosterPlayer player={player}/>
                           ))}
