@@ -1,5 +1,5 @@
 from django.contrib.auth.models import User
-from .models import Team, Player, Game, TeamMember, TeamRecord
+from .models import Team, Player, Game, TeamMember, TeamRecord, PitcherStats, HitterStats
 from rest_framework import serializers
 
 class UserSerializer(serializers.ModelSerializer):
@@ -31,3 +31,13 @@ class TeamRecordSerializer(serializers.ModelSerializer):
     class Meta:
         model = TeamRecord
         fields = ['team_id_and_season', 'team', 'season', 'wins', 'losses','division_rank', 'league_rank']
+
+class PitcherStatsSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = PitcherStats
+        fields = ['player_id_and_season', 'team', 'player', 'season', 'games_played', 'games_started', 'wins', 'losses', 'era', 'games_finished', 'complete_games', 'shutouts', 'saves', 'innings_pitched', 'hits', 'runs', 'earned_runs', 'home_runs', 'home_runs', 'walks', 'strikeouts', 'whip']
+
+class HitterStatsSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = HitterStats
+        fields = ['player_id_and_season', 'team', 'player', 'season', 'games', 'plate_appearances', 'at_bats', 'runs', 'hits', 'doubles', 'triples', 'home_runs', 'runs_batted_in', 'stolen_bases', 'caught_stealing', 'strikeouts', 'batting_average', 'obp', 'slg', 'ops']

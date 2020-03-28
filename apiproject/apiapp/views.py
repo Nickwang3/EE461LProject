@@ -58,6 +58,18 @@ class TeamRecordViewSet(viewsets.ModelViewSet):
     def get_queryset(self):
         return TeamRecord.objects.all()
 
+class PitcherStatsViewSet(viewsets.ModelViewSet):
+    serializer_class = PitcherStatsSerializer
+
+    def get_queryset(self):
+        return PitcherStats.objects.all()
+
+class HitterStatsViewSet(viewsets.ModelViewSet):
+    serializer_class = HitterStatsSerializer
+
+    def get_queryset(self):
+        return HitterStats.objects.all()
+
 
 @api_view(['GET'])
 def get_players_by_team_id(request, team_id):
@@ -176,6 +188,17 @@ def get_records_by_team_id_and_season(reqeust, team_id_and_season):
     data = TeamRecordSerializer(record).data
     return Response(data)
 
+@api_view(['GET'])
+def get_pitcher_stats_by_player_id(request, player_id):
+    records= PitcherStats.objects.filter(player=player_id)
+    data = PitcherStatsSerializer(records, many=True).data
+    return Response(data)
+
+@api_view(['GET'])
+def get_hitter_stats_by_player_id(request, player_id):
+    records= HitterStats.objects.filter(player=player_id)
+    data = HitterStatsSerializer(records, many=True).data
+    return Response(data)
 
 def redirect_to_api(request):
     return redirect('/api/v1')

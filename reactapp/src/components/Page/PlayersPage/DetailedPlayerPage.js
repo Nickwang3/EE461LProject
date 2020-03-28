@@ -11,6 +11,7 @@ class DetailedPlayerPage extends React.Component {
       error: null,
       isLoaded: false,
       player: null,
+      stats: null
     };
   }
 
@@ -19,11 +20,24 @@ class DetailedPlayerPage extends React.Component {
         .getPlayerById(this.props.match.params.player_id)
         .then(result => {
             this.setState({
-                isLoaded: true,
                 player: result.data
             })
         })
-
+        .then(() => {
+          if (this.state.player.position.includes("P")) {
+            apiService.getPitcherStatsById(this.state.player.player_id)
+          } 
+          else {
+            apiService.getHitterStatsById(this.state.player.player_id)
+          }
+        })
+        .then(res => {
+          this.setState({
+            isLoaded: true,
+            stats: res.data
+          })
+          console.log(res.data)
+        })
   }
 
   render() {
