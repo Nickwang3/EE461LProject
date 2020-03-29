@@ -1,6 +1,6 @@
 import requests
 import json
-from apiapp.models import Game
+from apiapp.models import Game, Team
 from django.conf import settings
 from django.core.management.base import BaseCommand
 
@@ -14,8 +14,8 @@ class Command(BaseCommand):
 
         for game in sched:
             game_id = game['game_id']
-            home_team = game['home_name']
-            away_team = game['away_name']
+            home_team = Team.objects.get(team_id=games['awayTeam'][‘id’])
+            away_team = Team.objects.get(team_id=games['awayTeam'][‘id’])
             home_score = game['home_score']
             away_score = game['away_score']
             current_inning = game['current_inning']
@@ -29,7 +29,7 @@ class Command(BaseCommand):
                 home_score = 0
             if not(current_inning):
                 current_inning = " "
-            game_date = game['game_date']
+            game_date = game['game_datetime']
 
             try:
                 db_game = Game.objects.get(game_id=game_id)
