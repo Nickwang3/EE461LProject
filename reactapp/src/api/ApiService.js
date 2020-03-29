@@ -54,7 +54,7 @@ export default class ApiService {
   }
 
   getGamesByDate(game_date) {
-    return axios.get(`/games/${game_date}`);
+    return axios.get(`/games/game_date/${game_date}`);
   }
 
   getTeammembers() {
