@@ -39,8 +39,9 @@ class Command(BaseCommand):
                 away_team = event['performers'][1]['name']
                 price_url = 'https://api.seatgeek.com/2/events/' + str(event['id'])
                 event_resp = requests.get(price_url, params=ticket_params)
-                price_json = json.loads(event_resp.content)
-                price = price_json['stats']['average_price']
+                event_json = json.loads(event_resp.content)
+                price = event_json['stats']['average_price']
+                event_url = event_json['url']
                 if price is None:
                     average_price = 'N/A'
                 else:
@@ -50,6 +51,6 @@ class Command(BaseCommand):
                     ticket = Ticket.objects.get(ticket_id=ticket_id)
                     print("found")
                 except:
-                    ticket = Ticket(ticket_id=ticket_id, title=title, datetime_local=datetime_local, image_url=image_url, venue=venue, home_team=home_team, away_team=away_team, average_price=average_price)
+                    ticket = Ticket(ticket_id=ticket_id, title=title, datetime_local=datetime_local, image_url=image_url, venue=venue, home_team=home_team, away_team=away_team, average_price=average_price, event_url=event_url)
                     ticket.save()
-                    print('saved: ' + str(ticket_id), title, datetime_local, image_url, venue, home_team, away_team, average_price)
+                    print('saved: ' + str(ticket_id), title, datetime_local, image_url, venue, home_team, away_team, average_price, event_url)

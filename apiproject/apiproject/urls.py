@@ -13,6 +13,7 @@ router.register(r'teammembers', views.TeamMemberViewSet, basename='teammember')
 router.register(r'teamrecords', views.TeamRecordViewSet, basename='teamrecord')
 router.register(r'pitcherstats', views.PitcherStatsViewSet, basename='pitcherstats')
 router.register(r'hitterstats', views.HitterStatsViewSet, basename='hitterstats')
+router.register(r'tickets', views.TicketViewSet, basename="tickets")
 
 urlpatterns = [
     path('', views.redirect_to_api),

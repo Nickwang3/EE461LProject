@@ -120,5 +120,6 @@ class Ticket(models.Model):
     home_team = models.CharField(max_length=50)
     away_team = models.CharField(max_length=50)
     average_price = models.CharField(max_length=10)
+    event_url = models.CharField(max_length=300)
 
 
