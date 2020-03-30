@@ -86,4 +86,16 @@ export default class ApiService {
   getPitcherStatsById(player_id) {
     return axios.get(`pitcherstats/player_id/${player_id}`)
   }
+
+  getTickets(page) {
+    return axios.get('tickets/', {
+      params: {
+        page: page 
+      }
+    })
+  }
+
+  getTicketById(ticket_id) {
+    return axios.get(`tickets/${ticket_id}/`);
+  }
 }
