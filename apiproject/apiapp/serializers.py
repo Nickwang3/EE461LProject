@@ -1,5 +1,5 @@
 from django.contrib.auth.models import User
-from .models import Team, Player, Game, TeamMember, TeamRecord, PitcherStats, HitterStats
+from .models import Team, Player, Game, TeamMember, TeamRecord, PitcherStats, HitterStats, Ticket
 from rest_framework import serializers
 
 class UserSerializer(serializers.ModelSerializer):
@@ -41,3 +41,8 @@ class HitterStatsSerializer(serializers.ModelSerializer):
     class Meta:
         model = HitterStats
         fields = ['player_id_and_season', 'team', 'player', 'season', 'games', 'plate_appearances', 'at_bats', 'runs', 'hits', 'doubles', 'triples', 'home_runs', 'runs_batted_in', 'stolen_bases', 'caught_stealing', 'strikeouts', 'batting_average', 'obp', 'slg', 'ops']
+
+class TicketSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Ticket
+        fields = ['ticket_id', 'title', 'datetime_local', 'image_url', 'venue', 'home_team', 'away_team', 'average_price']

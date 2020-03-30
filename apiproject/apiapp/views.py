@@ -70,6 +70,12 @@ class HitterStatsViewSet(viewsets.ModelViewSet):
     def get_queryset(self):
         return HitterStats.objects.all().order_by('season')
 
+class TicketViewSet(viewsets.ModelViewSet):
+    serializer_class = TicketSerializer
+
+    def get_queryset(self):
+        return Ticket.objects.all().order_by('ticket_id')
+
 
 @api_view(['GET'])
 def get_players_by_team_id(request, team_id):

@@ -112,7 +112,7 @@ class HitterStats(models.Model):
     ops = models.CharField(max_length=10)
 
 class Ticket(models.Model):
-    id = models.IntegerField()
+    ticket_id = models.IntegerField()
     title = models.CharField(max_length=50)
     datetime_local = models.CharField(max_length=20)
     image_url = models.CharField(max_length=300)
