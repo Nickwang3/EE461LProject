@@ -58,6 +58,18 @@ class TeamRecordViewSet(viewsets.ModelViewSet):
     def get_queryset(self):
         return TeamRecord.objects.all()
 
+class PitcherStatsViewSet(viewsets.ModelViewSet):
+    serializer_class = PitcherStatsSerializer
+
+    def get_queryset(self):
+        return PitcherStats.objects.all().order_by('season')
+
+class HitterStatsViewSet(viewsets.ModelViewSet):
+    serializer_class = HitterStatsSerializer
+
+    def get_queryset(self):
+        return HitterStats.objects.all().order_by('season')
+
 
 @api_view(['GET'])
 def get_players_by_team_id(request, team_id):
@@ -79,8 +91,8 @@ def get_book_by_isbn(request, isbn):
 
 @api_view(['GET'])
 def get_games_by_date(request, date):
-    game = Game.objects.get(game_date = date)
-    data = GameSerializer(game).data
+    game = Game.objects.filter(game_datetime__icontains=date).order_by("game_datetime")
+    data = GameSerializer(game, many=True).data
     return Response(data)
 
 @api_view(['GET','DELETE'])
@@ -176,6 +188,29 @@ def get_records_by_team_id_and_season(reqeust, team_id_and_season):
     data = TeamRecordSerializer(record).data
     return Response(data)
 
+@api_view(['GET'])
+def get_pitcher_stats_by_player_id(request, player_id):
+    records= PitcherStats.objects.filter(player=player_id).order_by('season')
+    data = PitcherStatsSerializer(records, many=True).data
+    return Response(data)
+
+@api_view(['GET'])
+def get_hitter_stats_by_player_id(request, player_id):
+    records= HitterStats.objects.filter(player=player_id).order_by('season')
+    data = HitterStatsSerializer(records, many=True).data
+    return Response(data)
+
+@api_view(['GET'])
+def get_home_games_by_team_id(request, team_id):
+    games = Game.objects.filter(home_team=team_id).order_by('game_datetime')
+    data = GameSerializer(games, many=True).data
+    return Response(data)
+
+@api_view(['GET'])
+def get_away_games_by_team_id(request, team_id):
+    games = Game.objects.filter(away_team=team_id).order_by('game_datetime')
+    data = GameSerializer(games, many=True).data
+    return Response(data)
 
 def redirect_to_api(request):
     return redirect('/api/v1')

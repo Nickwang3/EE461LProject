@@ -54,7 +54,7 @@ export default class ApiService {
   }
 
   getGamesByDate(game_date) {
-    return axios.get(`/games/${game_date}`);
+    return axios.get(`/games/game_date/${game_date}`);
   }
 
   getTeammembers() {
@@ -77,5 +77,13 @@ export default class ApiService {
 
   getRecordByTeamIdAndSeason(combo) {
     return axios.get(`teamrecords/team_id_and_season/${combo}`);
+  }
+
+  getHitterStatsById(player_id) {
+    return axios.get(`hitterstats/player_id/${player_id}`)
+  }
+
+  getPitcherStatsById(player_id) {
+    return axios.get(`pitcherstats/player_id/${player_id}`)
   }
 }

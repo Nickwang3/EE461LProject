@@ -37,16 +37,14 @@ class Player(models.Model):
 
 class Game(models.Model):
     game_id = models.CharField(max_length=50, primary_key=True)
-    home_team = models.CharField(max_length=25)
-    away_team = models.CharField(max_length=25)
+    home_team = models.ForeignKey(Team, to_field="team_id", on_delete=models.CASCADE, related_name='home_team')
+    away_team = models.ForeignKey(Team, to_field="team_id", on_delete=models.CASCADE, related_name='away_team')
     home_score = models.IntegerField()
     away_score = models.IntegerField()
     finished = models.BooleanField()
     current_inning = models.CharField(max_length=30)
-    game_date = models.DateTimeField()
+    game_datetime = models.DateTimeField()
 
-    def __str__(self):
-        return self.home_team + " v " + self.away_team
 
 class TeamMember(models.Model):
     github_username = models.CharField(max_length=50, primary_key=True)
@@ -65,3 +63,50 @@ class TeamRecord(models.Model):
     losses = models.CharField(max_length=5)
     division_rank = models.CharField(max_length=10)
     league_rank = models.CharField(max_length=10)
+
+class PitcherStats(models.Model):
+    player_id_and_season = models.CharField(max_length=50, primary_key=True)
+    team = models.ForeignKey(Team, to_field="team_id", on_delete=models.CASCADE)
+    player = models.ForeignKey(Player, to_field="player_id", on_delete=models.CASCADE)
+    season = models.CharField(max_length=10)
+
+    games_played = models.CharField(max_length=10)
+    games_started = models.CharField(max_length=10)
+    wins = models.CharField(max_length=10)
+    losses = models.CharField(max_length=10)
+    era = models.CharField(max_length=10)
+    games_finished = models.CharField(max_length=10)
+    complete_games = models.CharField(max_length=10)
+    shutouts = models.CharField(max_length=10)
+    saves = models.CharField(max_length=10)
+    innings_pitched = models.CharField(max_length=10)
+    hits = models.CharField(max_length=10)
+    runs = models.CharField(max_length=10)
+    earned_runs = models.CharField(max_length=10)
+    home_runs = models.CharField(max_length=10)
+    walks = models.CharField(max_length=10)
+    strikeouts = models.CharField(max_length=10)
+    whip = models.CharField(max_length=10)
+
+class HitterStats(models.Model):
+    player_id_and_season = models.CharField(max_length=50, primary_key=True)
+    team = models.ForeignKey(Team, to_field="team_id", on_delete=models.CASCADE)
+    player = models.ForeignKey(Player, to_field="player_id", on_delete=models.CASCADE)
+    season = models.CharField(max_length=10)
+
+    games = models.CharField(max_length=10)   
+    plate_appearances = models.CharField(max_length=10)
+    at_bats = models.CharField(max_length=10)
+    runs = models.CharField(max_length=10)
+    hits = models.CharField(max_length=10)
+    doubles = models.CharField(max_length=10)
+    triples = models.CharField(max_length=10)
+    home_runs = models.CharField(max_length=10)
+    runs_batted_in = models.CharField(max_length=10)
+    stolen_bases = models.CharField(max_length=10)
+    caught_stealing = models.CharField(max_length=10)
+    strikeouts = models.CharField(max_length=10)
+    batting_average = models.CharField(max_length=10)
+    obp = models.CharField(max_length=10)
+    slg = models.CharField(max_length=10)
+    ops = models.CharField(max_length=10)

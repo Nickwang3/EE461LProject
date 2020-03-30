@@ -1,6 +1,8 @@
 import React from "react";
 import ApiService from "../../../api/ApiService";
 import ScoreBoard from "./Scoreboard";
+import { Container, Row } from 'reactstrap'
+import './ScoresPage.css'
 
 const apiService = new ApiService();
 
@@ -16,13 +18,13 @@ class ScoresPage extends React.Component {
 
   componentDidMount() {
     apiService
-      .getGames()
+      .getGamesByDate('2020-03-03')
       .then(result => {
         this.setState({
           isLoaded: true,
-          games: result.data.results
+          games: result.data
         });
-        console.log(result.data.results)
+        console.log(result.data)
       })
       .catch(error => {
         this.setState({
@@ -40,14 +42,17 @@ class ScoresPage extends React.Component {
       return <div>Loading...</div>;
     } else {
       return (
-        <div>
-          <h1>Today's Scores</h1>
-          <ul>
-            {games.map(game => (
-              <ScoreBoard game={game}/>
-            ))}
-          </ul>
-        </div>
+        <Container className="scoresPageContainer">
+
+          <Row>
+            <h1>Today's Scores</h1>
+          </Row>
+         
+          <Row className="scoreBoardsRow">
+            {games.map(game => (<ScoreBoard game={game}/>))}
+          </Row>
+
+        </Container>
       );
     }
   }

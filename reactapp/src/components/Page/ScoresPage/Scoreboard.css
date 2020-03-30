@@ -1,0 +1,43 @@
+.scoreBoardContainer {
+    background-color:  rgba(14, 156, 161, 0.26);
+    margin-bottom: 40px;
+    margin-top: 40px;
+    width: 85%;
+    border-radius: 3%;
+    border: solid white;
+    border-width: 3px 3px;
+
+    display: flex;
+    justify-content: center;
+}
+
+.homeTeamRow {
+    width: 100%;
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
+
+.awayTeamRow {
+    width: 100%;
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
+
+.teamPictureCol {
+
+}
+
+.teamNameCol {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.teamScoreCol {
+    display: flex;
+    justify-content: center;
+}
+
+.teamNameStyle {
+    font: 400 25px/1.5 'Pacifico', Helvetica, sans-serif;
+}
