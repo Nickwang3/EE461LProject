@@ -10,10 +10,12 @@ import HomePage from '../Page/HomePage/HomePage'
 import TeamsPage from '../Page/TeamsPage/TeamsPage'
 import PlayersPage from '../Page/PlayersPage/PlayersPage'
 import ScoresPage from '../Page/ScoresPage/ScoresPage'
+import TicketsPage from '../Page/TicketsPage/TicketsPage';
 
 import DetailedTeamPage from '../Page/TeamsPage/DetailedTeamPage';
 import DetailedPlayerPage from '../Page/PlayersPage/DetailedPlayerPage';
 import 'bootstrap/dist/css/bootstrap.min.css'; 
+import DetailedTicketPage from '../Page/TicketsPage/DetailedTicketPage';
 
 require('dotenv').config();
 
@@ -31,6 +33,8 @@ function App() {
             <Route path="/players" exact component={PlayersPage}/>
             <Route path="/players/:player_id" component={DetailedPlayerPage}/>
             <Route path="/scores" exact component={ScoresPage}/>
+            <Route path="/tickets" exact component={TicketsPage}/>
+            <Route path="/tickets/:ticket_id" component={DetailedTicketPage}/>
           </Switch>
 
           <MyFooter />

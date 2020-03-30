@@ -26,6 +26,9 @@ class MyNavbar extends React.Component {
                 <Link to="/scores">
                     <li class="links">Scores</li>
                 </Link>
+                <Link to="/tickets">
+                    <li class="links">Tickets</li>
+                </Link>
             </Nav>
           </Navbar.Collapse>
         </Navbar>
