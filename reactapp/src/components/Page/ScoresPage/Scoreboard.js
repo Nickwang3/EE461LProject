@@ -1,7 +1,7 @@
 import React from 'react';
 import './Scoreboard.css';
 import { Link } from 'react-router-dom';
-import { Button, Container, Row, Col, Card , CardBody,
+import { Container, Row, Col, Card , CardBody,
     CardTitle, Badge, CardText } from 'reactstrap';
 
 import ApiService from '../../../api/ApiService';
@@ -22,12 +22,14 @@ class ScoreBoard extends React.Component {
     }
 
     componentDidMount() {
+        console.log(this.props)
         apiService
             .getTeamById(this.props.game.away_team)
             .then(res => {
                 this.setState({
                     awayTeam: res.data
                 })
+                console.log(this.state.awayTeam)
             })
             .then(() => apiService.getTeamById(this.props.game.home_team))
             .then(res => {
@@ -35,6 +37,7 @@ class ScoreBoard extends React.Component {
                     homeTeam: res.data,
                     isLoaded: true
                 })
+                console.log(this.state.homeTeam)
             })      
             .catch(error => {
                 this.setState({
@@ -71,10 +74,11 @@ class ScoreBoard extends React.Component {
 
                         <Col className="teamScoreCol">
                             <h2>{game.home_score}</h2>
+                            <h5>{game.current_inning}th</h5>
                         </Col>
 
                         <Col styleName="boxScoreCol">
-                            <Button outline color="primary">Boxscore</Button>
+                        
                         </Col>
 
                     </Row>
@@ -91,10 +95,11 @@ class ScoreBoard extends React.Component {
 
                         <Col className="teamScoreCol">
                             <h2>{game.away_score}</h2>
+                            <h5>{game.current_inning}th</h5>
                         </Col>
 
                         <Col styleName="boxScoreCol">
-                            <Button outline color="primary">Boxscore</Button>
+                        
                         </Col>
 
                     </Row>
