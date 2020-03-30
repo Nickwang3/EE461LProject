@@ -25,7 +25,10 @@ class TicketsPage extends React.Component {
       .then(result => {
         this.setState({
           isLoaded: true,
-          tickets: result.data.results
+          tickets: result.data.results,
+          prevPage: result.data.previous,
+          nextPage: result.data.next,
+          count: result.data.count
         });
       })
       .catch(error => {
@@ -104,9 +107,9 @@ class TicketsPage extends React.Component {
             ))}
           </Container>
           <Container>
-            <Button onClick={() => this.prevPage()} disabled={this.state.prevPage == null}>Previous</Button>
+            <Button color="info" onClick={() => this.prevPage()} disabled={this.state.prevPage == null}>Previous</Button>
             <h5>Current Page: {this.state.page}</h5>
-            <Button onClick={() => this.nextPage()} disabled={this.state.nextPage == null}>Next</Button>
+            <Button color="info" onClick={() => this.nextPage()} disabled={this.state.nextPage == null}>Next</Button>
           </Container>
         </div>
       );

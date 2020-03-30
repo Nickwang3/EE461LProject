@@ -48,12 +48,13 @@ class DetailedTicketPage extends React.Component {
             <Row className="ticketInfoRow">
               <img className="ticketPictureStyle" src={ticket.image_url}></img>
               <Col>
+                <h5> Venue: {ticket.venue}</h5>
                 <h5> Home Team: {ticket.home_team} </h5>
                 <h5> Away Team: {ticket.away_team} </h5>
                 <h5> Date: {ticket.datetime_local.slice(0, 10)} </h5>
                 <h5> Local Time: {ticket.datetime_local.slice(11)} </h5>
                 <h5> average price: ${ticket.average_price} </h5>
-                <Button className="primary" href={ticket.event_url}>Purchase at SeatGeak</Button>
+                <Button color="primary" href={ticket.event_url}>Purchase at SeatGeak</Button>
               </Col>
             </Row>
         </div>
