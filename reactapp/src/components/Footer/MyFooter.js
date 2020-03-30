@@ -31,6 +31,9 @@ class MyFooter extends React.Component {
                             <Link to="/scores">
                                 <li class="footerLinks">Scores</li>
                             </Link>
+                            <Link to="/tickets">
+                                <li class="footerLinks">Tickets</li>
+                            </Link>
                         </Nav>
                 </Navbar.Collapse>
             </Navbar>
