@@ -110,3 +110,15 @@ class HitterStats(models.Model):
     obp = models.CharField(max_length=10)
     slg = models.CharField(max_length=10)
     ops = models.CharField(max_length=10)
+
+class Ticket(models.Model):
+    id = models.IntegerField()
+    title = models.CharField(max_length=50)
+    datetime_local = models.CharField(max_length=20)
+    image_url = models.CharField(max_length=300)
+    venue = models.CharField(max_length=50)
+    home_team = models.CharField(max_length=50)
+    away_team = models.CharField(max_length=50)
+    average_price = models.CharField(max_length=10)
+
+

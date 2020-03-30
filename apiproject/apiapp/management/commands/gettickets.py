@@ -11,7 +11,7 @@ client_secret = 'b2397740dd7c66708985882006fae5879e11235d9cc9808bc4e9c11ef87299c
 key = 'NLbwjVpG3kX3nUDIeAyjHCdkgMW3watH:XccAM3RF5hYKDOuH'
 url = 'https://api.seatgeek.com/2/events'
 params=  {
-    'q' : 'baseball',
+    'q' : 'mlb',
     'client_id' : client_id,
     'client_secret' : client_secret,
     'format' : 'json',
@@ -30,15 +30,25 @@ response = requests.get(url, params=params)
 response_json = json.loads(response.content)
 event_dict = response_json['events']
 for event in event_dict:
-    print(event['title'])
+    print('id : ' + str(event['id']))
+    print('\ttitle : ' + event['title'])
+    print('\tdatetime_local : ' + event['datetime_local'])
+    image = event['performers'][0]['image']
+    print('\timage url : ' + image)
+    venue = event['venue']['name']
+    print('\tvenue : ' + venue)
+    home_team = event['performers'][0]['name']
+    away_team = event['performers'][1]['name']
+    print('\tteam_one : ' + home_team)
+    print('\tteam_two : ' + away_team)
     price_url = 'https://api.seatgeek.com/2/events/' + str(event['id'])
     event_resp = requests.get(price_url, params=ticket_params)
     price_json = json.loads(event_resp.content)
-    price = price_json['stats']['median_price']
+    price = price_json['stats']['average_price']
     if price is None:
-        print('cost: none')
+        print('\tcost: none')
     else:
-        print('cost: $' + str(price))
+        print('\tcost: $' + str(price))
 
 """
 class Command(BaseCommand):
