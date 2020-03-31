@@ -26,7 +26,7 @@
 * Andrew Annestrand - (15hrs:25hrs)
 
 # Phase 2 Time Spend (Expected:Actual)
-* Roger Terrezas - (:)
+* Roger Terrezas - (10hrs:12hrs)
 * Joey Tombari - (:)
 * Nick Wang - (20:30hrs)
 * Jacob Medeiros - (:)
