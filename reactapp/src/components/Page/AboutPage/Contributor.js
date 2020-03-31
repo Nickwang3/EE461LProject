@@ -18,7 +18,7 @@ class Contributor extends React.Component {
         const cardStyle = {
             margin: 20, 
             width: 250, 
-            height: 400,
+            height: 450,
             border: "solid rgb(207, 193, 193)",
             borderWidth: 2
         }
@@ -49,7 +49,7 @@ class Contributor extends React.Component {
 
             return (
                 <Card style={cardStyle}>
-                    <CardImg style={cardImgStyle} src={this.props.avatar} alt="Card image cap" />
+                    <CardImg style={cardImgStyle} src={`/members/${this.props.avatar}`} alt="Card image cap" />
                     <CardBody>
                         <CardTitle style={cardTitleStyle}>{this.props.name}</CardTitle>
                         <CardSubtitle style={CardSubtitleStyle}>{this.props.description}</CardSubtitle>
