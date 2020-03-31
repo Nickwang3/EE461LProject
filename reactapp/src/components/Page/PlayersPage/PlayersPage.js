@@ -190,9 +190,9 @@ class PlayersPage extends React.Component {
             ))}
           </Container>
           <Container>
-            <Button onClick={() => this.prevPage()} disabled={this.state.prevPage == null}>Previous</Button>
+            <Button color="info" onClick={() => this.prevPage()} disabled={this.state.prevPage == null}>Previous</Button>
             <h5>Current Page: {this.state.page}</h5>
-            <Button onClick={() => this.nextPage()} disabled={this.state.nextPage == null}>Next</Button>
+            <Button color="info" onClick={() => this.nextPage()} disabled={this.state.nextPage == null}>Next</Button>
           </Container>
         </div>
       );
