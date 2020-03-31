@@ -122,4 +122,14 @@ class Ticket(models.Model):
     average_price = models.CharField(max_length=10)
     event_url = models.CharField(max_length=300)
 
+class BoxScore(models.Model):
+    boxscore_id = models.CharField(max_length=50, primary_key=True)
+    game = models.ForeignKey(Game, to_field='game_id', on_delete=models.CASCADE)
 
+    home_runs = models.IntegerField()
+    home_hits = models.IntegerField()
+    home_lob = models.IntegerField()
+
+    away_runs = models.IntegerField()
+    away_hits = models.IntegerField()
+    away_lob = models.IntegerField()

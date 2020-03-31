@@ -76,6 +76,12 @@ class TicketViewSet(viewsets.ModelViewSet):
     def get_queryset(self):
         return Ticket.objects.all().order_by('ticket_id')
 
+class BoxScoreViewSet(viewsets.ModelViewSet):
+    serializer_class = BoxScoreSerializer
+
+    def get_queryset(self):
+        return BoxScore.objects.all()
+
 
 @api_view(['GET'])
 def get_players_by_team_id(request, team_id):
