@@ -5,9 +5,12 @@ import Contributor from './Contributor.js'
 import {
     Container, Row, Col, CardDeck
   } from 'reactstrap';
+  import { Link } from 'react-router-dom';
+
 
 import mlbstatsapi from "../../../statics/mlbstatsapi.png";
 const apiService = new ApiService();
+
 
 
 class AboutPage extends React.Component {
@@ -28,9 +31,10 @@ class AboutPage extends React.Component {
         apiService
             .getTeammembers()
             .then(res => {
-                this.setState({cardResponse: res.data.results});
-                this.setState({cardArray: this.state.cardResponse.slice(0).map((item, i) => <Contributor key={i} name={item.name} avatar={item.avatar} description={item.description} issues={item.issues} commits={item.commits} tests={item.tests} />) });
+                this.setState({cardResponse: res.data.results}, () => {
+                    this.setState({cardArray: this.state.cardResponse.slice(0).map((item, i) => <Contributor key={i} name={item.name} avatar={item.avatar} description={item.description} issues={item.issues} commits={item.commits} tests={item.tests} />) });
                 console.log(this.state.cardArray)
+                });
             })
                 
         this.setState({
@@ -60,16 +64,28 @@ class AboutPage extends React.Component {
                             <Row className="dataSourcesRow">
                                 <h1 className="rowTitle" style={{width: "100%",marginBottom: "30px"}}>Data Sources</h1>
                                 <Col className="cols">
-                                    <img style={{width: "80%", height: "60%", marginBottom: "10px"}}src={require("./../../../statics/mlbstatsapi.png")}></img>
+                                    <a href="https://pypi.org/project/MLB-StatsAPI/">
+                                        <img style={{width: "90%", height: "60%", marginBottom: "10px"}}src={require("./../../../statics/mlbstatsapi.png")}/>
+                                    </a>
                                     <h4>MLBStats API</h4>
                                 </Col>
                                 <Col className="cols">
-                                    <img style={{width: "80%", height: "60%", marginBottom: "10px"}} src={require("./../../../statics/sportsdata_io.png")}></img>
+                                    <a href="https://sportsdata.io/">
+                                        <img style={{width: "90%", height: "60%", marginBottom: "10px"}} src={require("./../../../statics/sportsdata_io.png")} />
+                                    </a>
                                     <h4>Sportsdata.io API</h4>
                                 </Col>
                                 <Col className="cols">
-                                    <img style={{width: "80%", height: "60%", marginBottom: "10px"}} src={require("./../../../statics/api_baseball.png")}></img>
+                                    <a href="https://rapidapi.com/api-sports/api/api-baseball">
+                                        <img style={{width: "90%", height: "60%", marginBottom: "10px"}} src={require("./../../../statics/api_baseball.png")}/>
+                                    </a>
                                     <h4>Api-Baseball (from Rapidapis)</h4>
+                                </Col>
+                                <Col className="cols">
+                                    <a href="https://seatgeek.com/">
+                                        <img style={{width: "90%", height: "60%", marginBottom: "10px"}} src={require("./../../../statics/seatgeek.png")}/>
+                                    </a>
+                                    <h4>Seat Geek</h4>
                                 </Col>
                             </Row>
                             <Row className="teamRow">
@@ -85,29 +101,35 @@ class AboutPage extends React.Component {
                                 <h1 className="rowTitle" style={{width: "100%",marginBottom: "50px"}}>Tools</h1>
                                 <Row>
                                     <Col className="cols">
-                                        <img style={{width: "100%", height: "50%", marginBottom: "10px"}}src={require("./../../../statics/react.png")}></img>
+                                        <img style={{width: "100%", height: "50%", marginBottom: "10px"}} src={require("./../../../statics/react.png")}/>
                                         <h4>React</h4>
+                                        <p style={{fontSize: "14px"}}>This tool is a frontend JavaScript framework that allowed us to write our frotend in and object-oriented style.</p>
                                     </Col>
                                     <Col className="cols">
                                         <img style={{width: "70%", height: "50%", marginBottom: "10px"}} src={require("./../../../statics/django.png")}></img>
                                         <h4>Django</h4>
+                                        <p style={{fontSize: "14px"}}>We used Django framwork for our backend/api</p>
                                     </Col>
                                     <Col className="cols">
                                         <img style={{width: "70%", height: "50%", marginBottom: "10px"}} src={require("./../../../statics/postgresql.png")}></img>
                                         <h4>PostgreSQL</h4>
+                                        <p style={{fontSize: "14px"}}>In order to store all of our scraped data, we used PostgreSQL</p> 
                                     </Col>
                                 </Row>
                                     <Col className="cols">
                                         <img style={{width: "70%", height: "50%", marginBottom: "15px"}}src={require("./../../../statics/docker.png")}></img>
                                         <h4>Docker</h4>
+                                        <p style={{fontSize: "14px"}}>Docker is a neat tool that eased local debugging by providing a virual environment for our backend.</p>
                                     </Col>
                                     <Col className="cols">
                                         <img style={{width: "70%", height: "50%", marginBottom: "15px"}} src={require("./../../../statics/slack.png")}></img>
                                         <h4>Slack</h4>
+                                        <p style={{fontSize: "14px"}}>We used slack as our main channel of communication throughout the project.</p>
                                     </Col>
                                     <Col className="cols">
                                         <img style={{width: "70%", height: "50%", marginBottom: "15px"}} src={require("./../../../statics/aws.png")}></img>
                                         <h4>AWS</h4>
+                                        <p style={{fontSize: "14px"}}>We hosted both our frontend and backend on AWS.</p>
                                     </Col>
                                 <Row>
 
