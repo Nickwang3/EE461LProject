@@ -24,3 +24,11 @@
 * Jacob Medeiros - (15hrs:5hrs)
 * Prajwal Chummar - (:)
 * Andrew Annestrand - (15hrs:25hrs)
+
+# Phase 2 Time Spend (Expected:Actual)
+* Roger Terrezas - (:)
+* Joey Tombari - (:)
+* Nick Wang - (:)
+* Jacob Medeiros - (:)
+* Prajwal Chummar - (:)
+* Andrew Annestrand - (30:35hrs)
