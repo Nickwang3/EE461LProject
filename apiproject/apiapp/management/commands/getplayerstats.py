@@ -27,61 +27,63 @@ class Command(BaseCommand):
 
             season = start_season
             for player_season in stats['stats']:
-                # dummy_team = Team.objects.get(team_id=108)
+                dummy_team = Team.objects.get(team_id=108)
 
                 if (group == "hitting"):
                     player_id_and_season = str(player.player_id) + str(season)
                     games = player_season['stats']['gamesPlayed']   
-                    hitter = HitterStats.objects.get(player_id_and_season=player_id_and_season)
-                    hitter.games = games
-                    hitter.save(update_fields=["games"])
-                    print("Success")
-                #     plate_appearances = player_season['stats']['plateAppearances']
-                #     at_bats = player_season['stats']['atBats']
-                #     runs = player_season['stats']['runs']
-                #     hits = player_season['stats']['hits']
-                #     doubles = player_season['stats']['doubles']
-                #     triples = player_season['stats']['triples']
-                #     home_runs = player_season['stats']['homeRuns']
-                #     runs_batted_in = player_season['stats']['rbi']
-                #     stolen_bases = player_season['stats']['stolenBases']
-                #     caught_stealing = player_season['stats']['caughtStealing']
-                #     strikeouts = player_season['stats']['strikeOuts']
-                #     batting_average = player_season['stats']['avg']
-                #     obp = player_season['stats']['obp']
-                #     slg = player_season['stats']['slg']
-                #     ops = player_season['stats']['ops']
-                #     new_hitter = HitterStats(team=dummy_team, player_id_and_season=player_id_and_season, player=player, season=season, plate_appearances=plate_appearances, at_bats=at_bats, runs=runs, hits=hits, doubles=doubles, triples=triples,
-                #                              home_runs=home_runs, runs_batted_in=runs_batted_in, stolen_bases=stolen_bases, caught_stealing=caught_stealing, strikeouts=strikeouts,
-                #                              batting_average=batting_average, obp=obp, slg=slg, ops=ops)
-                #     new_hitter.save()
-                #     print("Successfully saved")
+                    # hitter = HitterStats.objects.get(player_id_and_season=player_id_and_season)
+                    # hitter.games = games
+                    # hitter.save(update_fields=["games"])
+                    # print("Success")
+                    plate_appearances = player_season['stats']['plateAppearances']
+                    at_bats = player_season['stats']['atBats']
+                    runs = player_season['stats']['runs']
+                    hits = player_season['stats']['hits']
+                    doubles = player_season['stats']['doubles']
+                    triples = player_season['stats']['triples']
+                    home_runs = player_season['stats']['homeRuns']
+                    runs_batted_in = player_season['stats']['rbi']
+                    stolen_bases = player_season['stats']['stolenBases']
+                    caught_stealing = player_season['stats']['caughtStealing']
+                    strikeouts = player_season['stats']['strikeOuts']
+                    batting_average = player_season['stats']['avg']
+                    obp = player_season['stats']['obp']
+                    slg = player_season['stats']['slg']
+                    ops = player_season['stats']['ops']
+                    new_hitter = HitterStats(team=dummy_team, games=games, player_id_and_season=player_id_and_season, player=player, season=season, plate_appearances=plate_appearances, at_bats=at_bats, runs=runs, hits=hits, doubles=doubles, triples=triples,
+                                             home_runs=home_runs, runs_batted_in=runs_batted_in, stolen_bases=stolen_bases, caught_stealing=caught_stealing, strikeouts=strikeouts,
+                                             batting_average=batting_average, obp=obp, slg=slg, ops=ops)
+                    new_hitter.save()
+                    print("Successfully saved")
 
-                # else:
-                #     player_id_and_season = str(player.player_id) + str(season)
-                #     games_played = player_season['stats']['gamesPlayed']
-                #     games_started = player_season['stats']['gamesStarted']
-                #     wins = player_season['stats']['wins']
-                #     losses = player_season['stats']['losses']
-                #     era = player_season['stats']['era']
-                #     games_finished = player_season['stats']['gamesFinished']
-                #     complete_games = player_season['stats']['completeGames']
-                #     shutouts = player_season['stats']['shutouts']
-                #     saves = player_season['stats']['saves']
-                #     innings_pitched = player_season['stats']['inningsPitched']
-                #     hits = player_season['stats']['hits']
-                #     runs = player_season['stats']['runs']
-                #     earned_runs = player_season['stats']['earnedRuns']
-                #     home_runs = player_season['stats']['homeRuns']
-                #     walks = player_season['stats']['baseOnBalls']
-                #     strikeouts = player_season['stats']['strikeOuts']
-                #     whip = player_season['stats']['whip']
-                #     new_pitcher = PitcherStats(team=dummy_team, player_id_and_season=player_id_and_season, player=player, season=season, games_played=games_played, games_started=games_started, wins=wins, losses=losses, era=era, games_finished=games_finished, 
-                #                                 complete_games=complete_games, shutouts=shutouts, saves=saves, innings_pitched=innings_pitched, hits=hits, runs=runs, 
-                #                                 earned_runs=earned_runs, home_runs=home_runs, walks=walks, strikeouts=strikeouts, whip=whip)
-                #     new_pitcher.save()
-                #     print("Successfully Saved")
+                else:
+                    player_id_and_season = str(player.player_id) + str(season)
+                    games_played = player_season['stats']['gamesPlayed']
+                    games_started = player_season['stats']['gamesStarted']
+                    wins = player_season['stats']['wins']
+                    losses = player_season['stats']['losses']
+                    era = player_season['stats']['era']
+                    games_finished = player_season['stats']['gamesFinished']
+                    complete_games = player_season['stats']['completeGames']
+                    shutouts = player_season['stats']['shutouts']
+                    saves = player_season['stats']['saves']
+                    innings_pitched = player_season['stats']['inningsPitched']
+                    hits = player_season['stats']['hits']
+                    runs = player_season['stats']['runs']
+                    earned_runs = player_season['stats']['earnedRuns']
+                    home_runs = player_season['stats']['homeRuns']
+                    walks = player_season['stats']['baseOnBalls']
+                    strikeouts = player_season['stats']['strikeOuts']
+                    whip = player_season['stats']['whip']
+                    new_pitcher = PitcherStats(team=dummy_team, player_id_and_season=player_id_and_season, player=player, season=season, games_played=games_played, games_started=games_started, wins=wins, losses=losses, era=era, games_finished=games_finished, 
+                                                complete_games=complete_games, shutouts=shutouts, saves=saves, innings_pitched=innings_pitched, hits=hits, runs=runs, 
+                                                earned_runs=earned_runs, home_runs=home_runs, walks=walks, strikeouts=strikeouts, whip=whip)
+                    new_pitcher.save()
+                    print("Successfully Saved")
                 season +=1
+        self.update_team()
+
 
     def update_team(self):
 

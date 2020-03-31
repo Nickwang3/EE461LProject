@@ -22,22 +22,28 @@ class Command(BaseCommand):
 
         for team in teams:
 
+            db_team = None
             try:
-                db_team = Team.objects.get(name=team['name'])
-                if(db_team == "Boston Red Sox"):
+                if(team['name'] == "Boston Red Sox"):
+                    db_team = Team.objects.get(name=team['name'])
                     db_team.logo = "https://www.stickpng.com/assets/images/584d49df0a44bd1070d5d480.png"
-                elif (db_team == "Detroit Tigers"):
+                elif (team['name'] == "Detroit Tigers"):
+                    db_team = Team.objects.get(name=team['name'])
                     db_team.logo = "https://fanatics.frgimages.com/FFImage/thumb.aspx?i=/productimages/_1762000/altimages/FF_1762025ALT2_full.jpg&w=900"
-                elif(db_team == "Pittsburgh Pirates"):
+                elif(team['name'] == "Pittsburgh Pirates"):
+                    db_team = Team.objects.get(name=team['name'])
                     db_team.logo = "https://sportslogohistory.com/wp-content/uploads/2017/12/pittsburgh_pirates_2015-pres.png"
-                elif(db_team == "St. Louis Cardinals"):
+                elif(team['name'] == "St.Louis Cardinals"):
+                    db_team = Team.objects.get(name="St. Louis Cardinals")
                     db_team.logo = "https://images.homedepot-static.com/productImages/97bab14c-58e2-46a2-9805-f26481cc5c90/svn/navy-fanmats-sports-rugs-18151-64_1000.jpg"
-                elif(db_team == "New York Yankees"):
+                elif(team['name'] == "New York Yankees"):
+                    db_team = Team.objects.get(name=team['name'])
                     db_team.logo = "https://www.everythingdoormats.com/images/products/newyork-yankees-mlb-roundel-area-rug-27-inches.jpg"
                 else:
+                    db_team = Team.objects.get(name=team['name'])
                     db_team.logo = team['logo']
                 db_team.save(update_fields=["logo"])
                 print(db_team.logo)
             except:
-
+                print(team)
                 print("team not in db")

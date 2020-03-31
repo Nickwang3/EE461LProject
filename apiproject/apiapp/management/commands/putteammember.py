@@ -6,11 +6,12 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
 
+        # TeamMember.objects.get(github_username="nickwang3").delete()
         # Input ALL OF YOUR information into these respective strings
-        github_username = "aannestrand"
-        name = "Andrew Annestrand"
-        description = "I am currently a Junior ECE major. My tech cores are Software Design & Data Science and Information Processing."
-        avatar = "../../../statics/andrew.JPG"
+        github_username = "pc24495"
+        name = "Prajwal Chummar"
+        description = "I am currently a Senior ECE major. My tech cores are Data Science and Academic Enrichment."
+        avatar = "prajwal.jpg"
         tests = "0"
 
         # If you already exist in the database
