@@ -15,7 +15,7 @@ class TeamsPage extends React.Component {
       page: 1,
       prevPage: null,
       nextPage: null,
-      count: null,
+      count: null
     };
   }
 

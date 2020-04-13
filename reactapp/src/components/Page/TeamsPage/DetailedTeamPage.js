@@ -5,8 +5,11 @@ import { Table, Container, Row, Nav, NavItem, NavLink, TabContent, TabPane } fro
 import RosterPlayer from "./RosterPlayer";
 import "./DetailedTeamPage.css"
 import Weather from "../../Weather/Weather";
+import ScoreBoard from "../ScoresPage/Scoreboard"
 
 const apiService = new ApiService();
+const monthMapping = {'Jan': '01', 'Feb': '02', 'Mar': '03', 'Apr': '04', 'May': '05', 'Jun': '06','Jul': '07', 'Aug': '08', 
+                      'Sep': '09', 'Oct': '10', 'Nov': '11', 'Dec': '12'}
 
 class DetailedTeamPage extends React.Component {
   constructor(props) {
@@ -17,7 +20,8 @@ class DetailedTeamPage extends React.Component {
       team: null,
       roster: null,
       activeTab: "1",
-      record: null
+      record: null,
+      weekly_games: null
     };
 
     this.switchTabs = this.switchTabs.bind(this);
@@ -42,10 +46,29 @@ class DetailedTeamPage extends React.Component {
         .then(res => {
             this.setState({
               record: res.data,
-              isLoaded: true
             })
-            console.log(res.data)
         })
+        .then(() => {
+          return apiService.getWeeklyGamesByDateAndTeam(this.formatDate(new Date()), this.state.team.team_id);
+        })
+        .then(res => {
+          this.setState({
+            weekly_games: res.data,
+            isLoaded: true
+          })
+          console.log(res.data)
+        })
+        .catch(error => {
+          this.setState({
+            isLoaded: true,
+            error
+          });
+        });
+  }
+
+  formatDate(date) {
+    var temp = (date.toString().split(" "))
+    return (temp[3] + "-" + monthMapping[temp[1]] + "-" + temp[2])
   }
 
   switchTabs(tabId) {
@@ -62,7 +85,7 @@ class DetailedTeamPage extends React.Component {
       marginRight: "25px"
     }
 
-    const { error, isLoaded, team, roster, activeTab, record } = this.state;
+    const { error, isLoaded, team, roster, activeTab, record, weekly_games } = this.state;
     if (error) {
       return <div>Error: {error.message}</div>;
     } else if (!isLoaded) {
@@ -86,10 +109,7 @@ class DetailedTeamPage extends React.Component {
                   <NavLink onClick={() => this.switchTabs("2")} style={navItemStyle}>Roster</NavLink>
                 </NavItem>
                 <NavItem>
-                  <NavLink onClick={() => this.switchTabs("3")} style={navItemStyle}>Stats</NavLink>
-                </NavItem>
-                <NavItem>
-                  <NavLink onClick={() => this.switchTabs("4")} style={navItemStyle}>Schedule</NavLink>
+                  <NavLink onClick={() => this.switchTabs("3")} style={navItemStyle}>Schedule</NavLink>
                 </NavItem>
               </Nav>
             </Row>
@@ -133,14 +153,8 @@ class DetailedTeamPage extends React.Component {
                 </TabPane>
 
                 <TabPane tabId="3">
-                  <Row>
-                      Stats
-                  </Row>
-                </TabPane>
-
-                <TabPane tabId="4">
-                  <Row>
-                    Schedule
+                  <Row className="scoreBoardsRow">
+                    {weekly_games.map(game => (<ScoreBoard game={game}/>))}
                   </Row>
                 </TabPane>
                 

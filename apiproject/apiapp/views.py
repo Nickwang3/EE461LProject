@@ -3,6 +3,7 @@ from __future__ import unicode_literals
 
 import requests, json
 from http import HTTPStatus
+from django.db.models import Q
 from django.shortcuts import render, redirect
 from rest_framework import viewsets
 from rest_framework.response import Response
@@ -106,6 +107,24 @@ def get_games_by_date(request, date):
     game = Game.objects.filter(game_datetime__icontains=date).order_by("game_datetime")
     data = GameSerializer(game, many=True).data
     return Response(data)
+
+@api_view(['GET'])
+def get_weekly_games_by_date_and_team(request, date, team):
+    # We want to get upcoming 
+
+    games = Game.objects.none()
+
+    for i in range(0,7):
+        arr = date.split("-")
+        new_day = str(int(arr[2]) + i)
+        new_date = arr[0] + "-" + arr[1] + "-" + new_day
+        print(new_date)
+        query = Game.objects.filter(Q(home_team=team)|Q(away_team=team), game_datetime__icontains=new_date).order_by("game_datetime")
+        games = games.union(query)
+        print(query)
+
+    data = GameSerializer(games, many=True).data
+    return Response(data)    
 
 @api_view(['GET','DELETE'])
 def get_teammembers_by_github_username(request, github_username):

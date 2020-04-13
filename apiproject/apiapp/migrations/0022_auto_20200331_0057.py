@@ -6,7 +6,6 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('apiapp', '0021_ticket_event_url'),
     ]
 
     operations = [

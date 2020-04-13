@@ -98,4 +98,8 @@ export default class ApiService {
   getTicketById(ticket_id) {
     return axios.get(`tickets/${ticket_id}/`);
   }
+
+  getWeeklyGamesByDateAndTeam(date, team) {
+    return axios.get(`games/weekly/${date}/team_id/${team}`)
+  }
 }
