@@ -10,7 +10,7 @@ class UserSerializer(serializers.ModelSerializer):
 class TeamSerializer(serializers.ModelSerializer):
     class Meta:
         model = Team
-        fields = ['team_id', 'name', 'venue', 'division','logo', 'latitude', 'longitude']
+        fields = ['team_id', 'name', 'venue', 'division','logo', 'latitude', 'longitude', 'instagram', 'twitter', 'facebook']
 
 class PlayerSerializer(serializers.ModelSerializer):
     class Meta:
