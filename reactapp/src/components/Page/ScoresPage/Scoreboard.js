@@ -62,7 +62,7 @@ class ScoreBoard extends React.Component {
                     <Row className="homeTeamRow">
                         
                         <Col className="teamPictureCol">
-                            <Link to={`teams/${homeTeam.team_id}`}><img style={{height: "100px", width: "90px"}} src={homeTeam.logo}></img></Link>
+                            <a href={`/teams/${homeTeam.team_id}`}><img style={{height: "100px", width: "90px"}} src={homeTeam.logo}></img></a>
                         </Col>
 
                         <Col className="teamNameCol">
@@ -82,7 +82,7 @@ class ScoreBoard extends React.Component {
                     <Row className="awayTeamRow">
 
                         <Col className="teamPictureCol">
-                            <Link to={`teams/${awayTeam.team_id}`}><img style={{height: "100px", width: "90px"}} src={awayTeam.logo}></img></Link>
+                            <a href={`/teams/${awayTeam.team_id}`}><img style={{height: "100px", width: "90px"}} src={awayTeam.logo}></img></a>
                         </Col>
 
                         <Col className="teamNameCol">
