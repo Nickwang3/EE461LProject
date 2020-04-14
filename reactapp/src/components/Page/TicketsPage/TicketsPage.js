@@ -126,6 +126,32 @@ class TicketsPage extends React.Component {
     }
   }
 
+  orderingChanged = (e) => {
+    this.setState({ 
+      ordering: e.target.value,
+      isLoaded: false
+    })
+    apiService
+    .getTicketsBySearch(1, this.state.searchValue, this.state.searchFields, e.target.value)
+    .then(result => {
+      this.setState({
+        isLoaded: true,
+        tickets: result.data.results,
+        page: 1,
+        prevPage: result.data.previous,
+        nextPage: result.data.next,
+        count: result.data.count
+      });
+    })
+    .catch(error => {
+      this.setState({
+        isLoaded: true,
+        error
+      });
+    });
+  }
+
+
   render() {
     const { error, isLoaded, tickets } = this.state;
     let results;
@@ -179,7 +205,7 @@ class TicketsPage extends React.Component {
             type="select" 
             name="playerOrderSelect" 
             id="playerOrderSelect"
-            onChange={e => this.setState({ ordering: e.target.value })}
+            onChange={e => this.orderingChanged(e)}
             >
               <option>datetime_local</option>
               <option>home_team</option>

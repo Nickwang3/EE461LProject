@@ -20,7 +20,7 @@ class PlayersPage extends React.Component {
       count: null,
       searchValue: '', 
       searchFields: "name",
-      ordering: "player_id",
+      ordering: "name",
     };
   }
 
@@ -129,6 +129,31 @@ class PlayersPage extends React.Component {
     }
   }
 
+  orderingChanged = (e) => {
+    this.setState({ 
+      ordering: e.target.value,
+      isLoaded: false
+    })
+    apiService
+    .getPlayersBySearch(1, this.state.searchValue, this.state.searchFields, e.target.value)
+    .then(result => {
+      this.setState({
+        isLoaded: true,
+        players: result.data.results,
+        page: 1,
+        prevPage: result.data.previous,
+        nextPage: result.data.next,
+        count: result.data.count
+      });
+    })
+    .catch(error => {
+      this.setState({
+        isLoaded: true,
+        error
+      });
+    });
+  }
+
   render() {
     const { error, isLoaded, players } = this.state;
     let results;
@@ -181,7 +206,7 @@ class PlayersPage extends React.Component {
             type="select" 
             name="playerOrderSelect" 
             id="playerOrderSelect"
-            onChange={e => this.setState({ ordering: e.target.value })}
+            onChange={e => this.orderingChanged(e)}
             >
               <option>name</option>
               <option>team</option>
