@@ -87,16 +87,28 @@ export default class ApiService {
     return axios.get(`pitcherstats/player_id/${player_id}`)
   }
 
-  getTickets(page) {
+  getTickets(page, ordering) {
     return axios.get('tickets/', {
       params: {
-        page: page 
+        page: page,
+        ordering: ordering,
       }
     })
   }
 
   getTicketById(ticket_id) {
     return axios.get(`tickets/${ticket_id}/`);
+  }
+
+  getTicketsBySearch(page, search, search_fields, ordering){
+    return axios.get('/tickets/', {
+      params: {
+        page: page,
+        search: search,
+        search_fields: search_fields,
+        ordering: ordering, 
+      }
+    });
   }
 
   getWeeklyGamesByDateAndTeam(date, team) {

@@ -15,7 +15,7 @@ CORS_ORIGIN_ALLOW_ALL = True
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'development',
+        'NAME': 'dev',
         'USER': 'postgres',
         'PASSWORD': '*GR3Dpr%9LMG',
         'HOST': 'ee461l-django-app-database.cs3khvsyqwtx.us-east-2.rds.amazonaws.com',

@@ -3,7 +3,7 @@ import ApiService from "../../../api/ApiService";
 import ScoreBoard from "./Scoreboard";
 import DatePicker from 'react-datepicker';
 import { Container, Row } from 'reactstrap';
-import './ScoresPage.css';
+// import './ScoresPage.css';
 import "react-datepicker/dist/react-datepicker.css";
 
 

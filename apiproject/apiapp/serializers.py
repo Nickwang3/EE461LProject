@@ -45,7 +45,7 @@ class HitterStatsSerializer(serializers.ModelSerializer):
 class TicketSerializer(serializers.ModelSerializer):
     class Meta:
         model = Ticket
-        fields = ['title', 'datetime_local', 'image_url', 'venue', 'home_team', 'away_team', 'average_price', 'event_url']
+        fields = ['ticket_id', 'title', 'datetime_local', 'image_url', 'venue', 'home_team', 'away_team', 'average_price', 'event_url']
 
 class BoxScoreSerializer(serializers.ModelSerializer):
     class Meta:
