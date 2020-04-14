@@ -72,6 +72,7 @@ class HitterStatsViewSet(viewsets.ModelViewSet):
         return HitterStats.objects.all().order_by('season')
 
 class TicketViewSet(viewsets.ModelViewSet):
+    filter_backends = [DynamicSearchFilter, filters.OrderingFilter]
     serializer_class = TicketSerializer
 
     def get_queryset(self):
