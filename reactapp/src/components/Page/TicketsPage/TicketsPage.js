@@ -24,7 +24,7 @@ class TicketsPage extends React.Component {
 
   componentDidMount() {
     apiService
-      .getTickets()
+      .getTicketsBySearch(this.state.page, this.state.searchValue, this.state.searchFields, this.state.ordering)
       .then(result => {
         this.setState({
           isLoaded: true,
@@ -50,7 +50,7 @@ class TicketsPage extends React.Component {
       isLoaded: false,
     })
     apiService
-      .getTickets(this.state.page + 1)
+      .getTicketsBySearch(this.state.page + 1, this.state.searchValue, this.state.searchFields, this.state.ordering)
       .then(result => {
         this.setState({
           isLoaded: true,
@@ -76,7 +76,7 @@ class TicketsPage extends React.Component {
       isLoaded: false,
     })
     apiService
-      .getTickets(this.state.page - 1)
+      .getTicketsBySearch(this.state.page - 1, this.state.searchValue, this.state.searchFields, this.state.ordering)
       .then(result => {
         this.setState({
           isLoaded: true,
@@ -100,11 +100,12 @@ class TicketsPage extends React.Component {
       isLoaded: false,
     })
     apiService
-    .getTicketsBySearch(this.state.page, this.state.searchValue, this.state.searchFields, this.state.ordering)
+    .getTicketsBySearch(1, this.state.searchValue, this.state.searchFields, this.state.ordering)
     .then(result => {
       this.setState({
         isLoaded: true,
         tickets: result.data.results,
+        page: 1,
         prevPage: result.data.previous,
         nextPage: result.data.next,
         count: result.data.count
@@ -127,70 +128,75 @@ class TicketsPage extends React.Component {
 
   render() {
     const { error, isLoaded, tickets } = this.state;
+    let results;
     if (error) {
       return <div>Error: {error.message}</div>;
     } else if (!isLoaded) {
-      return <div>Loading...</div>;
+      results = <div>Loading...</div>;
     } else {
-      return (
-        <div>
-          <h1>Game Tickets</h1>
-          <Form className="searchBarContainer" onSubmit={this.onSubmit}>
-            <FormGroup className="searchBar">
-                {/* <Label for="exampleSearch">Search</Label> */}
-                <Input
-                type="search"
-                name="search"
-                id="ticketSearch"
-                placeholder="Search for tickets..."
-                value={this.state.searchValue}
-                onChange={e => this.setState({ searchValue: e.target.value })}
-                onKeyDown={this.onEnterPressed}
-                />
-            </FormGroup>
-            <FormGroup>
-              <Label for="ticketSearchSelect">search by</Label>
-              <Input 
-              type="select" 
-              name="searchSelect" 
-              id="ticketSearchSelect"
-              onChange={e => this.setState({ searchFields: e.target.value })}
-              >
-                <option>datetime_local</option>
-                <option>home_team</option>
-                <option>away_team</option>
-                <option>title</option>
-              </Input>
-            </FormGroup>
-            <FormGroup>
-              <Label for="playerOrderSelect">order by</Label>
-              <Input 
-              type="select" 
-              name="playerOrderSelect" 
-              id="playerOrderSelect"
-              onChange={e => this.setState({ ordering: e.target.value })}
-              >
-                <option>datetime_local</option>
-                <option>home_team</option>
-                <option>away_team</option>
-                <option>average_price</option>
-              </Input>
-            </FormGroup>
-            <Button type="submit" className="btn btn-success">Search</Button>
-          </Form>  
-          <Container>
-            {tickets.map(ticket => (
-              <Ticket ticket={ticket} />
-            ))}
-          </Container>
-          <Container>
-            <Button color="info" onClick={() => this.prevPage()} disabled={this.state.prevPage == null}>Previous</Button>
-            <h5>Current Page: {this.state.page}</h5>
-            <Button color="info" onClick={() => this.nextPage()} disabled={this.state.nextPage == null}>Next</Button>
-          </Container>
-        </div>
-      );
+      results = <div>
+                  <h5>Results: {this.state.count}</h5>
+                    <Container>
+                      {tickets.map(ticket => (
+                        <Ticket ticket={ticket}/>
+                      ))}
+                    </Container>
+                </div>;
     }
+    return (
+      <div>
+        <h1>Game Tickets</h1>
+        <Form className="searchBarContainer" onSubmit={this.onSubmit}>
+          <FormGroup className="searchBar">
+              {/* <Label for="exampleSearch">Search</Label> */}
+              <Input
+              type="search"
+              name="search"
+              id="ticketSearch"
+              placeholder="Search for tickets..."
+              value={this.state.searchValue}
+              onChange={e => this.setState({ searchValue: e.target.value })}
+              onKeyDown={this.onEnterPressed}
+              />
+          </FormGroup>
+          <FormGroup>
+            <Label for="ticketSearchSelect">search by</Label>
+            <Input 
+            type="select" 
+            name="searchSelect" 
+            id="ticketSearchSelect"
+            onChange={e => this.setState({ searchFields: e.target.value })}
+            >
+              <option>datetime_local</option>
+              <option>home_team</option>
+              <option>away_team</option>
+              <option>title</option>
+            </Input>
+          </FormGroup>
+          <FormGroup>
+            <Label for="playerOrderSelect">order by</Label>
+            <Input 
+            type="select" 
+            name="playerOrderSelect" 
+            id="playerOrderSelect"
+            onChange={e => this.setState({ ordering: e.target.value })}
+            >
+              <option>datetime_local</option>
+              <option>home_team</option>
+              <option>away_team</option>
+              <option>average_price</option>
+            </Input>
+          </FormGroup>
+          <Button type="submit" className="btn btn-success">Search</Button>
+        </Form>  
+        {results}
+        <Container>
+          <Button color="info" onClick={() => this.prevPage()} disabled={this.state.prevPage == null}>Previous</Button>
+          <h5>Current Page: {this.state.page}</h5>
+          <Button color="info" onClick={() => this.nextPage()} disabled={this.state.nextPage == null}>Next</Button>
+        </Container>
+      </div>
+    );
   }
 
 }
