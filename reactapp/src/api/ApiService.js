@@ -114,4 +114,8 @@ export default class ApiService {
   getWeeklyGamesByDateAndTeam(date, team) {
     return axios.get(`games/weekly/${date}/team_id/${team}`)
   }
+
+  getBoxscoreById(id) {
+    return axios.get(`boxscores/boxscore_id/${id}`);
+  }
 }

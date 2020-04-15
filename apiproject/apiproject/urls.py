@@ -36,5 +36,6 @@ urlpatterns = [
     path('api/v1/teamrecords/season/<str:season>', views.get_records_by_season, name='get_records_by_season'),
     path('api/v1/teamrecords/team_id_and_season/<str:team_id_and_season>', views.get_records_by_team_id_and_season, name='get_records_by_team_id_and_season'),
     path('api/v1/pitcherstats/player_id/<str:player_id>', views.get_pitcher_stats_by_player_id, name='get_pitcher_stats_by_player_id'),
-    path('api/v1/hitterstats/player_id/<str:player_id>', views.get_hitter_stats_by_player_id, name='get_hitter_stats_by_player_id')
+    path('api/v1/hitterstats/player_id/<str:player_id>', views.get_hitter_stats_by_player_id, name='get_hitter_stats_by_player_id'),
+    path('api/v1/boxscores/boxscore_id/<str:boxscore_id>', views.get_boxscore_by_id, name='get_boxscore_by_id')
 ]

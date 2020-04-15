@@ -74,7 +74,7 @@ class ScoreBoard extends React.Component {
                         </Col>
 
                         <Col styleName="boxScoreCol">
-                            <Button outline color="primary">Boxscore</Button>
+                            <Link to={`scores/${game.game_id}`}><Button outline color="primary">Boxscore</Button></Link>
                         </Col>
 
                     </Row>
@@ -94,7 +94,7 @@ class ScoreBoard extends React.Component {
                         </Col>
 
                         <Col styleName="boxScoreCol">
-                            <Button outline color="primary">Boxscore</Button>
+                            <Link to={`scores/${game.game_id}`}><Button outline color="primary">Boxscore</Button></Link>
                         </Col>
 
                     </Row>

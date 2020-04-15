@@ -16,6 +16,7 @@ import DetailedTeamPage from '../Page/TeamsPage/DetailedTeamPage';
 import DetailedPlayerPage from '../Page/PlayersPage/DetailedPlayerPage';
 import 'bootstrap/dist/css/bootstrap.min.css'; 
 import DetailedTicketPage from '../Page/TicketsPage/DetailedTicketPage';
+import DetailedScoresPage from '../Page/ScoresPage/DetailedScoresPage'
 
 require('dotenv').config();
 
@@ -33,6 +34,7 @@ function App() {
             <Route path="/players" exact component={PlayersPage}/>
             <Route path="/players/:player_id" component={DetailedPlayerPage}/>
             <Route path="/scores" exact component={ScoresPage}/>
+            <Route path="/scores/:boxscore_id" component={DetailedScoresPage}/>
             <Route path="/tickets" exact component={TicketsPage}/>
             <Route path="/tickets/:ticket_id" component={DetailedTicketPage}/>
           </Switch>

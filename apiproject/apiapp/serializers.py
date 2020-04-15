@@ -48,6 +48,16 @@ class TicketSerializer(serializers.ModelSerializer):
         fields = ['ticket_id', 'title', 'datetime_local', 'image_url', 'venue', 'home_team', 'away_team', 'average_price', 'event_url']
 
 class BoxScoreSerializer(serializers.ModelSerializer):
+    home_hitting_totals = serializers.JSONField()
+    away_hitting_totals = serializers.JSONField()
+    home_pitching_totals = serializers.JSONField()
+    away_pitching_totals = serializers.JSONField()
+
+    home_player_hitting = serializers.JSONField()
+    away_player_hitting = serializers.JSONField()
+    home_player_pitching = serializers.JSONField()
+    away_player_pitching = serializers.JSONField()
+
     class Meta:
         model = BoxScore
-        fields = ['boxscore_id', 'game', 'home_runs', 'home_hits', 'home_lob', 'away_runs', 'away_hits', 'away_lob']
+        fields = ['boxscore_id', 'game', 'home_hitting_totals', 'away_hitting_totals', 'home_pitching_totals', 'away_pitching_totals', 'home_player_pitching', 'away_player_pitching', 'home_player_hitting', 'away_player_hitting']

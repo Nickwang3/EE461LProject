@@ -244,5 +244,11 @@ def get_away_games_by_team_id(request, team_id):
     data = GameSerializer(games, many=True).data
     return Response(data)
 
+@api_view(['GET'])
+def get_boxscore_by_id(request, boxscore_id):
+    boxscore = BoxScore.objects.get(boxscore_id=boxscore_id)
+    data = BoxScoreSerializer(boxscore).data
+    return Response(data)
+
 def redirect_to_api(request):
     return redirect('/api/v1')
