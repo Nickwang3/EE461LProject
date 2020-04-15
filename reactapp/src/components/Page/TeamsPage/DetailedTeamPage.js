@@ -6,6 +6,7 @@ import RosterPlayer from "./RosterPlayer";
 import "./DetailedTeamPage.css"
 import Weather from "../../Weather/Weather";
 import ScoreBoard from "../ScoresPage/Scoreboard"
+import MapContainer from "../../Map/MapContainer";
 
 const apiService = new ApiService();
 const monthMapping = {'Jan': '01', 'Feb': '02', 'Mar': '03', 'Apr': '04', 'May': '05', 'Jun': '06','Jul': '07', 'Aug': '08', 
@@ -120,6 +121,7 @@ class DetailedTeamPage extends React.Component {
                 <TabPane tabId="1">
                   <Row>
                     <Weather team_id={team.team_id}/>
+                    <MapContainer lat={team.latitude} lng={team.longitude}/>
                     <h5 style={{width: "100%",marginBottom: "10px"}}>Stadium: {team.venue}</h5>
                     <h5 style={{width: "100%",marginBottom: "10px"}}>Record: {record.wins} - {record.losses}</h5>
                     <h5 style={{width: "100%",marginBottom: "10px"}}>#{record.division_rank} in {team.division}</h5>
