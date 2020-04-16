@@ -19,10 +19,10 @@ class Command(BaseCommand):
                 away_stats = statsapi.boxscore_data(gamePk=game.game_id)['away']
 
                 home_batting_totals = home_stats['teamStats']['batting']
-                away_batting_totals = home_stats['teamStats']['batting']
+                away_batting_totals = away_stats['teamStats']['batting']
 
                 home_pitching_totals = home_stats['teamStats']['pitching']
-                away_pitching_totals = home_stats['teamStats']['pitching']
+                away_pitching_totals = away_stats['teamStats']['pitching']
                 
                 home_pitchers = home_stats['pitchers']
                 away_pitchers = away_stats['pitchers']

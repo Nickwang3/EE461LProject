@@ -16,9 +16,9 @@ class Command(BaseCommand):
 
             try:
                 game_id = game['game_id']
-                home_team = Team.objects.get(team_id=game['away_id'])
-                away_team = Team.objects.get(team_id=game['home_id'])
-                print("teams gotten")
+                home_team = Team.objects.get(team_id=game['home_id'])
+                away_team = Team.objects.get(team_id=game['away_id'])
+                # print("teams gotten")
                 home_score = game['home_score']
                 away_score = game['away_score']
                 current_inning = game['current_inning']
@@ -37,11 +37,13 @@ class Command(BaseCommand):
                 try:
                     db_game = Game.objects.get(game_id=game_id)
 
-                    if not(finished):
-                        db_game.home_score = home_score 
-                        db_game.away_score = away_score    
-                        db_game.current_inning = current_inning   
-                        db_game.save(update_fields=['home_score','away_score','current_inning'])
+                    # if not(finished):
+                    db_game.home_team = home_team
+                    db_game.away_team = away_team
+                    db_game.home_score = home_score 
+                    db_game.away_score = away_score    
+                    db_game.current_inning = current_inning   
+                    db_game.save(update_fields=['home_team','away_team','home_score','away_score','current_inning'])
                     print("updated successfully")
                 except:
                     db_game = Game(game_id=game_id, home_team=home_team, away_team=away_team, home_score=home_score, away_score=away_score, current_inning=current_inning, finished=finished, game_datetime=game_datetime)

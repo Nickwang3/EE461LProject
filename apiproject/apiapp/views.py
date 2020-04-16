@@ -250,5 +250,11 @@ def get_boxscore_by_id(request, boxscore_id):
     data = BoxScoreSerializer(boxscore).data
     return Response(data)
 
+@api_view(['GET'])
+def get_game_by_id(request, game_id):
+    boxscore = Game.objects.get(game_id=game_id)
+    data = GameSerializer(boxscore).data
+    return Response(data)
+
 def redirect_to_api(request):
     return redirect('/api/v1')

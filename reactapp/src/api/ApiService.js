@@ -1,6 +1,6 @@
 import axios from "axios";
-axios.defaults.baseURL = "http://localhost:8000/api/v1";
-// axios.defaults.baseURL = "http://django-env.zphgcpmf2t.us-west-2.elasticbeanstalk.com/api/v1";
+// axios.defaults.baseURL = "http://localhost:8000/api/v1";
+axios.defaults.baseURL = "http://django-env.zphgcpmf2t.us-west-2.elasticbeanstalk.com/api/v1";
 
 export default class ApiService {
   constructor() {}
@@ -117,5 +117,9 @@ export default class ApiService {
 
   getBoxscoreById(id) {
     return axios.get(`boxscores/boxscore_id/${id}`);
+  }
+
+  getGameById(game_id) {
+    return axios.get(`games/game_id/${game_id}`)
   }
 }
