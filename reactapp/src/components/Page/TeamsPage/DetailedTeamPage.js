@@ -6,6 +6,7 @@ import RosterPlayer from "./RosterPlayer";
 import "./DetailedTeamPage.css"
 import Weather from "../../Weather/Weather";
 import ScoreBoard from "../ScoresPage/Scoreboard"
+import MapContainer from "../../Map/MapContainer";
 
 const apiService = new ApiService();
 const monthMapping = {'Jan': '01', 'Feb': '02', 'Mar': '03', 'Apr': '04', 'May': '05', 'Jun': '06','Jul': '07', 'Aug': '08', 
@@ -94,7 +95,7 @@ class DetailedTeamPage extends React.Component {
       return (
 
         <Container className="detailedTeamContainer">
-
+          {/* <MapContainer lat={team.latitude} lng={team.longitude}/>     */}
           <Row className="teamNameRow">
             <h1 className="titleStyle">{team.name}</h1>
           </Row>
@@ -102,14 +103,17 @@ class DetailedTeamPage extends React.Component {
           <Row className="teamInfoRow">
             <Row className="navRow">
               <Nav>
-                <NavItem>
+                <NavItem className="teamNavItem">
                   <NavLink onClick={() => this.switchTabs("1")} style={navItemStyle}>About</NavLink>
                 </NavItem>
-                <NavItem>
+                <NavItem className="teamNavItem">
                   <NavLink onClick={() => this.switchTabs("2")} style={navItemStyle}>Roster</NavLink>
                 </NavItem>
-                <NavItem>
+                <NavItem className="teamNavItem">
                   <NavLink onClick={() => this.switchTabs("3")} style={navItemStyle}>Schedule</NavLink>
+                </NavItem>
+                <NavItem className="teamNavItem">
+                  <NavLink onClick={() => this.switchTabs("4")} style={navItemStyle}>Stadium</NavLink>
                 </NavItem>
               </Nav>
             </Row>
@@ -156,6 +160,10 @@ class DetailedTeamPage extends React.Component {
                   <Row className="scoreBoardsRow">
                     {weekly_games.map(game => (<ScoreBoard game={game}/>))}
                   </Row>
+                </TabPane>
+
+                <TabPane tabId="4">
+                  <MapContainer stadiumName={team.venue} lat={team.latitude} lng={team.longitude}/>    
                 </TabPane>
                 
               </TabContent>
