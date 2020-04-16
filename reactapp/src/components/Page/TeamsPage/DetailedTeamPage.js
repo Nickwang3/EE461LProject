@@ -103,23 +103,23 @@ class DetailedTeamPage extends React.Component {
           <Row className="teamInfoRow">
             <Row className="navRow">
               <Nav>
-                <NavItem>
+                <NavItem className="teamNavItem">
                   <NavLink onClick={() => this.switchTabs("1")} style={navItemStyle}>About</NavLink>
                 </NavItem>
-                <NavItem>
+                <NavItem className="teamNavItem">
                   <NavLink onClick={() => this.switchTabs("2")} style={navItemStyle}>Roster</NavLink>
                 </NavItem>
-                <NavItem>
+                <NavItem className="teamNavItem">
                   <NavLink onClick={() => this.switchTabs("3")} style={navItemStyle}>Schedule</NavLink>
                 </NavItem>
-                <NavItem>
+                <NavItem className="teamNavItem">
                   <NavLink onClick={() => this.switchTabs("4")} style={navItemStyle}>Stadium</NavLink>
                 </NavItem>
               </Nav>
             </Row>
 
             <Row className="contentRow">
-              <TabContent activeTab="4">
+              <TabContent activeTab={activeTab}>
 
                 <TabPane tabId="1">
                   <Row>

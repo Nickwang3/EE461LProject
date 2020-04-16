@@ -31,8 +31,9 @@ class MapContainer extends React.Component {
     };
       
     render() {
+        let directionsUrl = `https://www.google.pl/maps/dir//${this.props.stadiumName}`
         return (
-            <div style={{height: '100vh', width: '100%', display: "flex", justifyContent: "center"}}>
+            <div style={{marginTop: '100px', height: '60vh', width: '100%', display: "flex", justifyContent: "center"}}>
                 <Map
                     google={this.props.google}
                     zoom={12}
@@ -51,7 +52,7 @@ class MapContainer extends React.Component {
                     >
                         <div>
                             <h4 style={{color: "black"}}>{this.state.selectedPlace.name}</h4>
-                            <Button color="primary">Get Directions</Button>
+                            <Button color="primary" target="_blank" href={directionsUrl}>Get Directions</Button>
                         </div>
                     </InfoWindow>
                 </Map>
