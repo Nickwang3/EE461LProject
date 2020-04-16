@@ -95,7 +95,7 @@ class DetailedTeamPage extends React.Component {
       return (
 
         <Container className="detailedTeamContainer">
-
+          {/* <MapContainer lat={team.latitude} lng={team.longitude}/>     */}
           <Row className="teamNameRow">
             <h1 className="titleStyle">{team.name}</h1>
           </Row>
@@ -112,16 +112,18 @@ class DetailedTeamPage extends React.Component {
                 <NavItem>
                   <NavLink onClick={() => this.switchTabs("3")} style={navItemStyle}>Schedule</NavLink>
                 </NavItem>
+                <NavItem>
+                  <NavLink onClick={() => this.switchTabs("4")} style={navItemStyle}>Stadium</NavLink>
+                </NavItem>
               </Nav>
             </Row>
 
             <Row className="contentRow">
-              <TabContent activeTab={activeTab}>
+              <TabContent activeTab="4">
 
                 <TabPane tabId="1">
                   <Row>
                     <Weather team_id={team.team_id}/>
-                    <MapContainer lat={team.latitude} lng={team.longitude}/>
                     <h5 style={{width: "100%",marginBottom: "10px"}}>Stadium: {team.venue}</h5>
                     <h5 style={{width: "100%",marginBottom: "10px"}}>Record: {record.wins} - {record.losses}</h5>
                     <h5 style={{width: "100%",marginBottom: "10px"}}>#{record.division_rank} in {team.division}</h5>
@@ -158,6 +160,10 @@ class DetailedTeamPage extends React.Component {
                   <Row className="scoreBoardsRow">
                     {weekly_games.map(game => (<ScoreBoard game={game}/>))}
                   </Row>
+                </TabPane>
+
+                <TabPane tabId="4">
+                  <MapContainer stadiumName={team.venue} lat={team.latitude} lng={team.longitude}/>    
                 </TabPane>
                 
               </TabContent>
