@@ -11,6 +11,8 @@ from apiapp.serializers import *
 from rest_framework.decorators import api_view
 from .models import TeamMember
 from rest_framework import filters
+from youtube_api import YouTubeDataAPI
+
 
 
 # For customm filtering options
@@ -94,6 +96,15 @@ def get_players_by_team_id(request, team_id):
 @api_view(['GET'])
 def get_team_by_team_id(request, team_id):  
     team = Team.objects.get(team_id=team_id)
+
+    # update the video_id
+    api_key = 'AIzaSyCZy4MtO5KfUvXsvZKO-zEA5m1gJERA16o'
+    yt = YouTubeDataAPI(api_key)
+    video_id = yt.search(channel_id=team.youtube_channel_id)[0]['video_id']
+    print(video_id)
+    team.video_id = video_id
+    team.save(update_fields=['video_id'])
+
     data = TeamSerializer(team, many=False).data
     return Response(data)
 

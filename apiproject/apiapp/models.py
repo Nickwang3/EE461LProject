@@ -19,6 +19,8 @@ class Team(models.Model):
     instagram = models.CharField(max_length=50)
     twitter = models.CharField(max_length=50)
     facebook = models.CharField(max_length=50)
+    youtube_channel_id = models.CharField(max_length=100)
+    video_id = models.CharField(max_length=100)
 
     def __str__(self):
         return self.name

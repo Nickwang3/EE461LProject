@@ -7,6 +7,7 @@ import "./DetailedTeamPage.css"
 import Weather from "../../Weather/Weather";
 import ScoreBoard from "../ScoresPage/Scoreboard"
 import MapContainer from "../../Map/MapContainer";
+import YouTube from 'react-youtube';
 
 const apiService = new ApiService();
 const monthMapping = {'Jan': '01', 'Feb': '02', 'Mar': '03', 'Apr': '04', 'May': '05', 'Jun': '06','Jul': '07', 'Aug': '08', 
@@ -78,6 +79,11 @@ class DetailedTeamPage extends React.Component {
     });
   }
 
+  _onReady(event) {
+    // access to player in all event handlers via event.target
+    event.target.pauseVideo();
+  }
+
   render() {
 
     const navItemStyle = {
@@ -85,6 +91,15 @@ class DetailedTeamPage extends React.Component {
       marginLeft: "25px",
       marginRight: "25px"
     }
+
+    const opts = {
+      height: '390',
+      width: '640',
+      playerVars: {
+        // https://developers.google.com/youtube/player_parameters
+        autoplay: 1,
+      },
+    };
 
     const { error, isLoaded, team, roster, activeTab, record, weekly_games } = this.state;
     if (error) {
@@ -123,12 +138,12 @@ class DetailedTeamPage extends React.Component {
 
                 <TabPane tabId="1">
                   <Row>
-                    <Weather team_id={team.team_id}/>
                     <h5 style={{width: "100%",marginBottom: "10px"}}>Stadium: {team.venue}</h5>
                     <h5 style={{width: "100%",marginBottom: "10px"}}>Record: {record.wins} - {record.losses}</h5>
                     <h5 style={{width: "100%",marginBottom: "10px"}}>#{record.division_rank} in {team.division}</h5>
                     <h5 style={{width: "100%",marginBottom: "10px"}}>#{record.league_rank} in {team.division.split(" ").slice(0,2)}</h5>
                   </Row>
+                  <YouTube videoId={team.video_id} opts={opts} onReady={this._onReady}/>
                 </TabPane>
 
                 <TabPane tabId="2">
@@ -163,6 +178,7 @@ class DetailedTeamPage extends React.Component {
                 </TabPane>
 
                 <TabPane tabId="4">
+                  <Weather team_id={team.team_id}/>
                   <MapContainer stadiumName={team.venue} lat={team.latitude} lng={team.longitude}/>    
                 </TabPane>
                 

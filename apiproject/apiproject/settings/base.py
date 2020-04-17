@@ -30,7 +30,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'corsheaders',
-    'apiapp'
+    'apiapp',
+    'youtube_api'
 ]
 
 MIDDLEWARE = [
