@@ -101,7 +101,7 @@ class ScoreBoard extends React.Component {
                         </Col>
 
                         <Col>
-                            <button action=''>{awayTeam.name} will win.</button>
+                            <button action='' >{awayTeam.name} will win.</button>
                         </Col>
 
                     </Row>
