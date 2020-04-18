@@ -4,4 +4,4 @@ psycopg2-binary == 2.8.4
 requests == 2.23.0
 django-cors-headers == 3.2.1
 MLB-StatsAPI == 0.1.5
-youtube-data-api == 1.14.0
+youtube-data-api == 0.0.17
