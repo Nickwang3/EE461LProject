@@ -76,6 +76,9 @@ class ScoreBoard extends React.Component {
                         <Col styleName="boxScoreCol">
                             <Link to={`/scores/${game.game_id}`}><Button outline color="primary">Boxscore</Button></Link>
                         </Col>
+                        <Col>
+                            <button action=''>{homeTeam.name} will win.</button>
+                        </Col>
 
                     </Row>
 
@@ -95,6 +98,10 @@ class ScoreBoard extends React.Component {
 
                         <Col styleName="boxScoreCol">
                             <Link to={`/scores/${game.game_id}`}><Button outline color="primary">Boxscore</Button></Link>
+                        </Col>
+
+                        <Col>
+                            <button action=''>{awayTeam.name} will win.</button>
                         </Col>
 
                     </Row>
