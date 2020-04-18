@@ -50,6 +50,8 @@ class Game(models.Model):
     finished = models.BooleanField()
     current_inning = models.CharField(max_length=30)
     game_datetime = models.DateTimeField()
+    away_team_prediction = models.IntegerField()
+    home_team_prediction = models.IntegerField()
 
 
 class TeamMember(models.Model):
