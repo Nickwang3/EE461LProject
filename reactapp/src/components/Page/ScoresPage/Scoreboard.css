@@ -24,7 +24,9 @@
 }
 
 .teamPictureCol {
-
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .teamNameCol {
@@ -34,6 +36,12 @@
 }
 
 .teamScoreCol {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.boxScoreCol {
     display: flex;
     justify-content: center;
     align-items: center;

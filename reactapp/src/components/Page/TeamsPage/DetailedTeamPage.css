@@ -58,19 +58,21 @@
     opacity:1;
 }
 
-/* .rosterRow {
-    background-color: rgba(14, 156, 161, 0.26);
+
+.rosterRow {
     width: 100%;
     padding-left: 80px;
     padding-right: 80px;
-    padding-top: 40px;
-    padding-bottom: 40px;
+    padding-top: 30px;
+    padding-bottom: 30px;
     margin-bottom: 40px;
-    border-radius: 1%;
-    border: solid rgb(207, 193, 193);
-    border-width: 3px 3px;
-    
+    margin-top: 40px;
     display: flex;
     justify-content: center;
     align-content: center;
-} */
+}
+
+.scoreBoardsRow {
+    display: flex;
+    justify-content: center;
+}

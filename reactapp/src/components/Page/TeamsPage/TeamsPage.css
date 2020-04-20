@@ -1,0 +1,17 @@
+.teamsPageContainer {
+    display: flex;
+    justify-content: center;
+}
+
+.teamCardsRow {
+    display: flex;
+    justify-content: center;
+}
+
+.titleRow {
+    display: flex;
+    justify-content: center;
+
+    margin: 80px;
+    font: 400 55px/1.5 'Pacifico', Helvetica, sans-serif;
+}

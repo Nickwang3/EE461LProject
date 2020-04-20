@@ -1,0 +1,28 @@
+.playersPageContainer {
+    display: flex;
+    justify-content: center;
+}
+
+.searchBarRow {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px;
+}
+
+.searchBarContainer {
+    width:100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.searchBar {
+    margin-right: 30px;
+}
+
+.searchCol {
+    height: 100%;
+    width: 100px;
+}

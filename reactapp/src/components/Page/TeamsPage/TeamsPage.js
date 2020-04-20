@@ -1,7 +1,8 @@
 import React from "react";
 import Team from "./Team.js";
 import ApiService from "../../../api/ApiService";
-import { Container, Button } from "reactstrap";
+import { Container, Button, Row, Col } from "reactstrap";
+import './TeamsPage.css'
 
 const apiService = new ApiService();
 
@@ -96,19 +97,21 @@ class TeamsPage extends React.Component {
       return <div>Loading...</div>;
     } else {
       return (
-        <div>
-          <h1>MLB Teams</h1>
-          <Container>
+        <Container className="teamsPageContainer">
+          <Row className="titleRow">Teams</Row>
+          <Row className="teamCardsRow">
             {teams.map(team => (
-              <Team team={team} />
+              <Col style={{display: "flex", justifyContent: "center"}}>
+                <Team team={team} />
+              </Col>
             ))}
-          </Container>
-          <Container>
+          </Row>
+          <Row>
             <Button color="info" onClick={() => this.prevPage()} disabled={this.state.prevPage == null}>Previous</Button>
             <h5>Current Page: {this.state.page}</h5>
             <Button color="info" onClick={() => this.nextPage()} disabled={this.state.nextPage == null}>Next</Button>
-          </Container>
-        </div>
+          </Row>
+        </Container>
       );
     }
   }

@@ -178,8 +178,10 @@ class DetailedTeamPage extends React.Component {
                 </TabPane>
 
                 <TabPane tabId="4">
-                  <Weather team_id={team.team_id}/>
-                  <MapContainer stadiumName={team.venue} lat={team.latitude} lng={team.longitude}/>    
+                  <Row style={{display:"flex", justifyContent:"center"}}>
+                    <Weather team_id={team.team_id}/>
+                    <MapContainer stadiumName={team.venue} lat={team.latitude} lng={team.longitude}/>    
+                  </Row>  
                 </TabPane>
                 
               </TabContent>

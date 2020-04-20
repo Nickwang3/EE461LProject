@@ -3,7 +3,7 @@ import ApiService from "../../../api/ApiService";
 import ScoreBoard from "./Scoreboard";
 import DatePicker from 'react-datepicker';
 import { Container, Row } from 'reactstrap';
-// import './ScoresPage.css';
+import './ScoresPage.css';
 import "react-datepicker/dist/react-datepicker.css";
 
 
@@ -96,8 +96,7 @@ class ScoresPage extends React.Component {
           </Row>
 
           <Row className="datePickerRow">
-            <h3> Choose a date </h3>
-            <DatePicker selected={startDate} onChange={(date) => this.changeDates(date)} />
+            <DatePicker style={{}} selected={startDate} onChange={(date) => this.changeDates(date)} />
           </Row>
          
           <Row className="scoreBoardsRow">
