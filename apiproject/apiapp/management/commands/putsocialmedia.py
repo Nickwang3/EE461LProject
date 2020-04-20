@@ -6,8 +6,8 @@ class Command(BaseCommand):
     # TeamMember.objects.get(github_username="nickwang3").delete()
     # Input ALL OF YOUR information into these respective strings
     socailmedia_dict = {
-                    '108': ["https://www.instagram.com/astrosbaseball/", "https://www.facebook.com/Astros/", "https://twitter.com/astros"],
-                    '109': ["https://www.instagram.com/angels/", "https://www.facebook.com/Angels/", "https://twitter.com/Angels"],
+                    '108': ["https://www.instagram.com/angels/", "https://www.facebook.com/Angels/", "https://twitter.com/Angels"],
+                    '109': ["https://www.instagram.com/dbacks/", "https://www.facebook.com/Dbacks/", "https://twitter.com/Dbacks"],
                     '110': ["https://www.instagram.com/orioles/", "https://www.facebook.com/Orioles/", "https://twitter.com/Orioles"],
                     '111': ["https://www.instagram.com/redsox/", "https://www.facebook.com/RedSox/", "https://twitter.com/RedSox"],
                     '112': ["https://www.instagram.com/cubs/", "https://www.facebook.com/Cubs/", "https://twitter.com/Cubs"],

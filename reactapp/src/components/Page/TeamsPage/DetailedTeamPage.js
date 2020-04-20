@@ -1,13 +1,14 @@
 import React from "react";
 import ApiService from "../../../api/ApiService";
 import { withRouter } from 'react-router';
-import { Table, Container, Row, Nav, NavItem, NavLink, TabContent, TabPane } from 'reactstrap';
+import { Table, Container, Row, Nav, NavItem, NavLink, TabContent, TabPane, Col } from 'reactstrap';
 import RosterPlayer from "./RosterPlayer";
 import "./DetailedTeamPage.css"
 import Weather from "../../Weather/Weather";
 import ScoreBoard from "../ScoresPage/Scoreboard"
 import MapContainer from "../../Map/MapContainer";
 import YouTube from 'react-youtube';
+import { SocialIcon } from 'react-social-icons';
 
 const apiService = new ApiService();
 const monthMapping = {'Jan': '01', 'Feb': '02', 'Mar': '03', 'Apr': '04', 'May': '05', 'Jun': '06','Jul': '07', 'Aug': '08', 
@@ -144,6 +145,18 @@ class DetailedTeamPage extends React.Component {
                     <h5 style={{width: "100%",marginBottom: "10px"}}>#{record.league_rank} in {team.division.split(" ").slice(0,2)}</h5>
                   </Row>
                   <YouTube videoId={team.video_id} opts={opts} onReady={this._onReady}/>
+                  <Row style={{textAlign: "center",marginTop: "10px"}}>
+                    <Col>
+                      <SocialIcon url={team.twitter}>twitter</SocialIcon>
+                    </Col>
+                    <Col>
+                      <SocialIcon url={team.facebook}>facebook</SocialIcon>
+                    </Col>
+                    <Col>
+                      <SocialIcon url={team.instagram}>instagram</SocialIcon>
+                    </Col>
+
+                  </Row>
                 </TabPane>
 
                 <TabPane tabId="2">
