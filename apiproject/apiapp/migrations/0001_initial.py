@@ -22,6 +22,9 @@ class Migration(migrations.Migration):
                 ('logo', models.CharField(max_length=300)),
                 ('latitude', models.DecimalField(decimal_places=15, default=0, max_digits=20)),
                 ('longitude', models.DecimalField(decimal_places=15, default=0, max_digits=20)),
+                ('instagram', models.CharField(max_length=50)),
+                ('twitter', models.CharField(max_length=50)),
+                ('facebook', models.CharField(max_length=50)),
             ],
         ),
         migrations.CreateModel(
