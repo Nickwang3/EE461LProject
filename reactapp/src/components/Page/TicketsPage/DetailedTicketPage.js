@@ -54,7 +54,7 @@ class DetailedTicketPage extends React.Component {
                 <h5> Date: {ticket.datetime_local.slice(0, 10)} </h5>
                 <h5> Local Time: {ticket.datetime_local.slice(11)} </h5>
                 <h5> average price: ${ticket.average_price} </h5>
-                <Button color="primary" href={ticket.event_url}>Purchase at SeatGeak</Button>
+                <Button color="primary" target="_blank" href={ticket.event_url}>Purchase at SeatGeak</Button>
               </Col>
             </Row>
         </div>

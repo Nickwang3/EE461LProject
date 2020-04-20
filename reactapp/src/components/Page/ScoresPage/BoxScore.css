@@ -1,0 +1,48 @@
+.boxScoreContainer {
+    background-color:  rgba(14, 156, 161, 0.26);
+    margin-bottom: 40px;
+    margin-top: 40px;
+    width: 100%;
+    border-radius: 1%;
+    border: solid white;
+    border-width: 3px 3px;
+
+    display: flex;
+    justify-content: center;
+}
+
+.tableStyle {
+    color: white;
+    font-size: medium ;
+    width: 100%;
+}
+
+.boxScoreRow {
+    width: 100%;
+    margin: 50px;
+
+    display: flex;
+    justify-content: center;
+}
+
+.teamTable {
+    margin: 30px;
+}
+
+.scoreRow {
+    width: 100%;
+    margin: 50px;
+
+    display: flex;
+    justify-content: center;
+}
+
+.teamLogos {
+    width: 150px;
+    height: 150px;
+
+}
+
+.teamScoreCol {
+    width: 100%;
+}

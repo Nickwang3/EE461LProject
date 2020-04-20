@@ -111,13 +111,13 @@ class DetailedPlayerPage extends React.Component {
 
               <Row className="navRow">
                 <Nav>
-                  <NavItem>
+                  <NavItem className="playerNavItem">
                     <NavLink onClick={() => this.switchTabs("1")} style={navItemStyle}>About</NavLink>
                   </NavItem>
-                  <NavItem>
+                  <NavItem className="playerNavItem">
                     <NavLink onClick={() => this.switchTabs("2")} style={navItemStyle}>Stats</NavLink>
                   </NavItem>
-                  <NavItem>
+                  <NavItem className="playerNavItem">
                     <NavLink onClick={() => this.switchTabs("3")} style={navItemStyle}>Schedule</NavLink>
                   </NavItem>
                 </Nav>

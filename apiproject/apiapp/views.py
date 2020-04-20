@@ -11,6 +11,8 @@ from apiapp.serializers import *
 from rest_framework.decorators import api_view
 from .models import TeamMember
 from rest_framework import filters
+from youtube_api import YouTubeDataAPI
+
 
 
 # For customm filtering options
@@ -72,6 +74,7 @@ class HitterStatsViewSet(viewsets.ModelViewSet):
         return HitterStats.objects.all().order_by('season')
 
 class TicketViewSet(viewsets.ModelViewSet):
+    filter_backends = [DynamicSearchFilter, filters.OrderingFilter]
     serializer_class = TicketSerializer
 
     def get_queryset(self):
@@ -241,6 +244,18 @@ def get_home_games_by_team_id(request, team_id):
 def get_away_games_by_team_id(request, team_id):
     games = Game.objects.filter(away_team=team_id).order_by('game_datetime')
     data = GameSerializer(games, many=True).data
+    return Response(data)
+
+@api_view(['GET'])
+def get_boxscore_by_id(request, boxscore_id):
+    boxscore = BoxScore.objects.get(boxscore_id=boxscore_id)
+    data = BoxScoreSerializer(boxscore).data
+    return Response(data)
+
+@api_view(['GET'])
+def get_game_by_id(request, game_id):
+    boxscore = Game.objects.get(game_id=game_id)
+    data = GameSerializer(boxscore).data
     return Response(data)
 
 def redirect_to_api(request):

@@ -4,6 +4,7 @@ from __future__ import unicode_literals
 from django.db import models
 from django.contrib.auth.models import User
 from django.contrib.postgres.fields import ArrayField
+from django.contrib.postgres.fields import JSONField
 
 # Create your models here.
 
@@ -18,6 +19,8 @@ class Team(models.Model):
     instagram = models.CharField(max_length=50)
     twitter = models.CharField(max_length=50)
     facebook = models.CharField(max_length=50)
+    youtube_channel_id = models.CharField(max_length=100)
+    video_id = models.CharField(max_length=100)
 
     def __str__(self):
         return self.name
@@ -129,10 +132,12 @@ class BoxScore(models.Model):
     boxscore_id = models.CharField(max_length=50, primary_key=True)
     game = models.ForeignKey(Game, to_field='game_id', on_delete=models.CASCADE)
 
-    home_runs = models.IntegerField()
-    home_hits = models.IntegerField()
-    home_lob = models.IntegerField()
+    home_hitting_totals = JSONField()
+    away_hitting_totals = JSONField()
+    home_pitching_totals = JSONField()
+    away_pitching_totals = JSONField()
 
-    away_runs = models.IntegerField()
-    away_hits = models.IntegerField()
-    away_lob = models.IntegerField()
+    home_player_hitting = JSONField()
+    away_player_hitting = JSONField()
+    home_player_pitching = JSONField()
+    away_player_pitching = JSONField()

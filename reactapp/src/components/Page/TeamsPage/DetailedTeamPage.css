@@ -47,6 +47,15 @@
     
     display: flex;
     justify-content: center;
+    
+}
+
+.teamNavItem {
+    opacity:0.5;
+}
+
+.teamNavItem:hover {
+    opacity:1;
 }
 
 /* .rosterRow {

@@ -15,20 +15,39 @@ class Command(BaseCommand):
 
         for game in games:
             try:
-                away_stats = statsapi.boxscore_data(gamePk=game.game_id)['away']['teamStats']
-                home_stats = statsapi.boxscore_data(gamePk=game.game_id)['home']['teamStats']
+                home_stats = statsapi.boxscore_data(gamePk=game.game_id)['home']
+                away_stats = statsapi.boxscore_data(gamePk=game.game_id)['away']
 
-                home_runs = home_stats['batting']['runs']
-                home_hits = home_stats['batting']['hits']
-                home_lob = home_stats['batting']['leftOnBase']
+                home_batting_totals = home_stats['teamStats']['batting']
+                away_batting_totals = away_stats['teamStats']['batting']
 
-                away_runs = away_stats['batting']['runs']
-                away_hits = away_stats['batting']['hits']
-                away_lob = away_stats['batting']['leftOnBase']
+                home_pitching_totals = home_stats['teamStats']['pitching']
+                away_pitching_totals = away_stats['teamStats']['pitching']
+                
+                home_pitchers = home_stats['pitchers']
+                away_pitchers = away_stats['pitchers']
 
-                # print(type(game.game_id))
+                home_hitters = home_stats['batters']
+                away_hitters = away_stats['batters']
 
-                boxscore = BoxScore( game=game, home_runs=home_runs, home_hits=home_hits, home_lob=home_lob, away_runs=away_runs, away_hits=away_hits, away_lob=away_lob)
+                home_player_pitching = {}
+                for p_id in home_pitchers:
+                    home_player_pitching.update({p_id: home_stats['players']['ID' + str(p_id)]})
+
+                away_player_pitching = {}
+                for p_id in away_pitchers:
+                    away_player_pitching.update({p_id: away_stats['players']['ID' + str(p_id)]})
+
+                home_player_hitting = {}
+                for p_id in home_hitters:
+                    home_player_hitting.update({p_id: home_stats['players']['ID' + str(p_id)]})
+
+                away_player_hitting = {}
+                for p_id in away_hitters:
+                    away_player_hitting.update({p_id: away_stats['players']['ID' + str(p_id)]})
+
+                boxscore = BoxScore(game=game, boxscore_id=game.game_id, home_hitting_totals=home_batting_totals, away_hitting_totals=away_batting_totals, home_pitching_totals=home_pitching_totals, away_pitching_totals=away_pitching_totals, 
+                                    home_player_hitting=home_player_hitting, away_player_hitting=away_player_hitting, home_player_pitching=home_player_pitching, away_player_pitching=away_player_pitching)                
                 boxscore.save()
                 print("Success")
             except:

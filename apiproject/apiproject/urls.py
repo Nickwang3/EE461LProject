@@ -28,6 +28,7 @@ urlpatterns = [
     path('api/v1/games/home_team/team_id/<str:team_id>', views.get_home_games_by_team_id, name="get_home_games_by_team_id"),
     path('api/v1/games/away_team/team_id/<str:team_id>', views.get_away_games_by_team_id, name="get_away_games_by_team_id"),
     path('api/v1/games/weekly/<str:date>/team_id/<str:team>', views.get_weekly_games_by_date_and_team, name="get_weekly_games_by_date_and_team"),
+    path('api/v1/games/game_id/<str:game_id>',views.get_game_by_id, name ="get_game_by_id"),   
     path('api/v1/teammembers/add_teammember/', views.post_teammember, name='post_teammember'),
     path('api/v1/teammembers/github_username/<str:github_username>', views.get_teammembers_by_github_username, name="get_teammembers_by_github_username"),
     path('api/v1/teammembers/update_git_stats', views.update_git_stats, name='update_git_stats'),
@@ -36,5 +37,6 @@ urlpatterns = [
     path('api/v1/teamrecords/season/<str:season>', views.get_records_by_season, name='get_records_by_season'),
     path('api/v1/teamrecords/team_id_and_season/<str:team_id_and_season>', views.get_records_by_team_id_and_season, name='get_records_by_team_id_and_season'),
     path('api/v1/pitcherstats/player_id/<str:player_id>', views.get_pitcher_stats_by_player_id, name='get_pitcher_stats_by_player_id'),
-    path('api/v1/hitterstats/player_id/<str:player_id>', views.get_hitter_stats_by_player_id, name='get_hitter_stats_by_player_id')
+    path('api/v1/hitterstats/player_id/<str:player_id>', views.get_hitter_stats_by_player_id, name='get_hitter_stats_by_player_id'),
+    path('api/v1/boxscores/boxscore_id/<str:boxscore_id>', views.get_boxscore_by_id, name='get_boxscore_by_id')
 ]

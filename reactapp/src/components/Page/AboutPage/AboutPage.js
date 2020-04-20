@@ -119,7 +119,7 @@ class AboutPage extends React.Component {
                                     <Col className="cols">
                                         <img style={{width: "70%", height: "50%", marginBottom: "15px"}}src={require("./../../../statics/docker.png")}></img>
                                         <h4>Docker</h4>
-                                        <p style={{fontSize: "14px"}}>Docker is a neat tool that eased local debugging by providing a virual environment for our backend.</p>
+                                        <p style={{fontSize: "14px"}}>Docker is a neat tool that eased local debugging by providing a virtual environment for our backend.</p>
                                     </Col>
                                     <Col className="cols">
                                         <img style={{width: "70%", height: "50%", marginBottom: "15px"}} src={require("./../../../statics/slack.png")}></img>

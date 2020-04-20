@@ -14,7 +14,7 @@ export default class ApiService {
   }
 
   getTeamById(team_id) {
-    return axios.get(`/teams/${team_id}/`);
+    return axios.get(`/teams/team_id/${team_id}`);
   }
 
   getPlayersBySearch(page, search, search_fields, ordering){
@@ -87,10 +87,11 @@ export default class ApiService {
     return axios.get(`pitcherstats/player_id/${player_id}`)
   }
 
-  getTickets(page) {
+  getTickets(page, ordering) {
     return axios.get('tickets/', {
       params: {
-        page: page 
+        page: page,
+        ordering: ordering,
       }
     })
   }
@@ -99,7 +100,26 @@ export default class ApiService {
     return axios.get(`tickets/${ticket_id}/`);
   }
 
+  getTicketsBySearch(page, search, search_fields, ordering){
+    return axios.get('/tickets/', {
+      params: {
+        page: page,
+        search: search,
+        search_fields: search_fields,
+        ordering: ordering, 
+      }
+    });
+  }
+
   getWeeklyGamesByDateAndTeam(date, team) {
     return axios.get(`games/weekly/${date}/team_id/${team}`)
+  }
+
+  getBoxscoreById(id) {
+    return axios.get(`boxscores/boxscore_id/${id}`);
+  }
+
+  getGameById(game_id) {
+    return axios.get(`games/game_id/${game_id}`)
   }
 }

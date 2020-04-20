@@ -62,7 +62,7 @@ class ScoreBoard extends React.Component {
                     <Row className="homeTeamRow">
                         
                         <Col className="teamPictureCol">
-                            <Link to={`teams/${homeTeam.team_id}`}><img style={{height: "100px", width: "90px"}} src={homeTeam.logo}></img></Link>
+                            <a href={`/teams/${homeTeam.team_id}`}><img style={{height: "100px", width: "90px"}} src={homeTeam.logo}></img></a>
                         </Col>
 
                         <Col className="teamNameCol">
@@ -74,7 +74,10 @@ class ScoreBoard extends React.Component {
                         </Col>
 
                         <Col styleName="boxScoreCol">
-                            <Button outline color="primary">Boxscore</Button>
+                            <Link to={`/scores/${game.game_id}`}><Button outline color="primary">Boxscore</Button></Link>
+                        </Col>
+                        <Col>
+                            <button>{homeTeam.name} will win.</button>
                         </Col>
 
                     </Row>
@@ -82,7 +85,7 @@ class ScoreBoard extends React.Component {
                     <Row className="awayTeamRow">
 
                         <Col className="teamPictureCol">
-                            <Link to={`teams/${awayTeam.team_id}`}><img style={{height: "100px", width: "90px"}} src={awayTeam.logo}></img></Link>
+                            <a href={`/teams/${awayTeam.team_id}`}><img style={{height: "100px", width: "90px"}} src={awayTeam.logo}></img></a>
                         </Col>
 
                         <Col className="teamNameCol">
@@ -94,7 +97,11 @@ class ScoreBoard extends React.Component {
                         </Col>
 
                         <Col styleName="boxScoreCol">
-                            <Button outline color="primary">Boxscore</Button>
+                            <Link to={`/scores/${game.game_id}`}><Button outline color="primary">Boxscore</Button></Link>
+                        </Col>
+
+                        <Col>
+                            <button>{awayTeam.name} will win.</button>
                         </Col>
 
                     </Row>
