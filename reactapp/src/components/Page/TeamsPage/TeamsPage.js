@@ -92,6 +92,63 @@ class TeamsPage extends React.Component {
       });
   }
 
+  onSubmit = (e) => {
+    e.preventDefault()
+    this.setState({
+      isLoaded: false,
+    })
+    apiService
+    .getTeamsBySearch(1, this.state.searchValue, this.state.searchFields, this.state.ordering)
+    .then(result => {
+      this.setState({
+        isLoaded: true,
+        teams: result.data.results,
+        page: 1,
+        prevPage: result.data.previous,
+        nextPage: result.data.next,
+        count: result.data.count
+      });
+    })
+    .catch(error => {
+      this.setState({
+        isLoaded: true,
+        error
+      });
+    });
+  }
+
+  onEnterPressed = (e) => {
+    if (e.key === 'Enter') {
+      e.preventDefault(); 
+      this.onSubmit(e);
+    }
+  }
+
+  orderingChanged = (e) => {
+    this.setState({ 
+      ordering: e.target.value,
+      isLoaded: false
+    })
+    apiService
+    .getTeamsBySearch(1, this.state.searchValue, this.state.searchFields, e.target.value)
+    .then(result => {
+      this.setState({
+        isLoaded: true,
+        teams: result.data.results,
+        page: 1,
+        prevPage: result.data.previous,
+        nextPage: result.data.next,
+        count: result.data.count
+      });
+    })
+    .catch(error => {
+      this.setState({
+        isLoaded: true,
+        error
+      });
+    });
+  }
+
   render() {
     const { error, isLoaded, teams } = this.state;
     let results;
