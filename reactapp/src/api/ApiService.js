@@ -13,6 +13,17 @@ export default class ApiService {
     });
   }
 
+  getTeamsBySearch(page, search, search_fields, ordering){
+    return axios.get('/teams/', {
+      params: {
+        page: page,
+        search: search,
+        search_fields: search_fields,
+        ordering: ordering, 
+      }
+    });
+  }
+
   getTeamById(team_id) {
     return axios.get(`/teams/team_id/${team_id}`);
   }

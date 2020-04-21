@@ -1,7 +1,7 @@
 import React from "react";
 import Team from "./Team.js";
 import ApiService from "../../../api/ApiService";
-import { Container, Button, Row, Col } from "reactstrap";
+import { Container, Button, Row , Form, FormGroup, Input, Label, Col} from "reactstrap"
 import './TeamsPage.css'
 
 const apiService = new ApiService();
@@ -16,14 +16,17 @@ class TeamsPage extends React.Component {
       page: 1,
       prevPage: null,
       nextPage: null,
-      count: null
+      count: null,
+      searchValue: '', 
+      searchFields: "name",
+      ordering: "name",
     };
   }
 
   componentDidMount() {
     apiService
-      .getTeams()
-      .then(result => {
+    .getTeamsBySearch(this.state.page, this.state.searchValue, this.state.searchFields, this.state.ordering)
+    .then(result => {
         this.setState({
           isLoaded: true,
           teams: result.data.results
@@ -45,8 +48,8 @@ class TeamsPage extends React.Component {
       isLoaded: false,
     })
     apiService
-      .getTeams(this.state.page + 1)
-      .then(result => {
+    .getTeamsBySearch(this.state.page, this.state.searchValue, this.state.searchFields, this.state.ordering)
+    .then(result => {
         this.setState({
           isLoaded: true,
           teams: result.data.results,
@@ -71,8 +74,8 @@ class TeamsPage extends React.Component {
       isLoaded: false,
     })
     apiService
-      .getTeams(this.state.page - 1)
-      .then(result => {
+    .getTeamsBySearch(this.state.page - 1, this.state.searchValue, this.state.searchFields, this.state.ordering)
+    .then(result => {
         this.setState({
           isLoaded: true,
           teams: result.data.results,
@@ -91,29 +94,71 @@ class TeamsPage extends React.Component {
 
   render() {
     const { error, isLoaded, teams } = this.state;
+    let results;
     if (error) {
       return <div>Error: {error.message}</div>;
     } else if (!isLoaded) {
-      return <div>Loading...</div>;
+      results = <div>Loading...</div>;
     } else {
-      return (
-        <Container className="teamsPageContainer">
-          <Row className="titleRow">Teams</Row>
-          <Row className="teamCardsRow">
-            {teams.map(team => (
-              <Col style={{display: "flex", justifyContent: "center"}}>
-                <Team team={team} />
-              </Col>
-            ))}
-          </Row>
-          <Row>
-            <Button color="info" onClick={() => this.prevPage()} disabled={this.state.prevPage == null}>Previous</Button>
-            <h5>Current Page: {this.state.page}</h5>
-            <Button color="info" onClick={() => this.nextPage()} disabled={this.state.nextPage == null}>Next</Button>
-          </Row>
-        </Container>
-      );
+      results = <Row className="teamCardsRow">
+                  {teams.map(team => (
+                    <Col style={{display: "flex", justifyContent: "center"}}>
+                      <Team team={team} />
+                    </Col>
+                  ))}
+                </Row>;
     }
+    return (
+      <Container className="teamsPageContainer">
+        <Row className="titleRow">Teams</Row>
+        <Form className="searchBarContainer" onSubmit={this.onSubmit}>
+          <FormGroup className="searchBar">
+              {/* <Label for="exampleSearch">Search</Label> */}
+              <Input
+              type="search"
+              name="search"
+              id="teamSearch"
+              placeholder="Search for teams..."
+              value={this.state.searchValue}
+              onChange={e => this.setState({ searchValue: e.target.value })}
+              onKeyDown={this.onEnterPressed}
+              />
+          </FormGroup>
+          <FormGroup>
+            <Label for="teamSearchSelect">search by</Label>
+            <Input 
+            type="select" 
+            name="searchSelect" 
+            id="teamSearchSelect"
+            onChange={e => this.setState({ searchFields: e.target.value })}
+            >
+              <option>name</option>
+              <option>division</option>
+              <option>venue</option>
+            </Input>
+          </FormGroup>
+          <FormGroup>
+            <Label for="teamOrderSelect">order by</Label>
+            <Input 
+            type="select" 
+            name="teamOrderSelect" 
+            id="teamOrderSelect"
+            onChange={e => this.orderingChanged(e)}
+            >
+              <option>name</option>
+              <option>division</option>
+            </Input>
+          </FormGroup>
+          <Button type="submit" className="btn btn-success">Search</Button>
+        </Form>   
+        {results}
+        <Row>
+          <Button color="info" onClick={() => this.prevPage()} disabled={this.state.prevPage == null}>Previous</Button>
+          <h5>Current Page: {this.state.page}</h5>
+          <Button color="info" onClick={() => this.nextPage()} disabled={this.state.nextPage == null}>Next</Button>
+        </Row>
+      </Container>
+    );
   }
 
 }
