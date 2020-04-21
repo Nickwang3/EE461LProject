@@ -99,7 +99,7 @@ class ScoreBoard extends React.Component {
                             <Link to={`/scores/${game.game_id}`}><Button outline color="primary">Boxscore</Button></Link>
                         </Col>
                         <Col>
-                            <Button id={`homePrediction${game.game_id}`} name='predictHome' className="predictionButton" onClick="">{homeTeam.name} will win.</Button>
+                            <Button id={`homePrediction${game.game_id}`} onClick={() => { this.postPrediction(game,'home')}} className="predictionButton">{homeTeam.name} will win.</Button>
                         </Col>
 
                     </Row>
