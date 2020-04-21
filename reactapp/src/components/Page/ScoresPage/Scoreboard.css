@@ -42,3 +42,7 @@
 .teamNameStyle {
     font: 400 25px/1.5 'Pacifico', Helvetica, sans-serif;
 }
+
+.predictionButton{
+    color:red;
+}
