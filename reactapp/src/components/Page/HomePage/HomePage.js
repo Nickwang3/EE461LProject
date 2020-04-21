@@ -1,5 +1,6 @@
 import React from "react";
-import {Jumbotron, Container, Form, FormGroup, Label, Input} from 'reactstrap';
+import {Jumbotron, Container, Form, FormGroup, Label, Input, Row, Col} from 'reactstrap';
+import { TwitterTimelineEmbed} from 'react-twitter-embed';
 import "./HomePage.css";
 
 class HomePage extends React.Component {
@@ -38,7 +39,16 @@ class HomePage extends React.Component {
                                     placeholder="Search our website..."
                                     />
                                 </FormGroup>
-                            </Form>                        
+                            </Form>
+                        <Row>
+                            <Col>
+                                <TwitterTimelineEmbed
+                                    sourceType="profile"
+                                    screenName="MLB"
+                                    options={{height: 400, width: 400}}
+                                />
+                            </Col>
+                        </Row>
                     </Jumbotron>
                 </div>
             )
