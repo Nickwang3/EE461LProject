@@ -10,7 +10,7 @@ from rest_framework.response import Response
 from apiapp.serializers import *
 from rest_framework.decorators import api_view
 from .models import TeamMember
-from rest_framework import filters
+from rest_framework import filters, pagination
 from youtube_api import YouTubeDataAPI
 
 
@@ -20,6 +20,10 @@ class DynamicSearchFilter(filters.SearchFilter):
     def get_search_fields(self, view, request):
         return request.GET.getlist('search_fields', [])
 
+class TeamResultsPagination(pagination.PageNumberPagination):
+    page_size = 10
+    page_size_query_param = 'page_size'
+    max_page_size = 10
 
 # Create your views here.
 class UserViewSet(viewsets.ModelViewSet):
@@ -37,6 +41,7 @@ class PlayerViewSet(viewsets.ModelViewSet):
         return Player.objects.all().order_by('player_id')
 
 class TeamViewSet(viewsets.ModelViewSet):
+    pagination_class = TeamResultsPagination
     filter_backends = [DynamicSearchFilter, filters.OrderingFilter]
     serializer_class = TeamSerializer
 
