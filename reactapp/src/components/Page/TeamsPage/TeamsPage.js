@@ -29,7 +29,10 @@ class TeamsPage extends React.Component {
     .then(result => {
         this.setState({
           isLoaded: true,
-          teams: result.data.results
+          teams: result.data.results,
+          prevPage: result.data.previous,
+          nextPage: result.data.next,
+          count: result.data.count
         });
       })
       .catch(error => {
@@ -48,7 +51,7 @@ class TeamsPage extends React.Component {
       isLoaded: false,
     })
     apiService
-    .getTeamsBySearch(this.state.page, this.state.searchValue, this.state.searchFields, this.state.ordering)
+    .getTeamsBySearch(this.state.page + 1, this.state.searchValue, this.state.searchFields, this.state.ordering)
     .then(result => {
         this.setState({
           isLoaded: true,
