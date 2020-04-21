@@ -263,5 +263,18 @@ def get_game_by_id(request, game_id):
     data = GameSerializer(boxscore).data
     return Response(data)
 
+# For updating the database when a user makes a prediction.
+@api_view(['POST'])
+def post_prediction(request,game_id,team_side,predictions):
+    if(request.method=='POST'):
+        if(team_side == 'away'):
+            Game.objects.filter(game_id=game_id).update(away_prediction = predictions)
+        else:
+            Game.objects.filter(game_id=game_id).update(home_prediction = predictions)
+    
+
+        return Response(HTTPStatus.ACCEPTED)
+    
+
 def redirect_to_api(request):
     return redirect('/api/v1')

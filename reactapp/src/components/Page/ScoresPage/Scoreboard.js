@@ -5,6 +5,7 @@ import { Button, Container, Row, Col, Card , CardBody,
     CardTitle, Badge, CardText } from 'reactstrap';
 
 import ApiService from '../../../api/ApiService';
+import { Form } from 'react-bootstrap';
 
 const apiService = new ApiService();
 
@@ -44,6 +45,27 @@ class ScoreBoard extends React.Component {
               });
     }
 
+    postPrediction(game,team_side){
+        if(team_side === 'away')
+            apiService.postGamePrediction(game.game_id,team_side,++game.away_prediction);
+        else
+            apiService.postGamePrediction(game.game_id,team_side,++game.home_prediction);
+        
+        var awayButton = document.getElementById(`awayPrediction${game.game_id}`);
+        var homeButton = document.getElementById(`homePrediction${game.game_id}`);
+
+        const totalPredictions = game.away_prediction+game.home_prediction == 0 ? 1 : game.away_prediction+game.home_prediction;
+        const homePercent = (game.home_prediction/ (game.away_prediction+game.home_prediction))*100;
+        const awayPercent = (game.away_prediction/ (game.away_prediction+game.home_prediction))*100;
+        awayButton.disabled = true;
+        homeButton.disabled = true;
+        awayButton.innerHTML= `${awayPercent}% predict to win.`
+        homeButton.innerHTML= `${homePercent}% predict to win.`
+        
+        
+
+    }
+
     render(){
 
 
@@ -77,7 +99,7 @@ class ScoreBoard extends React.Component {
                             <Link to={`/scores/${game.game_id}`}><Button outline color="primary">Boxscore</Button></Link>
                         </Col>
                         <Col>
-                            <button>{homeTeam.name} will win.</button>
+                            <Button id={`homePrediction${game.game_id}`} onClick={() => { this.postPrediction(game,'home')}} className="predictionButton">{homeTeam.name} will win.</Button>
                         </Col>
 
                     </Row>
@@ -101,7 +123,7 @@ class ScoreBoard extends React.Component {
                         </Col>
 
                         <Col>
-                            <button>{awayTeam.name} will win.</button>
+                            <Button id={`awayPrediction${game.game_id}`} onClick={() => { this.postPrediction(game,'away')}} className="predictionButton"  >{awayTeam.name} {game.away_prediction} will win.</Button>
                         </Col>
 
                     </Row>
