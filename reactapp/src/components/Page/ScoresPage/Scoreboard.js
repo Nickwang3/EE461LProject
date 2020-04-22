@@ -59,8 +59,8 @@ class ScoreBoard extends React.Component {
         const awayPercent = (game.away_prediction/ (game.away_prediction+game.home_prediction))*100;
         awayButton.disabled = true;
         homeButton.disabled = true;
-        awayButton.innerHTML= `${awayPercent}% predict to win.`
-        homeButton.innerHTML= `${homePercent}% predict to win.`
+        awayButton.innerHTML= `${awayPercent.toFixed(2)}% predict to win.`
+        homeButton.innerHTML= `${homePercent.toFixed(2)}% predict to win.`
         
         
 
