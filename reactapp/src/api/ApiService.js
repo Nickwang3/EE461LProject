@@ -164,4 +164,8 @@ export default class ApiService {
   getTeamByName(team_name) {
     return axios.get(`/teams/team_name/${team_name}`,);
   }
+
+  getGameByTeamsAndDate(away_team,home_team,date) {
+    return axios.get(`/games/away_team/${away_team}/home_team/${home_team}/date/${date}`)
+  }
 }

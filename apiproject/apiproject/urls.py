@@ -40,6 +40,7 @@ urlpatterns = [
     path('api/v1/pitcherstats/player_id/<str:player_id>', views.get_pitcher_stats_by_player_id, name='get_pitcher_stats_by_player_id'),
     path('api/v1/hitterstats/player_id/<str:player_id>', views.get_hitter_stats_by_player_id, name='get_hitter_stats_by_player_id'),
     path('api/v1/boxscores/boxscore_id/<str:boxscore_id>', views.get_boxscore_by_id, name='get_boxscore_by_id'),
-    path('api/v1/games/game_id/<str:game_id>/prediction/<str:team_side>/<int:predictions>', views.post_prediction, name="post_prediction")
+    path('api/v1/games/game_id/<str:game_id>/prediction/<str:team_side>/<int:predictions>', views.post_prediction, name="post_prediction"),
+    path('api/v1/games/away_team/<str:away_team>/home_team/<str:home_team>/date/<str:date>',views.get_games_by_teams_and_date, name="get_games_by_teams_and_date")
     
 ]
