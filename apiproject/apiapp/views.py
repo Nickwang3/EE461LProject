@@ -160,16 +160,16 @@ def post_teammember(request):
 
 @api_view(['PUT'])
 def update_git_stats(request):
-    url = "http://django-env.zphgcpmf2t.us-west-2.elasticbeanstalk.com/api/v1/teammembers"
-    response = requests.request("GET", url)
-    teammembers = response.json()['results']
+    # url = "http://django-env.zphgcpmf2t.us-west-2.elasticbeanstalk.com/api/v1/teammembers"
+    # response = requests.request("GET", url)
+    teammembers = TeamMember.objects.all()
 
     user_issues = {}
     user_commits = {}
 
     for teammember in teammembers:
-        user_issues[teammember['github_username']] = 0
-        user_commits[teammember['github_username']] = 0
+        user_issues[teammember.github_username] = 0
+        user_commits[teammember.github_username] = 0
 
     url = "https://api.github.com/repos/Nickwang3/EE461LProject/stats/contributors"
     res = requests.get(url)

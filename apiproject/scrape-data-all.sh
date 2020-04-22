@@ -1,5 +1,10 @@
 #!/bin/bash
 
+# get teammember data
+echo "adding team member commands"
+python3 manage.py putteammembers
+python3 manage.py getgithubstats
+
 # get team data
 echo "running team scraping commands"
 python3 manage.py getteams
