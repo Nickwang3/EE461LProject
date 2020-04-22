@@ -22,6 +22,13 @@ class ScoresPage extends React.Component {
       startDate: new Date(),
       formattedDate: this.formatDate(new Date()),
       filterByDate: true,
+      page: 1,
+      prevPage: null,
+      nextPage: null,
+      count: null,
+      searchValue: '', 
+      searchFields: "home_team",
+      ordering: "home_team",
     };
     this.criteriaChanged = this.criteriaChanged.bind(this);
     this.changeDates = this.changeDates.bind(this);
@@ -48,6 +55,115 @@ class ScoresPage extends React.Component {
     } else {
 
     }
+  }
+
+  nextPage() {
+    if (this.state.nextPage == null) {
+      return;
+    }
+    this.setState({
+      isLoaded: false,
+    })
+    apiService
+      .getGamesBySearch(this.state.page + 1, this.state.searchValue, this.state.searchFields, this.state.ordering)
+      .then(result => {
+        this.setState({
+          isLoaded: true,
+          games: result.data.results,
+          page: this.state.page + 1,
+          prevPage: result.data.previous,
+          nextPage: result.data.next,
+        });
+      })
+      .catch(error => {
+        this.setState({
+          isLoaded: true,
+          error
+        });
+      });
+  }
+
+  prevPage() {
+    if (this.state.prevPage == null) {
+      return;
+    }
+    this.setState({
+      isLoaded: false,
+    })
+    apiService
+      .getGamesBySearch(this.state.page - 1, this.state.searchValue, this.state.searchFields, this.state.ordering)
+      .then(result => {
+        this.setState({
+          isLoaded: true,
+          games: result.data.results,
+          page: this.state.page - 1,
+          prevPage: result.data.previous,
+          nextPage: result.data.next,
+        });
+      })
+      .catch(error => {
+        this.setState({
+          isLoaded: true,
+          error
+        });
+      });
+  }
+
+  onSubmit = (e) => {
+    e.preventDefault()
+    this.setState({
+      isLoaded: false,
+    })
+    apiService
+    .getGamesBySearch(1, this.state.searchValue, this.state.searchFields, this.state.ordering)
+    .then(result => {
+      this.setState({
+        isLoaded: true,
+        games: result.data.results,
+        page: 1,
+        prevPage: result.data.previous,
+        nextPage: result.data.next,
+        count: result.data.count
+      });
+    })
+    .catch(error => {
+      this.setState({
+        isLoaded: true,
+        error
+      });
+    });
+  }
+
+  onEnterPressed = (e) => {
+    if (e.key === 'Enter') {
+      e.preventDefault(); 
+      this.onSubmit(e);
+    }
+  }
+
+  orderingChanged = (e) => {
+    this.setState({ 
+      ordering: e.target.value,
+      isLoaded: false
+    })
+    apiService
+    .getGamesBySearch(1, this.state.searchValue, this.state.searchFields, e.target.value)
+    .then(result => {
+      this.setState({
+        isLoaded: true,
+        games: result.data.results,
+        page: 1,
+        prevPage: result.data.previous,
+        nextPage: result.data.next,
+        count: result.data.count
+      });
+    })
+    .catch(error => {
+      this.setState({
+        isLoaded: true,
+        error
+      });
+    });
   }
 
   formatDate(date) {
@@ -102,6 +218,7 @@ class ScoresPage extends React.Component {
     let datePickerRow;
     let searchFormRow;
     let results;
+    let paginationButtons;
 
     if (this.state.filterByDate) {
       criteria = "Search For Games"
@@ -110,6 +227,11 @@ class ScoresPage extends React.Component {
                         </Row>;
     } else {
       criteria = "Use Date Picker";
+      paginationButtons = <Row style={{width: "100%", display: "flex", justifyContent: "center"}}>
+                            <Button style={{margin: "20px"}} color="info" onClick={() => this.prevPage()} disabled={this.state.prevPage == null}>Previous</Button>
+                            <h4 style={{margin: "23px"}}>Page {this.state.page}</h4>
+                            <Button style={{margin: "20px"}} color="info" onClick={() => this.nextPage()} disabled={this.state.nextPage == null}>Next</Button>
+                          </Row>
       searchFormRow = <Form className="ticketsFormStyle" onSubmit={this.onSubmit}>
                         <Row form>
                           <Col md={9}>
@@ -192,6 +314,8 @@ class ScoresPage extends React.Component {
         {searchFormRow}
 
         {results}
+
+        {paginationButtons}
 
       </Container>
     );

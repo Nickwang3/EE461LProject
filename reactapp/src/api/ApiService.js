@@ -67,6 +67,17 @@ export default class ApiService {
     return axios.get(`/games/game_date/${game_date}`);
   }
 
+  getGamesBySearch(page, search, search_fields, ordering){
+    return axios.get('/games/', {
+      params: {
+        page: page,
+        search: search,
+        search_fields: search_fields,
+        ordering: ordering, 
+      }
+    });
+  }
+
   getTeammembers() {
     axios.put('/teammembers/update_git_stats').then()
 
