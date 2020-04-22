@@ -263,6 +263,13 @@ def get_game_by_id(request, game_id):
     data = GameSerializer(boxscore).data
     return Response(data)
 
+@api_view(['GET'])
+def get_team_by_name(request,team_name):
+    selected_team = Team.objects.get(team_id = '109')
+    data = TeamSerializer(selected_team).data
+    return Response(data)
+
+
 # For updating the database when a user makes a prediction.
 @api_view(['POST'])
 def post_prediction(request,game_id,team_side,predictions):

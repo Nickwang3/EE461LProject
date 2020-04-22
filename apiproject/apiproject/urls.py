@@ -22,6 +22,7 @@ urlpatterns = [
     path('api/v1/', include(router.urls)),
     path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     path('api/v1/books/isbn/<str:isbn>', views.get_book_by_isbn, name='get_book_by_isbn'),
+    path('api/v1/teams/team_name/<str:team_name>',views.get_team_by_name, name='get_team_by_name'),
     path('api/v1/players/team_id/<str:team_id>', views.get_players_by_team_id, name="get_players_by_team_id"),
     path('api/v1/teams/team_id/<str:team_id>', views.get_team_by_team_id, name="get_team_by_team_id"),
     path('api/v1/games/game_date/<str:date>',views.get_games_by_date, name ="get_games_by_date"),
@@ -40,4 +41,5 @@ urlpatterns = [
     path('api/v1/hitterstats/player_id/<str:player_id>', views.get_hitter_stats_by_player_id, name='get_hitter_stats_by_player_id'),
     path('api/v1/boxscores/boxscore_id/<str:boxscore_id>', views.get_boxscore_by_id, name='get_boxscore_by_id'),
     path('api/v1/games/game_id/<str:game_id>/prediction/<str:team_side>/<int:predictions>', views.post_prediction, name="post_prediction")
+    
 ]
