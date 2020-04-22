@@ -24,7 +24,6 @@ class DetailedTicketPage extends React.Component {
         .getTicketById(this.props.match.params.ticket_id)
         .then(result => {
             this.setState({
-                isLoaded: true,
                 ticket: result.data
             })
         })
@@ -37,7 +36,8 @@ class DetailedTicketPage extends React.Component {
         .then(()=> apiService.getTeamByName(this.state.ticket.away_team))
         .then(res => {
           this.setState({
-            away_team: res.data
+            away_team: res.data,
+            isLoaded: true
           })
         })
         .catch(error => {

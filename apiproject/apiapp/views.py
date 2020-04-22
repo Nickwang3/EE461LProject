@@ -265,7 +265,7 @@ def get_game_by_id(request, game_id):
 
 @api_view(['GET'])
 def get_team_by_name(request,team_name):
-    selected_team = Team.objects.get(team_id = '109')
+    selected_team = Team.objects.get(name = team_name.replace('%20',' '))
     data = TeamSerializer(selected_team).data
     return Response(data)
 
