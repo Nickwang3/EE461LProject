@@ -12,6 +12,7 @@ python3 manage.py getteampics
 python3 manage.py getteamstandings
 python3 manage.py putstadiumcoordinates
 python3 manage.py putsocialmedia
+python3 manage.py setyoutubechannel
 
 # get player data
 echo "running player scraping commands"

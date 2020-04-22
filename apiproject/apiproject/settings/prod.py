@@ -23,7 +23,7 @@ CORS_ORIGIN_WHITELIST = [
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'production',
+        'NAME': 'prod',
         'USER': 'postgres',
         'PASSWORD': '*GR3Dpr%9LMG',
         'HOST': 'ee461l-django-app-database.cs3khvsyqwtx.us-east-2.rds.amazonaws.com',
