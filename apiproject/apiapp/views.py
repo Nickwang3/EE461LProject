@@ -13,6 +13,7 @@ from .models import TeamMember
 from rest_framework import filters, pagination
 from youtube_api import YouTubeDataAPI
 from django.utils.dateparse import parse_date
+from django.db.models import F
 
 
 # For customm filtering options
@@ -272,13 +273,13 @@ def get_team_by_name(request,team_name):
 
 # For updating the database when a user makes a prediction.
 @api_view(['POST'])
-def post_prediction(request,game_id,team_side,predictions):
+def post_prediction(request,game_id,team_side):
     if(request.method=='POST'):
         #If away then you must update a different value than if home
         if(team_side == 'away'):
-            Game.objects.filter(game_id=game_id).update(away_prediction = predictions)
+            Game.objects.filter(game_id=game_id).update(away_prediction=F('away_prediction')+ 1)
         else:
-            Game.objects.filter(game_id=game_id).update(home_prediction = predictions)
+            Game.objects.filter(game_id=game_id).update(home_prediction =F('away_prediction')+ 1)
     
 
         return Response(HTTPStatus.ACCEPTED)

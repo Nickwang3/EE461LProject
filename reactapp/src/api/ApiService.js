@@ -1,6 +1,6 @@
 import axios from "axios";
-// axios.defaults.baseURL = "http://localhost:8000/api/v1";
-axios.defaults.baseURL = "http://django-env.zphgcpmf2t.us-west-2.elasticbeanstalk.com/api/v1";
+axios.defaults.baseURL = "http://localhost:8000/api/v1";
+//axios.defaults.baseURL = "http://django-env.zphgcpmf2t.us-west-2.elasticbeanstalk.com/api/v1";
 
 export default class ApiService {
   constructor() {}
@@ -137,7 +137,7 @@ export default class ApiService {
   postGamePrediction(game_id,team_side,predictions) {
     predictions++;
     if(team_side === 'away')
-      axios.post(`games/game_id/${game_id}/prediction/${team_side}/${predictions}`, {
+      axios.post(`games/game_id/${game_id}/prediction/${team_side}`, {
         
         params:{
           game_id: game_id,
@@ -148,16 +148,7 @@ export default class ApiService {
         }
       });
     else
-      axios.post(`games/game_id/${game_id}/prediction/${team_side}/${predictions}`, {
-          
-        params:{
-          game_id: game_id,
-          team_side: team_side,
-          home_prediction: predictions,
-
-
-        }
-      });
+      axios.post(`games/game_id/${game_id}/prediction/${team_side}`, {});
     
   }
 
