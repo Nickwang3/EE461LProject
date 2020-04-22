@@ -4,6 +4,7 @@ import {
     CardTitle, CardSubtitle, Button
   } from 'reactstrap';
 import { Link } from 'react-router-dom';
+import './TicketsPage.css'
 
 class Ticket extends React.Component {
 

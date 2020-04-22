@@ -57,7 +57,7 @@ class AboutPage extends React.Component {
                 <div className="AboutPage">
                     <Container className="aboutContainer">
                         <Row className="mainAboutRow">
-                            <Row className="siteRow">
+                            <Row style={{paddingLeft: "80px", paddingRight: "80px"}} className="siteRow">
                                 <h1 className="rowTitle">Our Site</h1>
                                 <p style={{fontSize: "23px"}}>We developed this website in order to provide baseball lovers easy access to all the data and scores they desire. Whether you are a casual or diehard baseball fan, you'll find what you want at Home Plate.</p>
                             </Row>
@@ -65,7 +65,7 @@ class AboutPage extends React.Component {
                                 <h1 className="rowTitle" style={{width: "100%",marginBottom: "30px"}}>Data Sources</h1>
                                 <Col className="cols">
                                     <a href="https://pypi.org/project/MLB-StatsAPI/">
-                                        <img style={{width: "90%", height: "60%", marginBottom: "10px"}}src={require("./../../../statics/mlbstatsapi.png")}/>
+                                        <img style={{width: "80%", height: "60%", marginBottom: "10px"}}src={require("./../../../statics/mlbstatsapi.png")}/>
                                     </a>
                                     <h4>MLBStats API</h4>
                                 </Col>

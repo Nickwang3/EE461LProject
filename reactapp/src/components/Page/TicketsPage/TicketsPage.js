@@ -167,7 +167,9 @@ class TicketsPage extends React.Component {
                   <h5>Results: {this.state.count}</h5>
                     <Row>
                       {tickets.map(ticket => (
-                        <Ticket ticket={ticket}/>
+                        <Col>
+                          <Ticket ticket={ticket}/>                        
+                        </Col>
                       ))}
                     </Row>
                 </Row>;

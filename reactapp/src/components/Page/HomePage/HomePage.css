@@ -26,3 +26,21 @@
     border-top: 1px solid aliceblue;
     border-bottom: 1px solid aliceblue;
 }
+
+.twitterTimelineEmbed {
+    width: 100%;
+}
+
+.row {
+    width: 100%;
+    padding-right: 0;
+    padding-left: 0;
+    margin-right: 0 !important;
+    margin-left: 0 !important;
+}
+
+.col{
+    align-content: center;
+    padding-right: 0 !important;
+    padding-left: 0 !important;
+}

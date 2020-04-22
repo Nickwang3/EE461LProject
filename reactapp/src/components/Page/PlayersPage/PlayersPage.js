@@ -165,11 +165,13 @@ class PlayersPage extends React.Component {
                   <Spinner style={{ width: '4rem', height: '4rem' }} type="grow" color="light" />
                 </Row>
     } else {
-      results = <Row style={{display:"flex", justifyContent:"center"}}>
+      results = <Row style={{width: "100%", display:"flex", justifyContent:"center"}}>
                   <h5>Results: {this.state.count}</h5>
                     <Row>
                       {players.map(player => (
-                        <Player player={player}/>
+                        <Col>
+                          <Player player={player}/>
+                        </Col>
                       ))}
                     </Row>
                 </Row>;
