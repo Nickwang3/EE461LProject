@@ -171,51 +171,63 @@ class TeamsPage extends React.Component {
     return (
       <Container className="teamsPageContainer">
         <Row className="titleRow">Teams</Row>
-        <Form className="searchBarContainer" onSubmit={this.onSubmit}>
-          <FormGroup className="searchBar">
-              {/* <Label for="exampleSearch">Search</Label> */}
-              <Input
-              type="search"
-              name="search"
-              id="teamSearch"
-              placeholder="Search for teams..."
-              value={this.state.searchValue}
-              onChange={e => this.setState({ searchValue: e.target.value })}
-              onKeyDown={this.onEnterPressed}
-              />
-          </FormGroup>
-          <FormGroup>
-            <Label for="teamSearchSelect">search by</Label>
-            <Input 
-            type="select" 
-            name="searchSelect" 
-            id="teamSearchSelect"
-            onChange={e => this.setState({ searchFields: e.target.value })}
-            >
-              <option>name</option>
-              <option>division</option>
-              <option>venue</option>
-            </Input>
-          </FormGroup>
-          <FormGroup>
-            <Label for="teamOrderSelect">order by</Label>
-            <Input 
-            type="select" 
-            name="teamOrderSelect" 
-            id="teamOrderSelect"
-            onChange={e => this.orderingChanged(e)}
-            >
-              <option>name</option>
-              <option>division</option>
-            </Input>
-          </FormGroup>
-          <Button type="submit" className="btn btn-success">Search</Button>
+        <Form className="teamFormStyle" onSubmit={this.onSubmit}>
+          <Row form>
+            <Col md={9}>
+              <FormGroup className="teamSearchBar">
+                  {/* <Label for="exampleSearch">Search</Label> */}
+                  <Input
+                  type="search"
+                  name="search"
+                  id="teamSearch"
+                  placeholder="Search for teams..."
+                  value={this.state.searchValue}
+                  onChange={e => this.setState({ searchValue: e.target.value })}
+                  onKeyDown={this.onEnterPressed}
+                  />
+              </FormGroup>
+            </Col>
+            <Col style={{display: "flex", justifyContent:"center"}} md={3}>
+              <Button type="submit" style={{width: "80%", height: "70%"}} className="btn btn-success">Search</Button>
+            </Col>
+          </Row>
+          <Row form>
+            <Col md={6}>
+              <FormGroup>
+                <Label style={{fontSize: "medium"}} for="teamSearchSelect">Search by</Label>
+                <Input 
+                type="select" 
+                name="searchSelect" 
+                id="teamSearchSelect"
+                onChange={e => this.setState({ searchFields: e.target.value })}
+                >
+                  <option>name</option>
+                  <option>division</option>
+                  <option>venue</option>
+                </Input>
+              </FormGroup>
+            </Col>
+            <Col md={6}>
+              <FormGroup>
+                <Label style={{fontSize: "medium"}} for="teamOrderSelect">Order by</Label>
+                <Input 
+                type="select" 
+                name="teamOrderSelect" 
+                id="teamOrderSelect"
+                onChange={e => this.orderingChanged(e)}
+                >
+                  <option>name</option>
+                  <option>division</option>
+                </Input>
+              </FormGroup>
+            </Col>
+          </Row>
         </Form>   
         {results}
-        <Row>
-          <Button color="info" onClick={() => this.prevPage()} disabled={this.state.prevPage == null}>Previous</Button>
-          <h5>Current Page: {this.state.page}</h5>
-          <Button color="info" onClick={() => this.nextPage()} disabled={this.state.nextPage == null}>Next</Button>
+        <Row style={{width: "100%", display: "flex", justifyContent: "center"}}>
+          <Button style={{margin: "20px"}} color="info" onClick={() => this.prevPage()} disabled={this.state.prevPage == null}>Previous</Button>
+          <h4 style={{margin: "23px"}}>Page {this.state.page}</h4>
+          <Button style={{margin: "20px"}} color="info" onClick={() => this.nextPage()} disabled={this.state.nextPage == null}>Next</Button>
         </Row>
       </Container>
     );

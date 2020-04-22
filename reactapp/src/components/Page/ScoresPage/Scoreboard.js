@@ -7,6 +7,9 @@ import { Button, Container, Row, Col, Card , CardBody,
 import ApiService from '../../../api/ApiService';
 import { Form } from 'react-bootstrap';
 
+const monthMapping = {'Jan': '01', 'Feb': '02', 'Mar': '03', 'Apr': '04', 'May': '05', 'Jun': '06','Jul': '07', 'Aug': '08', 
+                      'Sep': '09', 'Oct': '10', 'Nov': '11', 'Dec': '12'}
+
 const apiService = new ApiService();
 
 
@@ -66,12 +69,35 @@ class ScoreBoard extends React.Component {
 
     }
 
+    formatTime (time) {
+        var hour = time.split(":")[0]
+        var minute = time.split(":")[1]
+        var set = ""
+
+        if (parseInt(hour) > 12) {
+            set = "PM"
+            hour = (parseInt(hour) % 12).toString()
+        }
+        else {
+            set = "AM"
+        }
+
+        return hour + ":" + minute + " " + set 
+            
+    }
+
     render(){
 
 
         const {homeTeam, awayTeam, isLoaded, error} = this.state
         const {game} = this.props
+        const full_date = (new Date(game.game_datetime)).toString()
  
+        const date = monthMapping[full_date.split(" ")[1]] + "/" + full_date.split(" ")[2]
+        const time = this.formatTime(full_date.split(" ")[4])
+
+        console.log(date)
+
         if (error) {
             return <div>Error: {error.message}</div>;
         } else if (!isLoaded) {
@@ -96,10 +122,13 @@ class ScoreBoard extends React.Component {
                         </Col>
 
                         <Col className="boxScoreCol">
-                            <Link to={`/scores/${game.game_id}`}><Button outline color="primary">Boxscore</Button></Link>
+                            <Container style={{display: "flex", justifyContent:"center", alignContent: "center"}}>
+                                <Row style={{width: "100%", margin: "10px", fontSize: "26px"}}>{date}</Row>
+                                <Row style={{width: "100%", fontSize: "16px", display: "flex", justifyContent:"center", alignContent: "center"}}>{time}</Row>
+                            </Container>
                         </Col>
                         <Col>
-                            <Button id={`homePrediction${game.game_id}`} onClick={() => { this.postPrediction(game,'home')}} className="predictionButton">{homeTeam.name} will win.</Button>
+                            <Button outline style={{marginTop: "12%", color: "white"}} id={`homePrediction${game.game_id}`} onClick={() => { this.postPrediction(game,'home')}} className="predictionButton">{homeTeam.name} will win.</Button>
                         </Col>
 
                     </Row>
@@ -119,11 +148,11 @@ class ScoreBoard extends React.Component {
                         </Col>
 
                         <Col className="boxScoreCol">
-                            {/* <Link to={`/scores/${game.game_id}`}><Button outline color="primary">Boxscore</Button></Link> */}
+                            <Link to={`/scores/${game.game_id}`}><Button outline style={{color: "white"}}>Boxscore</Button></Link>
                         </Col>
 
                         <Col>
-                            <Button id={`awayPrediction${game.game_id}`} onClick={() => { this.postPrediction(game,'away')}} className="predictionButton"  >{awayTeam.name} {game.away_prediction} will win.</Button>
+                            <Button outline style={{marginTop: "12%", color: "white"}} id={`awayPrediction${game.game_id}`} onClick={() => { this.postPrediction(game,'away')}} className="predictionButton"  >{awayTeam.name} will win.</Button>
                         </Col>
 
                     </Row>

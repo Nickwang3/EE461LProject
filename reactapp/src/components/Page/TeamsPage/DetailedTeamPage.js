@@ -134,73 +134,73 @@ class DetailedTeamPage extends React.Component {
               </Nav>
             </Row>
 
-            <Row className="contentRow">
-              <TabContent activeTab={activeTab}>
+            <TabContent className="contentRow" activeTab={activeTab}>
 
-                <TabPane tabId="1">
-                  <Row>
-                    <h5 style={{width: "100%",marginBottom: "10px"}}>Stadium: {team.venue}</h5>
-                    <h5 style={{width: "100%",marginBottom: "10px"}}>Record: {record.wins} - {record.losses}</h5>
-                    <h5 style={{width: "100%",marginBottom: "10px"}}>#{record.division_rank} in {team.division}</h5>
-                    <h5 style={{width: "100%",marginBottom: "10px"}}>#{record.league_rank} in {team.division.split(" ").slice(0,2)}</h5>
+              <TabPane className="contentRow" tabId="1">
+                <Row>
+                  <h5 style={{width: "100%",marginBottom: "10px"}}>Stadium: {team.venue}</h5>
+                  <h5 style={{width: "100%",marginBottom: "10px"}}>Record: {record.wins} - {record.losses}</h5>
+                  <h5 style={{width: "100%",marginBottom: "10px"}}>#{record.division_rank} in {team.division}</h5>
+                  <h5 style={{width: "100%",marginBottom: "10px"}}>#{record.league_rank} in {team.division.split(" ").slice(0,2)}</h5>
+                </Row>
+                <YouTube videoId={team.video_id} opts={opts} onReady={this._onReady}/>
+                <Row style={{textAlign: "center",marginTop: "10px"}}>
+                  <Col>
+                    <SocialIcon url={team.twitter}>twitter</SocialIcon>
+                  </Col>
+                  <Col>
+                    <SocialIcon url={team.facebook}>facebook</SocialIcon>
+                  </Col>
+                  <Col>
+                    <SocialIcon url={team.instagram}>instagram</SocialIcon>
+                  </Col>
+
+                </Row>
+              </TabPane>
+
+              <TabPane className="contentRow" tabId="2">
+                <Row>
+                  <Row className="rosterRow">
+                    {/* <h2 style={{width: "100%",marginBottom: "30px"}}>Roster</h2> */}
+                    <Table className="tableStyle">
+                      <thead  style={{color: "white"}}>
+                        <tr>
+                          <th>Number</th>
+                          <th>Name</th>
+                          <th>Position</th>
+                          <th>Age</th>
+                          <th>Height</th>
+                          <th>Weight</th>
+                        </tr>
+                      </thead>
+                      <tbody  style={{color: "white"}}>
+                        {roster.map(player => (
+                          <RosterPlayer player={player}/>
+                        ))}
+                      </tbody>
+                    </Table>
                   </Row>
-                  <YouTube videoId={team.video_id} opts={opts} onReady={this._onReady}/>
-                  <Row style={{textAlign: "center",marginTop: "10px"}}>
-                    <Col>
-                      <SocialIcon url={team.twitter}>twitter</SocialIcon>
-                    </Col>
-                    <Col>
-                      <SocialIcon url={team.facebook}>facebook</SocialIcon>
-                    </Col>
-                    <Col>
-                      <SocialIcon url={team.instagram}>instagram</SocialIcon>
-                    </Col>
+                </Row>
+              </TabPane>
 
-                  </Row>
-                </TabPane>
+              <TabPane className="contentRow" tabId="3">
+                <Row className="scoreBoardsRow">
+                  {weekly_games.map(game => (<ScoreBoard game={game}/>))}
+                </Row>
+              </TabPane>
 
-                <TabPane tabId="2">
-                  <Row>
-                    <Row className="rosterRow">
-                      {/* <h2 style={{width: "100%",marginBottom: "30px"}}>Roster</h2> */}
-                      <Table className="tableStyle">
-                        <thead  style={{color: "white"}}>
-                          <tr>
-                            <th>Number</th>
-                            <th>Name</th>
-                            <th>Position</th>
-                            <th>Age</th>
-                            <th>Height</th>
-                            <th>Weight</th>
-                          </tr>
-                        </thead>
-                        <tbody  style={{color: "white"}}>
-                          {roster.map(player => (
-                            <RosterPlayer player={player}/>
-                          ))}
-                        </tbody>
-                      </Table>
-                    </Row>
-                  </Row>
-                </TabPane>
-
-                <TabPane tabId="3">
-                  <Row className="scoreBoardsRow">
-                    {weekly_games.map(game => (<ScoreBoard game={game}/>))}
-                  </Row>
-                </TabPane>
-
-                <TabPane tabId="4">
-                  <Row style={{display:"flex", justifyContent:"center"}}>
+              <TabPane className="contentRow" tabId="4">
+                <Container>
+                  <Row style={{width: "100%", margin: "10px", display:"flex", justifyContent:"center"}}>
                     <Weather team_id={team.team_id}/>
-                    <MapContainer stadiumName={team.venue} lat={team.latitude} lng={team.longitude}/>    
                   </Row>  
-                </TabPane>
-                
-              </TabContent>
-            </Row>
-            
+                    <MapContainer stadiumName={team.venue} lat={team.latitude} lng={team.longitude}/>    
+                </Container>
+              </TabPane>
+              
+            </TabContent>
           </Row>
+            
 
         </Container>
       );
