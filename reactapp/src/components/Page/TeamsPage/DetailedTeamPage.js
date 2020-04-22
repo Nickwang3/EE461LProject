@@ -1,7 +1,7 @@
 import React from "react";
 import ApiService from "../../../api/ApiService";
 import { withRouter } from 'react-router';
-import { Table, Container, Row, Nav, NavItem, NavLink, TabContent, TabPane, Col } from 'reactstrap';
+import { Spinner, Table, Container, Row, Nav, NavItem, NavLink, TabContent, TabPane, Col } from 'reactstrap';
 import RosterPlayer from "./RosterPlayer";
 import "./DetailedTeamPage.css"
 import Weather from "../../Weather/Weather";
@@ -106,7 +106,11 @@ class DetailedTeamPage extends React.Component {
     if (error) {
       return <div>Error: {error.message}</div>;
     } else if (!isLoaded) {
-      return <div>Loading...</div>;
+      return (
+        <Row style={{width: "100%", display:"flex", justifyContent:"center", marginBottom:"40px"}}>
+            <Spinner style={{ width: '4rem', height: '4rem' }} type="grow" color="light" />
+        </Row>
+        )
     } else {
       return (
 

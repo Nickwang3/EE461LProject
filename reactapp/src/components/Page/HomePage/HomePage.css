@@ -18,9 +18,8 @@
 }
 
 .carouselRow {
-    background-color: rgba(14, 156, 161, 0.26);
+    /* background-color: rgba(14, 156, 161, 0.26); */
     width: 100%;
-    margin: 0px;
     display: flex;
     justify-content: center;
 

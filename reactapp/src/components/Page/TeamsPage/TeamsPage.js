@@ -1,7 +1,7 @@
 import React from "react";
 import Team from "./Team.js";
 import ApiService from "../../../api/ApiService";
-import { Container, Button, Row , Form, FormGroup, Input, Label, Col} from "reactstrap"
+import { Spinner, Container, Button, Row , Form, FormGroup, Input, Label, Col} from "reactstrap"
 import './TeamsPage.css'
 
 const apiService = new ApiService();
@@ -158,7 +158,9 @@ class TeamsPage extends React.Component {
     if (error) {
       return <div>Error: {error.message}</div>;
     } else if (!isLoaded) {
-      results = <div>Loading...</div>;
+      results = <Row style={{width: "100%", display:"flex", justifyContent:"center", marginBottom:"40px"}}>
+                  <Spinner style={{ width: '4rem', height: '4rem' }} type="grow" color="light" />
+                </Row>
     } else {
       results = <Row className="teamCardsRow">
                   {teams.map(team => (

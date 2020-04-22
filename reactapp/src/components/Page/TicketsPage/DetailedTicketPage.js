@@ -1,7 +1,7 @@
 import React from "react";
 import ApiService from "../../../api/ApiService";
 import { withRouter } from 'react-router';
-import { Container, Row, Col} from 'reactstrap'
+import { Container, Row, Col, Spinner} from 'reactstrap'
 import { Button } from "react-bootstrap";
 
 const apiService = new ApiService();
@@ -38,7 +38,9 @@ class DetailedTicketPage extends React.Component {
     if (error) {
       return <div>Error: {error.message}</div>;
     } else if (!isLoaded) {
-      return <div>Loading...</div>;
+      return (<Row style={{width: "100%", display:"flex", justifyContent:"center", marginBottom:"40px"}}>
+                  <Spinner style={{ width: '4rem', height: '4rem' }} type="grow" color="light" />
+              </Row>)
     } else {
       return (
         <div>

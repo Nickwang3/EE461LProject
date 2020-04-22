@@ -1,7 +1,7 @@
 import React from "react";
 import Ticket from "./Ticket.js";
 import ApiService from "../../../api/ApiService";
-import { Container, Button, Form, FormGroup, Input, Label, Row, Col } from "reactstrap";
+import { Container, Button, Form, FormGroup, Input, Label, Row, Col, Spinner } from "reactstrap";
 import './TicketsPage.css'
 
 const apiService = new ApiService();
@@ -159,7 +159,9 @@ class TicketsPage extends React.Component {
     if (error) {
       return <div>Error: {error.message}</div>;
     } else if (!isLoaded) {
-      results = <div>Loading...</div>;
+      results = (<Row style={{width: "100%", display:"flex", justifyContent:"center", marginBottom:"40px"}}>
+                    <Spinner style={{ width: '4rem', height: '4rem' }} type="grow" color="light" />
+                </Row>)
     } else {
       results = <Row style={{display: "flex", justifyContent: "center"}}>
                   <h5>Results: {this.state.count}</h5>

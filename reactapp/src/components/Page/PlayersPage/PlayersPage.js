@@ -1,7 +1,7 @@
 import React from "react";
 import Player from "./Player";
 import ApiService from "../../../api/ApiService";
-import { Container, Button, Row , Form, FormGroup, Input, Label, Col} from "reactstrap"
+import { Container, Button, Row , Form, FormGroup, Input, Label, Col, Spinner} from "reactstrap"
 import ReactPaginate from 'react-paginate';
 import Axios from "axios";
 import "./PlayersPage.css"
@@ -161,7 +161,9 @@ class PlayersPage extends React.Component {
     if (error) {
       results = <div>Error: {error.message}</div>;
     } else if (!isLoaded) {
-      results = <div>Loading...</div>;
+      results = <Row style={{width: "100%", display:"flex", justifyContent:"center", marginBottom:"40px"}}>
+                  <Spinner style={{ width: '4rem', height: '4rem' }} type="grow" color="light" />
+                </Row>
     } else {
       results = <Row style={{display:"flex", justifyContent:"center"}}>
                   <h5>Results: {this.state.count}</h5>

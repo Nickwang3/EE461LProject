@@ -1,7 +1,7 @@
 import React from "react";
 import ApiService from "../../../api/ApiService";
 import { withRouter } from 'react-router';
-import { Container, Row, Nav, NavLink, NavItem, TabContent, TabPane} from 'reactstrap'
+import { Spinner, Container, Row, Nav, NavLink, NavItem, TabContent, TabPane} from 'reactstrap'
 import PitcherTable from "./PitcherTable";
 import HitterTable from "./HitterTable";
 import ScoreBoard from "../ScoresPage/Scoreboard"
@@ -91,7 +91,9 @@ class DetailedPlayerPage extends React.Component {
     if (error) {
       return <div>Error: {error.message}</div>;
     } else if (!isLoaded) {
-      return <div>Loading...</div>;
+      return (<Row style={{width: "100%", display:"flex", justifyContent:"center", marginBottom:"40px"}}>
+                  <Spinner style={{ width: '4rem', height: '4rem' }} type="grow" color="light" />
+              </Row>  )
     } else {
       return (
         <div>
@@ -127,8 +129,8 @@ class DetailedPlayerPage extends React.Component {
                 <TabContent activeTab={activeTab}>
 
                   <TabPane tabId="1">
-                    <Row>
-                      <Link to={`/teams/${team.team_id}`}><h5 style={{width: "100%",marginBottom: "10px"}}>{team.name} </h5></Link>
+                    <Row style={{display: "flex", justifyContent: "center"}}>
+                      <Link to={`/teams/${team.team_id}`}><h3 style={{width: "100%",marginBottom: "10px", color:"white"}}>{team.name} </h3></Link>
                       <h5 style={{width: "100%",marginBottom: "10px"}}> Position: {player.position} </h5>
                       <h5 style={{width: "100%",marginBottom: "10px"}}> Number: {player.number} </h5>
                       <h5 style={{width: "100%",marginBottom: "10px"}}> Age: {player.age} </h5>

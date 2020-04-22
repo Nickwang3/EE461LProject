@@ -2,7 +2,7 @@ import React from "react";
 import ApiService from "../../../api/ApiService";
 import ScoreBoard from "./Scoreboard";
 import DatePicker from 'react-datepicker';
-import { Container, Row } from 'reactstrap';
+import { Container, Row, Spinner } from 'reactstrap';
 import './ScoresPage.css';
 import "react-datepicker/dist/react-datepicker.css";
 
@@ -84,7 +84,11 @@ class ScoresPage extends React.Component {
     if (error) {
       return <div>Error: {error.message}</div>;
     } else if (!isLoaded) {
-      return <div>Loading...</div>;
+      return (
+        <Row style={{width: "100%", display:"flex", justifyContent:"center", marginBottom:"40px"}}>
+            <Spinner style={{ width: '4rem', height: '4rem' }} type="grow" color="light" />
+        </Row>
+        )
     } else {
       return (
         
