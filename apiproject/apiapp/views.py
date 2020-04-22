@@ -12,7 +12,7 @@ from rest_framework.decorators import api_view
 from .models import TeamMember
 from rest_framework import filters, pagination
 from youtube_api import YouTubeDataAPI
-
+from django.utils.dateparse import parse_date
 
 
 # For customm filtering options
@@ -263,6 +263,13 @@ def get_game_by_id(request, game_id):
     data = GameSerializer(boxscore).data
     return Response(data)
 
+@api_view(['GET'])
+def get_team_by_name(request,team_name):
+    selected_team = Team.objects.get(name = team_name.replace('%20',' '))
+    data = TeamSerializer(selected_team).data
+    return Response(data)
+
+
 # For updating the database when a user makes a prediction.
 @api_view(['POST'])
 def post_prediction(request,game_id,team_side,predictions):
@@ -275,6 +282,12 @@ def post_prediction(request,game_id,team_side,predictions):
     
 
         return Response(HTTPStatus.ACCEPTED)
+
+@api_view(['GET'])
+def get_games_by_teams_and_date(request,away_team,home_team,date):
+    game = Game.objects.get(away_team=away_team,home_team=home_team,game_datetime__contains=parse_date(date))
+    data = GameSerializer(game).data
+    return Response(data)
     
 
 def redirect_to_api(request):
