@@ -1,6 +1,7 @@
 import React from "react";
-import {Jumbotron, Container, Form, FormGroup, Label, Input} from 'reactstrap';
+import { UncontrolledCarousel, Row, Jumbotron, Container, Form, FormGroup, Label, Input} from 'reactstrap';
 import "./HomePage.css";
+import CarouselContainer from './CarouselContainer'
 
 class HomePage extends React.Component {
     constructor(props) {
@@ -17,7 +18,11 @@ class HomePage extends React.Component {
         })
     }
 
+    
+
     render() {
+
+
         const {error, isLoaded } = this.state;
         if (error) {
             return <div>Error: {error.message}</div>
@@ -25,21 +30,11 @@ class HomePage extends React.Component {
             return <div>Loading...</div>
         } else {
             return (
-                <div className="searchContainer">
-                    <Jumbotron className="jumboTron" fluid>
-                            <h1 className="title">Home Plate</h1>
-                            <Form className="searchBarContainer">
-                                <FormGroup className="searchBar">
-                                    {/* <Label for="exampleSearch">Search</Label> */}
-                                    <Input
-                                    type="search"
-                                    name="search"
-                                    id="exampleSearch"
-                                    placeholder="Search our website..."
-                                    />
-                                </FormGroup>
-                            </Form>                        
-                    </Jumbotron>
+                <div style={{width: "100%"}}>
+                    <Row style={{width: "100%", margin:"40px", display: "flex", justifyContent:"center"}} className="titleStyle">Home Plate</Row>
+                    <Row style={{margin: "0px"}} className="carouselRow">
+                        <CarouselContainer/>
+                    </Row>
                 </div>
             )
         }
