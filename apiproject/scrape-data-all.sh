@@ -24,6 +24,7 @@ python3 manage.py getplayerstats
 echo "running game scraping commands"
 python3 manage.py getgames
 python3 manage.py getboxscores
+python3 manage.py updatescoreswithteamnames
 
 # get ticket data
 echo "running ticket scraping commands"
