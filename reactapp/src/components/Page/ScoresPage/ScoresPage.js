@@ -27,8 +27,8 @@ class ScoresPage extends React.Component {
       nextPage: null,
       count: null,
       searchValue: '', 
-      searchFields: "home_team",
-      ordering: "home_team",
+      searchFields: "home_team_name",
+      ordering: "home_team_name",
     };
     this.criteriaChanged = this.criteriaChanged.bind(this);
     this.changeDates = this.changeDates.bind(this);
@@ -53,7 +53,23 @@ class ScoresPage extends React.Component {
           });
         });
     } else {
-
+      apiService
+      .getGamesBySearch(this.state.page, this.state.searchValue, this.state.searchFields, this.state.ordering)
+      .then(result => {
+        this.setState({
+          isLoaded: true,
+          games: result.data.results,
+          prevPage: result.data.previous,
+          nextPage: result.data.next,
+          count: result.data.count
+        });
+      })
+      .catch(error => {
+        this.setState({
+          isLoaded: true,
+          error
+        });
+      });
     }
   }
 
@@ -262,8 +278,8 @@ class ScoresPage extends React.Component {
                               id="ticketSearchSelect"
                               onChange={e => this.setState({ searchFields: e.target.value })}
                               >
-                                <option>home_team</option>
-                                <option>away_team</option>
+                                <option>home_team_name</option>
+                                <option>away_team_name</option>
                               </Input>
                             </FormGroup>
                           </Col>
@@ -276,8 +292,8 @@ class ScoresPage extends React.Component {
                               id="playerOrderSelect"
                               onChange={e => this.orderingChanged(e)}
                               >
-                                <option>home_team</option>
-                                <option>away_team</option>
+                                <option>home_team_name</option>
+                                <option>away_team_name</option>
                                 <option>datetime_local</option>
                               </Input>
                             </FormGroup>
