@@ -267,6 +267,7 @@ def get_game_by_id(request, game_id):
 @api_view(['POST'])
 def post_prediction(request,game_id,team_side,predictions):
     if(request.method=='POST'):
+        #If away then you must update a different value than if home
         if(team_side == 'away'):
             Game.objects.filter(game_id=game_id).update(away_prediction = predictions)
         else:
