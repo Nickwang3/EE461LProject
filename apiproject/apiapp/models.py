@@ -45,6 +45,8 @@ class Game(models.Model):
     game_id = models.CharField(max_length=50, primary_key=True)
     home_team = models.ForeignKey(Team, to_field="team_id", on_delete=models.CASCADE, related_name='home_team')
     away_team = models.ForeignKey(Team, to_field="team_id", on_delete=models.CASCADE, related_name='away_team')
+    home_team_name = models.CharField(max_length=50)
+    away_team_name = models.CharField(max_length=50)
     home_score = models.IntegerField()
     away_score = models.IntegerField()
     finished = models.BooleanField()

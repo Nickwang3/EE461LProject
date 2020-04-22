@@ -49,10 +49,11 @@ class TeamViewSet(viewsets.ModelViewSet):
         return Team.objects.all().order_by('team_id')
 
 class GameViewSet(viewsets.ModelViewSet):
+    filter_backends = [DynamicSearchFilter, filters.OrderingFilter]
     serializer_class = GameSerializer
 
     def get_queryset(self):
-        return Game.objects.all()
+        return Game.objects.all().order_by('game_datetime')
 
 class TeamMemberViewSet(viewsets.ModelViewSet):
     serializer_class = TeamMemberSerializer
