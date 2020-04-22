@@ -162,11 +162,6 @@ export default class ApiService {
   }
 
   getTeamByName(team_name) {
-    axios.get(`/teams/team_name/${team_name}`, {
-
-      params:{
-        team_name: team_name,
-      }
-    });
+    axios.get(`/teams/team_name/${team_name}`,);
   }
 }
