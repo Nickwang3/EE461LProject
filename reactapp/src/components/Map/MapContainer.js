@@ -1,6 +1,6 @@
 import React from "react";
 import { Map, GoogleApiWrapper, Marker, InfoWindow } from 'google-maps-react';
-import { Button } from "reactstrap";
+import { Button, Row, Container } from "reactstrap";
 
 class MapContainer extends React.Component {
     state = {
@@ -26,37 +26,38 @@ class MapContainer extends React.Component {
     };
 
     mapStyles = {
-        width: '750px',
-        height: '750px',
+        position: "relative",
+        width: '80%',
+        height: '100%',
     };
       
     render() {
         let directionsUrl = `https://www.google.pl/maps/dir//${this.props.stadiumName}`
         return (
-            <div style={{marginTop: '100px', height: '60vh', width: '100%', display: "flex", justifyContent: "center"}}>
-                <Map
-                    google={this.props.google}
-                    zoom={12}
-                    style={this.mapStyles}
-                    initialCenter={{ lat: this.props.lat, lng: this.props.lng}}
+            <Row style={{display: "flex", justifyContent: "center", width:'1000px',height:'500px', alignContent:"center"}}>
+            <Map
+                google={this.props.google}
+                zoom={12}
+                containerStyle={this.mapStyles}
+                initialCenter={{ lat: this.props.lat, lng: this.props.lng}}
+            >
+                <Marker 
+                    position={{ lat: this.props.lat, lng: this.props.lng}} 
+                    onClick={this.onMarkerClick}
+                    name={this.props.stadiumName}
+                />
+                <InfoWindow
+                    marker={this.state.activeMarker}
+                    visible={this.state.showingInfoWindow}
+                    onClose={this.onClose}
                 >
-                    <Marker 
-                        position={{ lat: this.props.lat, lng: this.props.lng}} 
-                        onClick={this.onMarkerClick}
-                        name={this.props.stadiumName}
-                    />
-                    <InfoWindow
-                        marker={this.state.activeMarker}
-                        visible={this.state.showingInfoWindow}
-                        onClose={this.onClose}
-                    >
-                        <div>
-                            <h4 style={{color: "black"}}>{this.state.selectedPlace.name}</h4>
-                            <Button color="primary" target="_blank" href={directionsUrl}>Get Directions</Button>
-                        </div>
-                    </InfoWindow>
-                </Map>
-            </div>
+                    <div>
+                        <h4 style={{color: "black"}}>{this.state.selectedPlace.name}</h4>
+                        <Button color="primary" target="_blank" href={directionsUrl}>Get Directions</Button>
+                    </div>
+                </InfoWindow>
+            </Map>
+            </Row>
         );
     }    
 

@@ -8,6 +8,21 @@
     justify-content: center;
 }
 
+.teamFormStyle {
+    padding: 1% 7% 1% 7%;
+    /* border-bottom: 2px solid rgb(207, 193, 193); */
+    margin: 40px;
+}
+
+.teamSearchBar {
+    width: 300px;
+}
+
+.teamSearchButtonStyle {
+    display:flex;
+    justify-content: flex;
+}
+
 .titleRow {
     display: flex;
     justify-content: center;

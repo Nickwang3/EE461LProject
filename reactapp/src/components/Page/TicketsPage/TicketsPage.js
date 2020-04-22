@@ -1,7 +1,8 @@
 import React from "react";
 import Ticket from "./Ticket.js";
 import ApiService from "../../../api/ApiService";
-import { Container, Button, Form, FormGroup, Input, Label } from "reactstrap";
+import { Container, Button, Form, FormGroup, Input, Label, Row, Col } from "reactstrap";
+import './TicketsPage.css'
 
 const apiService = new ApiService();
 
@@ -160,68 +161,80 @@ class TicketsPage extends React.Component {
     } else if (!isLoaded) {
       results = <div>Loading...</div>;
     } else {
-      results = <div>
+      results = <Row style={{display: "flex", justifyContent: "center"}}>
                   <h5>Results: {this.state.count}</h5>
-                    <Container>
+                    <Row>
                       {tickets.map(ticket => (
                         <Ticket ticket={ticket}/>
                       ))}
-                    </Container>
-                </div>;
+                    </Row>
+                </Row>;
     }
     return (
-      <div>
-        <h1>Game Tickets</h1>
-        <Form className="searchBarContainer" onSubmit={this.onSubmit}>
-          <FormGroup className="searchBar">
-              {/* <Label for="exampleSearch">Search</Label> */}
-              <Input
-              type="search"
-              name="search"
-              id="ticketSearch"
-              placeholder="Search for tickets..."
-              value={this.state.searchValue}
-              onChange={e => this.setState({ searchValue: e.target.value })}
-              onKeyDown={this.onEnterPressed}
-              />
-          </FormGroup>
-          <FormGroup>
-            <Label for="ticketSearchSelect">search by</Label>
-            <Input 
-            type="select" 
-            name="searchSelect" 
-            id="ticketSearchSelect"
-            onChange={e => this.setState({ searchFields: e.target.value })}
-            >
-              <option>datetime_local</option>
-              <option>home_team</option>
-              <option>away_team</option>
-              <option>title</option>
-            </Input>
-          </FormGroup>
-          <FormGroup>
-            <Label for="playerOrderSelect">order by</Label>
-            <Input 
-            type="select" 
-            name="playerOrderSelect" 
-            id="playerOrderSelect"
-            onChange={e => this.orderingChanged(e)}
-            >
-              <option>datetime_local</option>
-              <option>home_team</option>
-              <option>away_team</option>
-              <option>average_price</option>
-            </Input>
-          </FormGroup>
-          <Button type="submit" className="btn btn-success">Search</Button>
+      <Container className="ticketsPageContainer">
+        <Row style={{margin:"60px", width:"100%", display:"flex", justifyContent:"center"}}><h1 style={{font: "400 50px/1.5 'Pacifico', Helvetica, sans-serif"}}>Tickets</h1></Row>
+        <Form className="ticketsFormStyle" onSubmit={this.onSubmit}>
+          <Row form>
+            <Col md={9}>
+              <FormGroup className="ticketsSearchBar">
+                  {/* <Label for="exampleSearch">Search</Label> */}
+                  <Input
+                  type="search"
+                  name="search"
+                  id="ticketSearch"
+                  placeholder="Search for tickets..."
+                  value={this.state.searchValue}
+                  onChange={e => this.setState({ searchValue: e.target.value })}
+                  onKeyDown={this.onEnterPressed}
+                  />
+              </FormGroup>
+            </Col>
+            <Col style={{display:"flex", justifyContent: "center"}} md={3}>
+              <Button type="submit" style={{width: "80%", height:"70%"}} className="btn btn-success">Search</Button>
+            </Col>
+          </Row>
+          <Row form>
+            <Col md={6}>
+              <FormGroup>
+                <Label style={{fontSize: "medium"}} for="ticketSearchSelect">Search by</Label>
+                <Input 
+                type="select" 
+                name="searchSelect" 
+                id="ticketSearchSelect"
+                onChange={e => this.setState({ searchFields: e.target.value })}
+                >
+                  <option>datetime_local</option>
+                  <option>home_team</option>
+                  <option>away_team</option>
+                  <option>title</option>
+                </Input>
+              </FormGroup>
+            </Col>
+            <Col md={6}>
+              <FormGroup>
+                <Label style={{fontSize: "medium"}} for="playerOrderSelect">Order by</Label>
+                <Input 
+                type="select" 
+                name="playerOrderSelect" 
+                id="playerOrderSelect"
+                onChange={e => this.orderingChanged(e)}
+                >
+                  <option>datetime_local</option>
+                  <option>home_team</option>
+                  <option>away_team</option>
+                  <option>average_price</option>
+                </Input>
+              </FormGroup>
+            </Col>
+          </Row>
         </Form>  
         {results}
-        <Container>
-          <Button color="info" onClick={() => this.prevPage()} disabled={this.state.prevPage == null}>Previous</Button>
-          <h5>Current Page: {this.state.page}</h5>
-          <Button color="info" onClick={() => this.nextPage()} disabled={this.state.nextPage == null}>Next</Button>
-        </Container>
-      </div>
+        <Row style={{width: "100%", display: "flex", justifyContent: "center"}}>
+          <Button style={{margin: "20px"}} color="info" onClick={() => this.prevPage()} disabled={this.state.prevPage == null}>Previous</Button>
+          <h4 style={{margin: "23px"}}>Page {this.state.page}</h4>
+          <Button style={{margin: "20px"}} color="info" onClick={() => this.nextPage()} disabled={this.state.nextPage == null}>Next</Button>
+        </Row>
+      </Container>
     );
   }
 
