@@ -48,7 +48,7 @@ class ScoreBoard extends React.Component {
               });
     }
 
-    postPrediction(game,team_side){
+    postPrediction = (game,team_side) => {
         if(team_side === 'away')
             apiService.postGamePrediction(game.game_id,team_side,++game.away_prediction);
         else
