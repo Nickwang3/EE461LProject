@@ -123,12 +123,12 @@ class ScoreBoard extends React.Component {
 
                         <Col className="boxScoreCol">
                             <Container style={{display: "flex", justifyContent:"center", alignContent: "center"}}>
-                                <Row style={{width: "100%", margin: "10px"}}>{date}</Row>
-                                <Row style={{width: "100%", margin: "10px", fontSize: "16px", display: "flex", justifyContent:"center", alignContent: "center"}}>{time}</Row>
+                                <Row style={{width: "100%", margin: "10px", fontSize: "26px"}}>{date}</Row>
+                                <Row style={{width: "100%", fontSize: "16px", display: "flex", justifyContent:"center", alignContent: "center"}}>{time}</Row>
                             </Container>
                         </Col>
                         <Col>
-                            <Button id={`homePrediction${game.game_id}`} onClick={() => { this.postPrediction(game,'home')}} className="predictionButton">{homeTeam.name} will win.</Button>
+                            <Button outline style={{marginTop: "12%", color: "white"}} id={`homePrediction${game.game_id}`} onClick={() => { this.postPrediction(game,'home')}} className="predictionButton">{homeTeam.name} will win.</Button>
                         </Col>
 
                     </Row>
@@ -152,7 +152,7 @@ class ScoreBoard extends React.Component {
                         </Col>
 
                         <Col>
-                            <Button id={`awayPrediction${game.game_id}`} onClick={() => { this.postPrediction(game,'away')}} className="predictionButton"  >{awayTeam.name} {game.away_prediction} will win.</Button>
+                            <Button outline style={{marginTop: "12%", color: "white"}} id={`awayPrediction${game.game_id}`} onClick={() => { this.postPrediction(game,'away')}} className="predictionButton"  >{awayTeam.name} will win.</Button>
                         </Col>
 
                     </Row>
