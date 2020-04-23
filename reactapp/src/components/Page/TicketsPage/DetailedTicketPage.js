@@ -48,10 +48,17 @@ class DetailedTicketPage extends React.Component {
           })
         })
         .catch(error => {
+          if(!this.state.away_team || !this.state.home_team){
             this.setState({
                 isLoaded: true,
                 error
             });
+          } else {
+            this.setState({
+              isLoaded: true
+            })
+          }
+
         });
   }
 
@@ -79,7 +86,16 @@ class DetailedTicketPage extends React.Component {
                 <h5> Local Time: {ticket.datetime_local.slice(11)} </h5>
                 <h5> average price: ${ticket.average_price} </h5>
                 <Button color="primary" target="_blank" href={ticket.event_url}>Purchase at SeatGeak</Button> <br></br>
-                <Button color="primary" href={`/scores/${game.game_id}`}>View Box Scores</Button>
+
+                {/* Check if the game is in the database or not. If not then disable the button */}
+                
+                {(() => {
+                  if(game)
+                    return <Button color="primary" href={`/scores/${game.game_id}`}>View Box Scores</Button>
+                else
+                  return <Button disabled='true' color="primary">Box Score Unavailable</Button>
+                })()}
+
               </Col>
             </Row>
         </div>
