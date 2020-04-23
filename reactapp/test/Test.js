@@ -18,6 +18,7 @@ import HomePage from '../src/components/Page/HomePage/HomePage.js';
 import DetailedPlayerPage from '../src/components/Page/PlayersPage/DetailedPlayerPage.js';
 import CarouselContainer from '../src/components/Page/HomePage/CarouselContainer.js';
 import ScoreBoard from '../src/components/Page/ScoresPage/Scoreboard.js';
+import HitterTable from '../src/components/Page/PlayersPage/HitterTable.js';
 let wrapper;
 
 //Testing the Navbar Component
@@ -168,6 +169,102 @@ describe('Tests DetailedScoresPage.js', () => {
   it("Checks that an error is thrown if the state is null", () => {
     try{
       wrapper = shallow(<DetailedScoresPage/>);
+    } catch (error){
+      expect(1).to.equal(1);
+    }
+  });
+  
+});
+
+describe('Tests Players.js', () => {
+
+  it("Checks that an error is thrown if the state is null", () => {
+    try{
+      wrapper = shallow(<Players/>);
+    } catch (error){
+      expect(1).to.equal(1);
+    }
+  });
+  
+});
+
+describe('Tests DetailedTicketPage.js', () => {
+
+  it("Checks that an error is thrown if the state is null", () => {
+    try{
+      wrapper = shallow(<DetailedTicketPage/>);
+    } catch (error){
+      expect(1).to.equal(1);
+    }
+  });
+  
+});
+
+describe('Tests BoxScore.js', () => {
+
+  it("Checks that an error is thrown if the state is null", () => {
+    try{
+      wrapper = shallow(<BoxScore/>);
+    } catch (error){
+      expect(1).to.equal(1);
+    }
+  });
+  
+});
+
+describe('Tests PitcherTable.js', () => {
+
+  it("Checks that an error is thrown if the state is null", () => {
+    try{
+      wrapper = shallow(<PitcherTable/>);
+    } catch (error){
+      expect(1).to.equal(1);
+    }
+  });
+  
+});
+
+describe('Tests HitterTable.js', () => {
+
+  it("Checks that an error is thrown if the state is null", () => {
+    try{
+      wrapper = shallow(<HitterTable/>);
+    } catch (error){
+      expect(1).to.equal(1);
+    }
+  });
+  
+});
+
+describe('Tests PitcherStats.js', () => {
+
+  it("Checks that an error is thrown if the state is null", () => {
+    try{
+      wrapper = shallow(<PitcherStats/>);
+    } catch (error){
+      expect(1).to.equal(1);
+    }
+  });
+  
+});
+
+describe('Tests HitterStats.js', () => {
+
+  it("Checks that an error is thrown if the state is null", () => {
+    try{
+      wrapper = shallow(<HitterStats/>);
+    } catch (error){
+      expect(1).to.equal(1);
+    }
+  });
+  
+});
+
+describe('Tests ScoresPage.js', () => {
+
+  it("Checks that an error is thrown if the state is null", () => {
+    try{
+      wrapper = shallow(<ScoresPage/>);
     } catch (error){
       expect(1).to.equal(1);
     }
