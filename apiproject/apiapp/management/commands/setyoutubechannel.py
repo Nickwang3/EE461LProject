@@ -9,7 +9,7 @@ class Command(BaseCommand):
 
     help = 'grabs player info from statsapi'
     def handle(self, *args, **options):
-        api_key = 'AIzaSyCZy4MtO5KfUvXsvZKO-zEA5m1gJERA16o'
+        api_key = 'AIzaSyDGWOKG57mu6dWKWATDZPqlkAaozXA5P1k'
         yt = YouTubeDataAPI(api_key)
 
         print(yt.search(channel_id="UCBci3py0IfkjkjPKDE-B6Bw"))
@@ -47,7 +47,10 @@ class Command(BaseCommand):
         }
 
         for key in channel_ids.keys():
+            vid_id = (yt.search(channel_id=channel_ids[key])[0]['video_id'])
             team = Team.objects.get(team_id=key)
             team.youtube_channel_id = channel_ids[key]
-            team.save(update_fields=['youtube_channel_id'])
+            team.video_id = vid_id
+            team.save(update_fields=['youtube_channel_id', 'video_id'])
+            print("Success")
             

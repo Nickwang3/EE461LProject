@@ -4,14 +4,19 @@ import {
   CarouselItem,
   CarouselControl,
   CarouselIndicators,
-  CarouselCaption
+  CarouselCaption,
+  Container, 
+  Row,
+  Button, 
 } from 'reactstrap';
 import './CarouselContainer.css'
+import { Link } from 'react-router-dom';
 
 const items = [
     {
       src: '/carousel/carousel1.jpg',
       altText: 'Slide 1',
+      page: "Scores",
     //   caption: 'Slide 1',
     //   header: 'Slide 1 Header',
       key: '1',
@@ -19,6 +24,7 @@ const items = [
     {
       src: '/carousel/carousel2.jpg',
       altText: 'Slide 2',
+      page: "Players",
     //   caption: 'Slide 2',
     //   header: 'Slide 2 Header',
       key: '2'
@@ -26,6 +32,7 @@ const items = [
     {
       src: '/carousel/carousel3.jpg',
       altText: 'Slide 3',
+      page: "Tickets",
     //   caption: 'Slide 3',
     //   header: 'Slide 3 Header',
       key: '3'
@@ -33,6 +40,7 @@ const items = [
     {
         src: '/carousel/carousel4.jpg',
         altText: 'Slide 4',
+        page: "Teams",
         // caption: 'Slide 4',
         // header: 'Slide 4 Header',
         key: '4'
@@ -68,7 +76,13 @@ const CarouselContainer = (props) => {
         className="carouselItem"
         key={item.src}
       >
-        <img src={item.src} alt={item.altText} />
+        <Container className="carouselContainerStyle" style={{width: "400px", height: "100px", position:"absolute"}}>
+            <Row style={{display: "flex", justifyContent: "center", alignContent: "center", width: "100%"}}>
+                <Link to={`/${item.page}`} className="titleStyle" style={{color:"white", fontSize: "30px"}}>Explore {item.page}</Link>
+            </Row>
+        </Container>
+        <img src={item.src} alt={item.altText}></img>
+
         <CarouselCaption captionText={item.caption} captionHeader={item.caption} />
       </CarouselItem>
     );
