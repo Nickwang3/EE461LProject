@@ -99,6 +99,53 @@ public class seleniumTest extends Thread {
             playerDriver.quit();
         }
 
+        System.out.println("Testing Team Search ...");
+        test.add("PLAYER SEARCH TEST");
+        List<String> teamsToSearch = new ArrayList<>(Arrays.asList("Arizona Diamondbacks", "Los Angeles Angels", "Texas Rangers"));
+
+        for(String team : teamsToSearch) { // loop through players to search for
+            timeout = 0;
+            WebDriver teamDriver;
+            System.setProperty("webdriver.chrome.driver", "chromedriver");             //   System.out.println("title of page is: " + driver.findElement(By.tagName("h1")).getText());
+            ChromeOptions linkOptions = new ChromeOptions();
+            linkOptions.addArguments(new String[]{"--headless"});
+            teamDriver = new ChromeDriver(linkOptions);
+            teamDriver.get("http://localhost:3000/teams");
+
+            Boolean doneLoading = false;
+            while (!doneLoading) // waiting for the players to load in
+                try {
+                    Thread.sleep(1000);
+                    System.out.println("Looking for h1 - Teams");
+                    System.out.println(teamDriver.findElement(By.className("titleRow")).getText());
+                    doneLoading = true;
+                } catch (Exception e) {
+                }
+            WebElement searchForm = teamDriver.findElement(By.tagName("form"));
+            WebElement searchBar = searchForm.findElement(By.id("teamSearch"));
+            searchBar.sendKeys(team);
+            searchBar.submit();
+            //WebElement submit = searchForm.findElement(By.tagName("button"));
+            doneLoading = false;
+            while (!doneLoading && (timeout<10)) { // searching for player
+                try {
+                    Thread.sleep(1000);
+                    String playerFound = teamDriver.findElement(By.className("card-title")).getText();
+                    if(playerFound.equals(team)){
+                        test.add("Team Searched For: " + team + " --- PASSED");
+                    }else{ // player returned is not player searched for
+                        test.add("Team Searched For: " + team + " --- FAILED");
+                    }
+                    doneLoading = true;
+                } catch (Exception e) {
+                    timeout++;
+                }
+                if(timeout >= 10){ // If it takes too long to return a player
+                    test.add("Team Searched For: " + team + " --- TIMED OUT");
+                }
+            }
+            teamDriver.quit();
+        }
 
         driver.quit();
 
