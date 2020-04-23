@@ -9,10 +9,10 @@ class Command(BaseCommand):
 
     help = 'grabs player info from statsapi'
     def handle(self, *args, **options):
-        api_key = 'AIzaSyDGWOKG57mu6dWKWATDZPqlkAaozXA5P1k'
-        yt = YouTubeDataAPI(api_key)
+        # api_key = 'AIzaSyDGWOKG57mu6dWKWATDZPqlkAaozXA5P1k'
+        # yt = YouTubeDataAPI(api_key)
 
-        print(yt.search(channel_id="UCBci3py0IfkjkjPKDE-B6Bw"))
+        # print(yt.search(channel_id="UCBci3py0IfkjkjPKDE-B6Bw"))
         channel_ids = {
             '108': "UCS7H_WWPj5_qfD-zoUzuX2A",
             '109': "UCxeK534L7DDIwPFv_o9CZjw",
@@ -46,11 +46,43 @@ class Command(BaseCommand):
             '158': "UCybiT6P8jSv7gIxC4cHXl2Q"
         }
 
+        video_ids = {
+            '108': "e8ze4_Oo66g",
+            '109': "WlcpDVlsJjg",
+            '110': "7BbFLA_ObTI",
+            '111': "02QZRqfUAPE",
+            '112': "ggcU0-XG4KE",
+            '113': "Cc_650NlNcY",
+            '114': "WT6prTV9bro",
+            '115': "ONP0vh6hE2M",
+            '116': "-UMYNwGIY74",
+            '117': "kX19t-Ctc08",
+            '118': "PMX_yYEUfBQ",
+            '119': "4MM7D1PSAD0",
+            '120': "8hH3ofGGdJc",
+            '121': "L_d8Dzpi_yk",
+            '133': "bKBMMQJBdI0",
+            '134': "uku_pzuzGZM",
+            '135': "NM6MwOo57F0",
+            '136': "yOC33qMBAEk",
+            '137': "pol8vqsR7qQ",
+            '138': "P1HaLnmHjYI",
+            '139': "-59C3k1Xa-M",
+            '140': "TB8WE94KRHU",
+            '141': "2tSu2Q4TacY",
+            '142': "6Z_Vf7iqtKg",
+            '143': "UsPjJPQbVjs",
+            '144': "3UzW1aJXRUw",
+            '145': "23AacJr1oOg",
+            '146': "9HwrQhVbo1A",
+            '147': "SW1yiXL_DPE",
+            '158': "UnaII3HPFAo"
+        }
         for key in channel_ids.keys():
-            vid_id = (yt.search(channel_id=channel_ids[key])[0]['video_id'])
+            # vid_id = (yt.search(channel_id=channel_ids[key])[0]['video_id'])
             team = Team.objects.get(team_id=key)
             team.youtube_channel_id = channel_ids[key]
-            team.video_id = vid_id
+            team.video_id = video_ids[key]
             team.save(update_fields=['youtube_channel_id', 'video_id'])
             print("Success")
             
