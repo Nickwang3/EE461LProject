@@ -124,7 +124,7 @@ class HitterStats(models.Model):
 class Ticket(models.Model):
     ticket_id = models.CharField(max_length=50, primary_key=True)
     title = models.CharField(max_length=50)
-    datetime_local = models.DateTimeField()
+    datetime_local = models.CharField(max_length=20)
     image_url = models.CharField(max_length=300)
     venue = models.CharField(max_length=50)
     home_team = models.CharField(max_length=50)
