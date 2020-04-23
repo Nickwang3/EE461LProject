@@ -32,17 +32,35 @@ class HomePage extends React.Component {
         } else {
             return (
                 <div style={{width: "100%"}}>
-                    <Row style={{width: "100%", margin:"40px", display: "flex", justifyContent:"center"}} className="titleStyle">Home Plate</Row>
+                    <Row style={{width: "100%", margin:"50px", display: "flex", justifyContent:"center"}} className="titleStyle">Home Plate</Row>
                     <Row style={{margin: "0px"}} className="carouselRow">
                         <CarouselContainer/>
                     </Row>
-                    <Row style={{width: "100%", margin:"40px", display: "flex", justifyContent:"center"}}>
-                        News
-                        <TwitterTimelineEmbed
-                            sourceType="profile"
-                            screenName="MLB"
-                            options={{height: 400, width: 400}}
-                        />
+                    <Row style={{width: "100%", margin:"40px", display: "flex", justifyContent:"center"}} className="titleStyle">
+                        News in Baseball
+                    </Row>
+                    <Row style={{width: "100%", margin:"40px", display: "flex", justifyContent:"center"}}> 
+                        <Col>
+                            <TwitterTimelineEmbed
+                                sourceType="profile"
+                                screenName="astros"
+                                options={{height: 400, width: 400}}
+                            />
+                        </Col>
+                        <Col>
+                            <TwitterTimelineEmbed
+                                sourceType="profile"
+                                screenName="MLB"
+                                options={{height: 400, width: 400}}
+                            />
+                        </Col>
+                        <Col>
+                            <TwitterTimelineEmbed
+                                sourceType="profile"
+                                screenName="redsox"
+                                options={{height: 400, width: 400}}
+                            />
+                        </Col>
                     </Row>
                 </div>
             )
