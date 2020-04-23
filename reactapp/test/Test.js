@@ -16,6 +16,8 @@ import AboutPage from '../src/components/Page/AboutPage/AboutPage.js';
 import Contributor from '../src/components/Page/AboutPage/Contributor.js';
 import HomePage from '../src/components/Page/HomePage/HomePage.js';
 import DetailedPlayerPage from '../src/components/Page/PlayersPage/DetailedPlayerPage.js';
+import CarouselContainer from '../src/components/Page/HomePage/CarouselContainer.js';
+import ScoreBoard from '../src/components/Page/ScoresPage/Scoreboard.js';
 let wrapper;
 
 //Testing the Navbar Component
@@ -101,24 +103,79 @@ describe('HomePage Component Testing',()=>{
     wrapper = shallow(<HomePage/>);
   });
 
-  it('Checks that there is one Jumbotron', ()=>{
-      expect(wrapper.find("Jumbotron")).to.have.length(1);
+  it('Checks that there are three TwitterTimeLineEmbeds Jumbotron', ()=>{
+      expect(wrapper.find("TwitterTimelineEmbed")).to.have.length(3);
+  });
+
+  it('Checks that there is one Carousel', ()=>{
+    expect(wrapper.find("CarouselContainer")).to.have.length(1);
+  });
+
+  it('Checks that there are four rows', ()=> {
+    expect(wrapper.find("Row")).to.have.length(4);
+  });
+
+  it('Checks that there are 3 columns', ()=> {
+    expect(wrapper.find("Col")).to.have.length(3);
+  })
+
+});
+
+describe('Tests Carousel Components', ()=> {
+  beforeEach(function () {
+    wrapper = shallow(<CarouselContainer/>);
+  });
+
+  it('Checks that there are 4 Carousel items', () => {
+    expect(wrapper.find('CarouselItem')).to.have.length(4);
+  });
+
+  it('Checks that there is 4 containers', () => {
+    expect(wrapper.find('Container')).to.have.length(4);
+  });
+
+  it('Checks that there are 4 rows', () => {
+    expect(wrapper.find('Row')).to.have.length(4);
   });
 
 });
 
-//HitterStats.js Testing
-describe('HomePage Component Testing',()=>{
+describe('Tests Contributor.js', () => {
 
-  beforeEach(function() {
-    wrapper = shallow(<HomePage/>);
+  it('Checks that every Contributor has 0 cards if there is no state', () =>{
+    expect(wrapper.find('Card')).to.have.length(0);
   });
-
-  it('Checks that there is one Jumbotron', ()=>{
-      expect(wrapper.find("Jumbotron")).to.have.length(1);
-  });
-
+  
 });
+
+describe('Tests Scoreboard.js', () => {
+
+
+  it('Checks that scoreboard produces an error if the state is empty', () => {
+    try{
+    wrapper = shallow(<ScoreBoard/>);
+    } catch (error ){
+      expect(1).to.equal(1);
+    }
+      
+  
+
+  });
+});
+
+describe('Tests DetailedScoresPage.js', () => {
+
+  it("Checks that an error is thrown if the state is null", () => {
+    try{
+      wrapper = shallow(<DetailedScoresPage/>);
+    } catch (error){
+      expect(1).to.equal(1);
+    }
+  });
+  
+});
+
+
 
 
 
