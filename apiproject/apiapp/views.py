@@ -94,11 +94,8 @@ class BoxScoreViewSet(viewsets.ModelViewSet):
         return BoxScore.objects.all()
 
 
-@api_view(['GET'])
-def get_players_by_team_id(request, team_id):
-    player = Player.objects.filter(team=team_id)
-    data = PlayerSerializer(player, many=True).data
-    return Response(data)
+
+######### Teams methods #########
 
 @api_view(['GET'])
 def get_team_by_team_id(request, team_id):  
@@ -107,9 +104,47 @@ def get_team_by_team_id(request, team_id):
     return Response(data)
 
 @api_view(['GET'])
-def get_book_by_isbn(request, isbn):
-    book = Book.objects.get(isbn=isbn)
-    data = BookSerializer(book).data
+def get_team_by_name(request,team_name):
+    selected_team = Team.objects.get(name = team_name.replace('%20',' '))
+    data = TeamSerializer(selected_team).data
+    return Response(data)
+
+#################################
+
+######### Players methods #########
+
+@api_view(['GET'])
+def get_players_by_team_id(request, team_id):
+    player = Player.objects.filter(team=team_id)
+    data = PlayerSerializer(player, many=True).data
+    return Response(data)
+
+###################################
+
+######### Games methods #########
+
+@api_view(['GET'])
+def get_game_by_id(request, game_id):
+    boxscore = Game.objects.get(game_id=game_id)
+    data = GameSerializer(boxscore).data
+    return Response(data)
+
+@api_view(['GET'])
+def get_games_by_teams_and_date(request,away_team,home_team,date):
+    game = Game.objects.get(away_team=away_team,home_team=home_team,game_datetime__contains=parse_date(date))
+    data = GameSerializer(game).data
+    return Response(data)
+
+@api_view(['GET'])
+def get_home_games_by_team_id(request, team_id):
+    games = Game.objects.filter(home_team=team_id).order_by('game_datetime')
+    data = GameSerializer(games, many=True).data
+    return Response(data)
+
+@api_view(['GET'])
+def get_away_games_by_team_id(request, team_id):
+    games = Game.objects.filter(away_team=team_id).order_by('game_datetime')
+    data = GameSerializer(games, many=True).data
     return Response(data)
 
 @api_view(['GET'])
@@ -120,8 +155,6 @@ def get_games_by_date(request, date):
 
 @api_view(['GET'])
 def get_weekly_games_by_date_and_team(request, date, team):
-    # We want to get upcoming 
-
     games = Game.objects.none()
 
     for i in range(0,7):
@@ -134,7 +167,21 @@ def get_weekly_games_by_date_and_team(request, date, team):
         print(query)
 
     data = GameSerializer(games, many=True).data
-    return Response(data)    
+    return Response(data) 
+
+@api_view(['POST'])
+def post_prediction(request,game_id,team_side):
+    if(request.method=='POST'):
+        if(team_side == 'away'):
+            Game.objects.filter(game_id=game_id).update(away_prediction=F('away_prediction')+ 1)
+        else:
+            Game.objects.filter(game_id=game_id).update(home_prediction =F('away_prediction')+ 1)
+
+        return Response(HTTPStatus.ACCEPTED)
+
+#################################
+
+######### Teammembers methods #########
 
 @api_view(['GET','DELETE'])
 def get_teammembers_by_github_username(request, github_username):
@@ -150,7 +197,7 @@ def get_teammembers_by_github_username(request, github_username):
         data = {}
         if operation:
             data['success'] = "delete successful"
-    
+
 @api_view(['POST'])
 def post_teammember(request):
     if (request.method == "POST"):
@@ -162,8 +209,6 @@ def post_teammember(request):
 
 @api_view(['PUT'])
 def update_git_stats(request):
-    # url = "http://django-env.zphgcpmf2t.us-west-2.elasticbeanstalk.com/api/v1/teammembers"
-    # response = requests.request("GET", url)
     teammembers = TeamMember.objects.all()
 
     user_issues = {}
@@ -204,12 +249,36 @@ def update_git_stats(request):
         
     return Response(HTTPStatus.ACCEPTED)
 
+############################
+
+######### Weather methods #########
+
 @api_view(['GET'])
 def get_current_weather_by_team_id(request, team_id):
     team = Team.objects.get(team_id=team_id)
     url = 'https://api.darksky.net/forecast/b411dfcc671baccec4d3b9e75d42ed21/{}, {}'.format(team.latitude, team.longitude)
     response = requests.get(url)
     return Response(response.json())
+
+###################################
+
+######### Stats methods #########
+
+@api_view(['GET'])
+def get_pitcher_stats_by_player_id(request, player_id):
+    records= PitcherStats.objects.filter(player=player_id).order_by('season')
+    data = PitcherStatsSerializer(records, many=True).data
+    return Response(data)
+
+@api_view(['GET'])
+def get_hitter_stats_by_player_id(request, player_id):
+    records= HitterStats.objects.filter(player=player_id).order_by('season')
+    data = HitterStatsSerializer(records, many=True).data
+    return Response(data)
+
+#################################
+
+######### Records methods #########
 
 @api_view(['GET'])
 def get_records_by_team_id(request, team_id):
@@ -229,29 +298,10 @@ def get_records_by_team_id_and_season(reqeust, team_id_and_season):
     data = TeamRecordSerializer(record).data
     return Response(data)
 
-@api_view(['GET'])
-def get_pitcher_stats_by_player_id(request, player_id):
-    records= PitcherStats.objects.filter(player=player_id).order_by('season')
-    data = PitcherStatsSerializer(records, many=True).data
-    return Response(data)
+###################################
 
-@api_view(['GET'])
-def get_hitter_stats_by_player_id(request, player_id):
-    records= HitterStats.objects.filter(player=player_id).order_by('season')
-    data = HitterStatsSerializer(records, many=True).data
-    return Response(data)
 
-@api_view(['GET'])
-def get_home_games_by_team_id(request, team_id):
-    games = Game.objects.filter(home_team=team_id).order_by('game_datetime')
-    data = GameSerializer(games, many=True).data
-    return Response(data)
-
-@api_view(['GET'])
-def get_away_games_by_team_id(request, team_id):
-    games = Game.objects.filter(away_team=team_id).order_by('game_datetime')
-    data = GameSerializer(games, many=True).data
-    return Response(data)
+######## Boxscore methods ########
 
 @api_view(['GET'])
 def get_boxscore_by_id(request, boxscore_id):
@@ -259,37 +309,15 @@ def get_boxscore_by_id(request, boxscore_id):
     data = BoxScoreSerializer(boxscore).data
     return Response(data)
 
-@api_view(['GET'])
-def get_game_by_id(request, game_id):
-    boxscore = Game.objects.get(game_id=game_id)
-    data = GameSerializer(boxscore).data
-    return Response(data)
-
-@api_view(['GET'])
-def get_team_by_name(request,team_name):
-    selected_team = Team.objects.get(name = team_name.replace('%20',' '))
-    data = TeamSerializer(selected_team).data
-    return Response(data)
+##################################
 
 
-# For updating the database when a user makes a prediction.
-@api_view(['POST'])
-def post_prediction(request,game_id,team_side):
-    if(request.method=='POST'):
-        #If away then you must update a different value than if home
-        if(team_side == 'away'):
-            Game.objects.filter(game_id=game_id).update(away_prediction=F('away_prediction')+ 1)
-        else:
-            Game.objects.filter(game_id=game_id).update(home_prediction =F('away_prediction')+ 1)
-    
-
-        return Response(HTTPStatus.ACCEPTED)
-
-@api_view(['GET'])
-def get_games_by_teams_and_date(request,away_team,home_team,date):
-    game = Game.objects.get(away_team=away_team,home_team=home_team,game_datetime__contains=parse_date(date))
-    data = GameSerializer(game).data
-    return Response(data)
+# Deprecated
+# @api_view(['GET'])
+# def get_book_by_isbn(request, isbn):
+#     book = Book.objects.get(isbn=isbn)
+#     data = BookSerializer(book).data
+#     return Response(data)
     
 
 def redirect_to_api(request):
