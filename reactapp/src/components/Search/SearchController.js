@@ -76,8 +76,8 @@ class SearchController extends React.Component {
                             <Input
                             type="search"
                             name="search"
-                            id="playerSearch"
-                            placeholder="Search for players..."
+                            id="resultSearch"
+                            placeholder={this.props.placeholderText}
                             value={this.state.searchValue}
                             onChange={e => this.setState({ searchValue: e.target.value })}
                             onKeyDown={this.onEnterPressed}
@@ -92,36 +92,32 @@ class SearchController extends React.Component {
                     <Row form>
                     <Col md={6}>
                         <FormGroup >
-                        <Label style={{fontSize: "medium"}} for="playerSearchSelect">Search by</Label>
-                        <Input 
-                        type="select" 
-                        name="searchSelect" 
-                        id="playerSearchSelect"
-                        onChange={e => this.setState({ searchFields: e.target.value })}
-                        >
-                            <option>name</option>
-                            <option>age</option>
-                            <option>number</option>
-                        </Input>
+                            <Label style={{fontSize: "medium"}} for="resultSearchSelect">Search by</Label>
+                            <Input 
+                            type="select" 
+                            name="resultSearchSelect" 
+                            id="resultSearchSelect"
+                            onChange={e => this.setState({ searchFields: e.target.value })}
+                            >
+                                {this.props.searchFieldOptions.map(searchFieldOption => (
+                                    <option>{searchFieldOption}</option>
+                                ))}
+                            </Input>
                         </FormGroup>
                     </Col>
                     <Col md={6}>
                         <FormGroup>
-                        <Label style={{fontSize: "medium"}} for="playerOrderSelect">Order by</Label>
-                        <Input 
-                        type="select" 
-                        name="playerOrderSelect" 
-                        id="playerOrderSelect"
-                        onChange={e => this.orderingChanged(e)}
-                        >
-                            <option>name</option>
-                            <option>team</option>
-                            <option>age</option>
-                            <option>number</option>
-                            <option>height</option>
-                            <option>weight</option>
-                            <option>player_id</option>
-                        </Input>
+                            <Label style={{fontSize: "medium"}} for="resultOrderSelect">Order by</Label>
+                            <Input 
+                            type="select" 
+                            name="resultOrderSelect" 
+                            id="resultOrderSelect"
+                            onChange={e => this.orderingChanged(e)}
+                            >
+                                {this.props.orderingOptions.map(orderingOption => (
+                                    <option>{orderingOption}</option>
+                                ))}
+                            </Input>
                         </FormGroup>
                     </Col>
                     </Row>

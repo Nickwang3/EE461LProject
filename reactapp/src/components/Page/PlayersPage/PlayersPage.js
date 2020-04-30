@@ -166,6 +166,9 @@ class PlayersPage extends React.Component {
   render() {
     const { error, isLoaded, players } = this.state;
     let results;
+    let searchFieldOptions = ["name", "age", "number"]
+    let orderingOptions = ["name", "team", "age", "number", "height", "weight", "player_id"]
+
     if (error) {
       results = <div>Error: {error.message}</div>;
     } else if (!isLoaded) {
@@ -192,6 +195,9 @@ class PlayersPage extends React.Component {
           defaultSearchField="name"
           defaultOrdering="name"
           setResults={this.setResults.bind(this)}
+          placeholderText="Search for players..."
+          searchFieldOptions={searchFieldOptions}
+          orderingOptions={orderingOptions}
         />
         {results}
         <Row style={{width: "100%", display: "flex", justifyContent: "center"}}>
