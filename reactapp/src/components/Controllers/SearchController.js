@@ -5,11 +5,6 @@ class SearchController extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-          results: [],
-          page: 1,
-          prevPage: null,
-          nextPage: null,
-          count: null,
           searchValue: '', 
           searchFields: this.props.defaultSearchField,
           ordering: this.props.defaultOrdering,
@@ -20,21 +15,13 @@ class SearchController extends React.Component {
 
     onSubmit = (e) => {
         e.preventDefault()
-        this.props.setResults([], false, null);
+        this.props.setResults(false, null, [], 1, null, null, 0, this.state.searchValue, this.state.searchFields, this.state.ordering);
         this.props.getResults(1, this.state.searchValue, this.state.searchFields, this.state.ordering)
         .then(result => {
-          this.setState({
-            isLoaded: true,
-            results: result.data.results,
-            page: 1,
-            prevPage: result.data.previous,
-            nextPage: result.data.next,
-            count: result.data.count
-          });
-          this.props.setResults(result.data.results, true, null);
+          this.props.setResults(true, null, result.data.results, 1, result.data.previous, result.data.next, result.data.count, this.state.searchValue, this.state.searchFields, this.state.ordering);
         })
         .catch(error => {
-            this.props.setResults(null, true, error);
+            this.props.setResults(true, error, null, 1, null, null, 0, this.state.searchValue, this.state.searchFields, this.state.ordering);
         });
     }
     
@@ -49,21 +36,13 @@ class SearchController extends React.Component {
         this.setState({ 
             ordering: e.target.value,
         })
-        this.props.setResults([], false, null);
+        this.props.setResults(false, null, [], 1, null, null, 0, this.state.searchValue, this.state.searchFields, this.state.ordering);
         this.props.getResults(1, this.state.searchValue, this.state.searchFields, e.target.value)
         .then(result => {
-            this.setState({
-            isLoaded: true,
-            results: result.data.results,
-            page: 1,
-            prevPage: result.data.previous,
-            nextPage: result.data.next,
-            count: result.data.count
-            });
-            this.props.setResults(result.data.results, true, null);
+            this.props.setResults(true, null, result.data.results, 1, result.data.previous, result.data.next, result.data.count, this.state.searchValue, this.state.searchFields, this.state.ordering);
         })
         .catch(error => {
-            this.props.setResults(null, true, error);
+            this.props.setResults(true, error, null, 1, null, null, 0, this.state.searchValue, this.state.searchFields, this.state.ordering);
         });
     }
 
