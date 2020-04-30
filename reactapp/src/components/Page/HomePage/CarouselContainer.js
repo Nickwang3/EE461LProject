@@ -47,6 +47,12 @@ const items = [
     }
   ];
 
+  const carouselRowStyle = {
+    display: "flex", 
+    justifyContent: "center", 
+    alignContent: "center", 
+    width: "100%"};
+
 const CarouselContainer = (props) => {
   const [activeIndex, setActiveIndex] = useState(0);
   const [animating, setAnimating] = useState(false);
@@ -77,7 +83,7 @@ const CarouselContainer = (props) => {
         key={item.src}
       >
         <Container className="carouselContainerStyle" style={{width: "400px", height: "100px", position:"absolute"}}>
-            <Row style={{display: "flex", justifyContent: "center", alignContent: "center", width: "100%"}}>
+            <Row style={carouselRowStyle}>
                 <Link to={`/${item.page}`} className="titleStyle" style={{color:"white", fontSize: "30px"}}>Explore {item.page}</Link>
             </Row>
         </Container>
