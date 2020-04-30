@@ -5,7 +5,7 @@ import { Container, Row, Col, Spinner} from 'reactstrap'
 import { Button } from "react-bootstrap";
 
 
-const apiService = new ApiService();
+const apiService = ApiService.getInstance();
 
 class DetailedTicketPage extends React.Component {
   constructor(props) {

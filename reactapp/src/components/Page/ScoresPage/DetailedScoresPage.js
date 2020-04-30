@@ -5,7 +5,7 @@ import BoxScore from './BoxScore';
 import './BoxScore.css'
 import { Table, Container, Row, Col } from 'reactstrap';
 
-const apiService = new ApiService();
+const apiService = ApiService.getInstance();
 
 class DetailedScoresPage extends React.Component {
 

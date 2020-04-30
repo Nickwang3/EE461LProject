@@ -9,7 +9,7 @@ import {
 
 
 import mlbstatsapi from "../../../statics/mlbstatsapi.png";
-const apiService = new ApiService();
+const apiService = new ApiService.getInstance();
 
 
 
