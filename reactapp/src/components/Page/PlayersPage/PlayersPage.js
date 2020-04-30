@@ -46,58 +46,6 @@ class PlayersPage extends React.Component {
       });
   }
 
-  nextPage() {
-    if (this.state.nextPage == null) {
-      return;
-    }
-    this.setState({
-      isLoaded: false,
-    })
-    apiService
-      .getPlayersBySearch(this.state.page + 1, this.state.searchValue, this.state.searchFields, this.state.ordering)
-      .then(result => {
-        this.setState({
-          isLoaded: true,
-          players: result.data.results,
-          page: this.state.page + 1,
-          prevPage: result.data.previous,
-          nextPage: result.data.next,
-        });
-      })
-      .catch(error => {
-        this.setState({
-          isLoaded: true,
-          error
-        });
-      });
-  }
-
-  prevPage() {
-    if (this.state.prevPage == null) {
-      return;
-    }
-    this.setState({
-      isLoaded: false,
-    })
-    apiService
-      .getPlayersBySearch(this.state.page - 1, this.state.searchValue, this.state.searchFields, this.state.ordering)
-      .then(result => {
-        this.setState({
-          isLoaded: true,
-          players: result.data.results,
-          page: this.state.page - 1,
-          prevPage: result.data.previous,
-          nextPage: result.data.next,
-        });
-      })
-      .catch(error => {
-        this.setState({
-          isLoaded: true,
-          error
-        });
-      });
-  }
-
   setResults(isLoaded, error, results, page, prevPage, nextPage, count, searchValue, searchFields, ordering) {
     this.setState({
       isLoaded: isLoaded,
@@ -150,11 +98,6 @@ class PlayersPage extends React.Component {
           orderingOptions={orderingOptions}
         />
         {results}
-        {/* <Row style={{width: "100%", display: "flex", justifyContent: "center"}}>
-          <Button style={{margin: "20px"}} color="info" onClick={() => this.prevPage()} disabled={this.state.prevPage == null}>Previous</Button>
-          <h4 style={{margin: "23px"}}>Page {this.state.page}</h4>
-          <Button style={{margin: "20px"}} color="info" onClick={() => this.nextPage()} disabled={this.state.nextPage == null}>Next</Button>
-        </Row> */}
         <PaginationController
           getResults={apiService.getPlayersBySearch.bind(apiService)}
           setResults={this.setResults.bind(this)}
