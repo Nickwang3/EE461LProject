@@ -4,7 +4,7 @@ import ApiService from "../../../api/ApiService";
 import { Spinner, Container, Button, Row , Form, FormGroup, Input, Label, Col} from "reactstrap"
 import './TeamsPage.css'
 
-const apiService = new ApiService();
+const apiService = ApiService.getInstance();
 
 class TeamsPage extends React.Component {
   constructor(props) {

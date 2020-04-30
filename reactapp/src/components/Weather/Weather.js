@@ -1,7 +1,7 @@
 import React from "react";
 import ApiService from "../../api/ApiService";
 
-const apiService = new ApiService();
+const apiService = ApiService.getInstance();
 
 class Weather extends React.Component {
   constructor(props) {

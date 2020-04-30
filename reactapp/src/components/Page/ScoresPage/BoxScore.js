@@ -3,10 +3,6 @@ import './BoxScore.css';
 import { Link } from 'react-router-dom';
 import { Table, Container, Row, Col } from 'reactstrap';
 
-import ApiService from '../../../api/ApiService';
-
-const apiService = new ApiService();
-
 
 class BoxScore extends React.Component {
 

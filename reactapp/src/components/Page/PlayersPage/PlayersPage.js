@@ -6,7 +6,7 @@ import ReactPaginate from 'react-paginate';
 import Axios from "axios";
 import "./PlayersPage.css"
 
-const apiService = new ApiService();
+const apiService = ApiService.getInstance();
 
 class PlayersPage extends React.Component {
   constructor(props) {
