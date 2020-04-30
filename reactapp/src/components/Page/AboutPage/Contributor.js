@@ -4,6 +4,8 @@ import {
     CardTitle, CardSubtitle, Button
   } from 'reactstrap';
 
+  import styles from './AboutPage.css'
+
 class Contributor extends React.Component {
 
     constructor(props) {
@@ -48,14 +50,14 @@ class Contributor extends React.Component {
         }
 
             return (
-                <Card style={cardStyle}>
-                    <CardImg style={cardImgStyle} src={`/members/${this.props.avatar}`} alt="Card image cap" />
+                <Card className={styles.cardStyle}>
+                    <CardImg className={styles.cardImgStyle} src={`/members/${this.props.avatar}`} alt="Card image cap" />
                     <CardBody>
-                        <CardTitle style={cardTitleStyle}>{this.props.name}</CardTitle>
-                        <CardSubtitle style={CardSubtitleStyle}>{this.props.description}</CardSubtitle>
-                        <CardText style={cardTextStyle}>Commits: {this.props.commits}</CardText>
-                        <CardText style={cardTextStyle}>Issues: {this.props.issues}</CardText>
-                        <CardText style={cardTextStyle}>Tests: {this.props.tests}</CardText>
+                        <CardTitle className={styles.cardTitleStyle}>{this.props.name}</CardTitle>
+                        <CardSubtitle className={styles.cardSubtitleStyle}>{this.props.description}</CardSubtitle>
+                        <CardText className={styles.cardTextStyle}>Commits: {this.props.commits}</CardText>
+                        <CardText className={styles.cardTextStyle}>Issues: {this.props.issues}</CardText>
+                        <CardText className={styles.cardTextStyle}>Tests: {this.props.tests}</CardText>
                     </CardBody>
                 </Card>
             )
