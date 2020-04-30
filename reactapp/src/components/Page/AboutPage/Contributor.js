@@ -3,6 +3,8 @@ import {
     Card, CardImg, CardText, CardBody,
     CardTitle, CardSubtitle, Button
   } from 'reactstrap';
+  import './AboutPage.css';
+
 
 class Contributor extends React.Component {
 
@@ -48,14 +50,14 @@ class Contributor extends React.Component {
         }
 
             return (
-                <Card style={cardStyle}>
-                    <CardImg style={cardImgStyle} src={`/members/${this.props.avatar}`} alt="Card image cap" />
+                <Card className='cardStyle'>
+                    <CardImg className='cardImgStyle' src={`/members/${this.props.avatar}`} alt="Card image cap" />
                     <CardBody>
-                        <CardTitle style={cardTitleStyle}>{this.props.name}</CardTitle>
-                        <CardSubtitle style={CardSubtitleStyle}>{this.props.description}</CardSubtitle>
-                        <CardText style={cardTextStyle}>Commits: {this.props.commits}</CardText>
-                        <CardText style={cardTextStyle}>Issues: {this.props.issues}</CardText>
-                        <CardText style={cardTextStyle}>Tests: {this.props.tests}</CardText>
+                        <CardTitle className='cardTitleStyle'>{this.props.name}</CardTitle>
+                        <CardSubtitle className='cardSubtitleStyle'>{this.props.description}</CardSubtitle>
+                        <CardText className='cardTextStyle'>Commits: {this.props.commits}</CardText>
+                        <CardText className='cardTextStyle'>Issues: {this.props.issues}</CardText>
+                        <CardText className='cardTextStyle'>Tests: {this.props.tests}</CardText>
                     </CardBody>
                 </Card>
             )
