@@ -65,35 +65,3 @@
     display: flex;
     justify-content: center;
 }
-
-.cardStyle {
-    margin: 20px;
-    width: 250px;
-    height: 450px;
-    border: solid rgb(207, 193, 193);
-    border-width: 2px;
-}
-
-.cardTextStyle{
-    color:black;
-    font-size: 12px;
-    margin: 0px;
-}
-
-.cardTitleStyle{
-    color:black;
-    font-size: 20px;
-    margin-bottom: 0px;
-}
-
-.cardSubtitleStyle{
-    color: black;
-    font-size: 15px;
-    color: grey;
-}
-
-.cardImgStyle {
-    width:246px; 
-    height:200px;
-    align-self: "center";
-}
