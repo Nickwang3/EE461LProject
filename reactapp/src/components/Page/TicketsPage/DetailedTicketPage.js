@@ -67,8 +67,8 @@ class DetailedTicketPage extends React.Component {
     if (error) {
       return <div>Error: {error.message}</div>;
     } else if (!isLoaded) {
-      return (<Row style={{width: "100%", display:"flex", justifyContent:"center", marginBottom:"40px"}}>
-                  <Spinner style={{ width: '4rem', height: '4rem' }} type="grow" color="light" />
+      return (<Row className = 'unloadedRowStyle'>
+                  <Spinner className='loadIcon' type="grow" color="light" />
               </Row>)
     } else {
       return (

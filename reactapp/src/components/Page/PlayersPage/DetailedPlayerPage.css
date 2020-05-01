@@ -72,3 +72,19 @@
     border-radius: 50%;
     border: 2px solid white;
 }
+
+:local(.playerRowCaption){
+    width: 100%;
+    margin-bottom: 10px
+}
+
+.statsTableHead{
+    color:white;
+}
+
+.statsTableBody{
+    color:white;
+}
+.pitcherStatLink{
+    color:white;
+}

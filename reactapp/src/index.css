@@ -54,3 +54,22 @@ code {
   width: 100%;
   height: 100%
 }
+
+.loadIcon {
+  width: 4rem;
+  height: 4rem;
+}
+
+.primaryRowStyle{
+  width: 100% ;
+  display:flex;
+  justify-content:center;
+
+}
+
+.unloadedRowStyle{
+  width: 100%;
+  display:flex;
+  justify-content:center;
+  margin-bottom:40px;
+}

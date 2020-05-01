@@ -5,7 +5,7 @@ import { Spinner, Container, Row, Nav, NavLink, NavItem, TabContent, TabPane} fr
 import PitcherTable from "./PitcherTable";
 import HitterTable from "./HitterTable";
 import ScoreBoard from "../ScoresPage/Scoreboard"
-import './DetailedPlayerPage.css'
+import styles from'./DetailedPlayerPage.css'
 import { Link } from 'react-router-dom';
 
 const monthMapping = {'Jan': '01', 'Feb': '02', 'Mar': '03', 'Apr': '04', 'May': '05', 'Jun': '06','Jul': '07', 'Aug': '08', 
@@ -131,11 +131,11 @@ class DetailedPlayerPage extends React.Component {
                   <TabPane tabId="1">
                     <Row style={{display: "flex", justifyContent: "center"}}>
                       <Link to={`/teams/${team.team_id}`}><h3 style={{width: "100%",marginBottom: "10px", color:"white"}}>{team.name} </h3></Link>
-                      <h5 > Position: {player.position} </h5>
-                      <h5 > Number: {player.number} </h5>
-                      <h5 > Age: {player.age} </h5>
-                      <h5 > Height: {player.height} </h5>
-                      <h5 > Weight: {player.weight} </h5>
+                      <h5 className = {styles.playerRowCaption}> Position: {player.position} </h5>
+                      <h5 className = {styles.playerRowCaption}> Number: {player.number} </h5>
+                      <h5 className = {styles.playerRowCaption}> Age: {player.age} </h5>
+                      <h5 className = {styles.playerRowCaption}> Height: {player.height} </h5>
+                      <h5 className = {styles.playerRowCaption}> Weight: {player.weight} </h5>
                     </Row>
                   </TabPane>
 

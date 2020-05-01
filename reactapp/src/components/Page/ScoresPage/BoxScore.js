@@ -32,7 +32,7 @@ class BoxScore extends React.Component {
         return (
             <Row className="boxScoreRow">
                 
-                <Row style={{width: "100%", display: "flex", justifyContent: "center"}}>
+                <Row className = 'primaryRowStyle'>
                     Batting
                 </Row>
 
@@ -138,7 +138,7 @@ class BoxScore extends React.Component {
                     </Col>
                 </Row>
 
-                <Row style={{width: "100%", display: "flex", justifyContent: "center"}}>
+                <Row className='primaryRowStyle'>
                     Pitching
                 </Row>
 

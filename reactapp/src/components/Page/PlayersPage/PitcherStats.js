@@ -16,7 +16,7 @@ class PitcherStats extends React.Component {
         return (
             <tr>
                 <td>{stat.season}</td>
-                <td><Link style={{color:"white"}} to={`/teams/${stat.team}`}>{stat.team}</Link></td>
+                <td><Link className = 'pitcherStatLink' to={`/teams/${stat.team}`}>{stat.team}</Link></td>
                 <td>{stat.games_played}</td>
                 <td>{stat.games_started}</td>
                 <td>{stat.wins}</td>
