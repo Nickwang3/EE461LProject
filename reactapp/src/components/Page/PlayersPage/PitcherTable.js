@@ -18,7 +18,7 @@ class PitcherTable extends React.Component {
 
         return (
             <Table className="tableStyle">
-                <thead  style={{color: "white"}}>
+                <thead  className = 'statsTableHead'>
                 <tr>
                     <th>Season</th>
                     <th>Team</th>
@@ -40,7 +40,7 @@ class PitcherTable extends React.Component {
                     <th>SO</th>
                 </tr>
                 </thead>
-                <tbody  style={{color: "white"}}>
+                <tbody  className = 'statsTableBody'>
                     {stats.map(stat => <PitcherStats stat={stat}/>)}
                 </tbody>
             </Table>

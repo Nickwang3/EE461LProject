@@ -3,6 +3,10 @@
     justify-content: center;
 }
 
+.playersPageContainer > h1{
+    font: 400 50px/1.5 "Pacifico", Helvetica, sans-serif ;
+}
+
 .playerFormStyle {
     padding: 1% 7% 1% 7%;
     margin: 20px;
@@ -23,4 +27,13 @@
 
 .playerSearchBar {
     width: 300px;
+}
+
+
+
+.unloadedPlayerPageRowStyle {
+    width: 100%;
+    display:flex;
+    justify-content:center;
+    margin-bottom:40px;
 }

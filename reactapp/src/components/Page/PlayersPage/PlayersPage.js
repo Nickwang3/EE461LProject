@@ -70,11 +70,11 @@ class PlayersPage extends React.Component {
     if (error) {
       results = <div>Error: {error.message}</div>;
     } else if (!isLoaded) {
-      results = <Row style={{width: "100%", display:"flex", justifyContent:"center", marginBottom:"40px"}}>
-                  <Spinner style={{ width: '4rem', height: '4rem' }} type="grow" color="light" />
+      results = <Row className='unloadedPlayerPageRowStyle' style={{width: "100%", display:"flex", justifyContent:"center", marginBottom:"40px"}}>
+                  <Spinner className='loadIcon' type="grow" color="light" />
                 </Row>
     } else {
-      results = <Row style={{width: "100%", display:"flex", justifyContent:"center"}}>
+      results = <Row className = 'primaryRowStyle'>
                   <h5>Results: {this.state.count}</h5>
                     <Row>
                       {players.map(player => (
@@ -87,7 +87,7 @@ class PlayersPage extends React.Component {
     }
     return (
       <Container className="playersPageContainer">
-        <Row style={{margin:"60px", width:"100%", display:"flex", justifyContent:"center"}}><h1 style={{font: "400 50px/1.5 'Pacifico', Helvetica, sans-serif"}}>Players</h1></Row>
+        <Row className = 'playerPagePrimaryRowStyle'><h1>Players</h1></Row>
         <SearchController
           getResults={apiService.getPlayersBySearch.bind(apiService)}
           defaultSearchField="name"

@@ -77,3 +77,14 @@
     width: 100%;
     margin-bottom: 10px
 }
+
+.statsTableHead{
+    color:white;
+}
+
+.statsTableBody{
+    color:white;
+}
+.pitcherStatLink{
+    color:white;
+}

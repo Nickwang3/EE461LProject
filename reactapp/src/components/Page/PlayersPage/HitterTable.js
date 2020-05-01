@@ -17,7 +17,7 @@ class HitterTable extends React.Component {
         return (
             <Table className="tableStyle">
                 <thead>
-                <tr style={{color: "white"}}>
+                <tr className = 'statsTableHead'>
                     <th>Season</th>
                     <th>Team</th>
                     <th>G</th>
@@ -38,7 +38,7 @@ class HitterTable extends React.Component {
                     <th>OPS</th>
                 </tr>
                 </thead>
-                <tbody style={{color: "white"}}>
+                <tbody className = 'statsTableBody'>
                     {stats.map(stat => <HitterStats stat={stat}/>)}
                 </tbody>
             </Table>
