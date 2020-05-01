@@ -21,7 +21,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/v1/', include(router.urls)),
     path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
-    path('api/v1/books/isbn/<str:isbn>', views.get_book_by_isbn, name='get_book_by_isbn'),
     path('api/v1/teams/team_name/<str:team_name>',views.get_team_by_name, name='get_team_by_name'),
     path('api/v1/players/team_id/<str:team_id>', views.get_players_by_team_id, name="get_players_by_team_id"),
     path('api/v1/teams/team_id/<str:team_id>', views.get_team_by_team_id, name="get_team_by_team_id"),

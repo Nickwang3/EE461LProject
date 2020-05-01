@@ -312,13 +312,5 @@ def get_boxscore_by_id(request, boxscore_id):
 ##################################
 
 
-# Deprecated
-# @api_view(['GET'])
-# def get_book_by_isbn(request, isbn):
-#     book = Book.objects.get(isbn=isbn)
-#     data = BookSerializer(book).data
-#     return Response(data)
-    
-
 def redirect_to_api(request):
     return redirect('/api/v1')
