@@ -141,10 +141,10 @@ class DetailedTeamPage extends React.Component {
 
               <TabPane className="contentRow" tabId="1">
                 <Row>
-                  <h5 style={{width: "100%",marginBottom: "10px"}}>Stadium: {team.venue}</h5>
-                  <h5 style={{width: "100%",marginBottom: "10px"}}>Record: {record.wins} - {record.losses}</h5>
-                  <h5 style={{width: "100%",marginBottom: "10px"}}>#{record.division_rank} in {team.division}</h5>
-                  <h5 style={{width: "100%",marginBottom: "10px"}}>#{record.league_rank} in {team.division.split(" ").slice(0,2)}</h5>
+                  <h5 className='teamPageRowCaption'>Stadium: {team.venue}</h5>
+                  <h5 className='teamPageRowCaption'>Record: {record.wins} - {record.losses}</h5>
+                  <h5 className='teamPageRowCaption'>#{record.division_rank} in {team.division}</h5>
+                  <h5 className='teamPageRowCaption'>#{record.league_rank} in {team.division.split(" ").slice(0,2)}</h5>
                 </Row>
                 <YouTube videoId={team.video_id} opts={opts} onReady={this._onReady}/>
                 <Row style={{textAlign: "center",marginTop: "10px"}}>
