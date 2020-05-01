@@ -180,8 +180,8 @@ class ScoresPage extends React.Component {
     if (error) {
       results = <div>Error: {error.message}</div>;
     } else if (!isLoaded) {
-      results = <Row style={{width: "100%", display:"flex", justifyContent:"center", marginBottom:"40px"}}>
-                  <Spinner style={{ width: '4rem', height: '4rem' }} type="grow" color="light" />
+      results = <Row className='unloadedRowStyle'>
+                  <Spinner className='loadIcon' type="grow" color="light" />
                 </Row>;
     } else {
       results = <Row className="scoreBoardsRow">

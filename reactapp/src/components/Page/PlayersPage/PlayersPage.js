@@ -70,7 +70,7 @@ class PlayersPage extends React.Component {
     if (error) {
       results = <div>Error: {error.message}</div>;
     } else if (!isLoaded) {
-      results = <Row className='unloadedPlayerPageRowStyle' style={{width: "100%", display:"flex", justifyContent:"center", marginBottom:"40px"}}>
+      results = <Row className='unloadedRowStyle' style={{width: "100%", display:"flex", justifyContent:"center", marginBottom:"40px"}}>
                   <Spinner className='loadIcon' type="grow" color="light" />
                 </Row>
     } else {
