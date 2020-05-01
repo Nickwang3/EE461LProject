@@ -131,11 +131,11 @@ class DetailedPlayerPage extends React.Component {
                   <TabPane tabId="1">
                     <Row style={{display: "flex", justifyContent: "center"}}>
                       <Link to={`/teams/${team.team_id}`}><h3 style={{width: "100%",marginBottom: "10px", color:"white"}}>{team.name} </h3></Link>
-                      <h5 style={{width: "100%",marginBottom: "10px"}}> Position: {player.position} </h5>
-                      <h5 style={{width: "100%",marginBottom: "10px"}}> Number: {player.number} </h5>
-                      <h5 style={{width: "100%",marginBottom: "10px"}}> Age: {player.age} </h5>
-                      <h5 style={{width: "100%",marginBottom: "10px"}}> Height: {player.height} </h5>
-                      <h5 style={{width: "100%",marginBottom: "10px"}}> Weight: {player.weight} </h5>
+                      <h5 > Position: {player.position} </h5>
+                      <h5 > Number: {player.number} </h5>
+                      <h5 > Age: {player.age} </h5>
+                      <h5 > Height: {player.height} </h5>
+                      <h5 > Weight: {player.weight} </h5>
                     </Row>
                   </TabPane>
 
