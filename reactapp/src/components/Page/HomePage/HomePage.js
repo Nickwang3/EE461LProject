@@ -1,7 +1,7 @@
 import React from "react";
 import {Jumbotron, Container, Form, FormGroup, Label, Input, Row, Col} from 'reactstrap';
 import { TwitterTimelineEmbed} from 'react-twitter-embed';
-import "./HomePage.css";
+import styles from "./HomePage.css";
 import CarouselContainer from './CarouselContainer'
 
 class HomePage extends React.Component {
@@ -32,14 +32,14 @@ class HomePage extends React.Component {
         } else {
             return (
                 <div style={{width: "100%"}}>
-                    <Row style={{width: "100%", margin:"50px", display: "flex", justifyContent:"center"}} className="titleStyle">Home Plate</Row>
+                    <Row className={styles.titleStyle}>Home Plate</Row>
                     <Row style={{margin: "0px"}} className="carouselRow">
                         <CarouselContainer/>
                     </Row>
-                    <Row style={{width: "100%", margin:"40px", display: "flex", justifyContent:"center"}} className="titleStyle">
+                    <Row className={styles.titleStyle}>
                         News in Baseball
                     </Row>
-                    <Row style={{width: "100%", margin:"40px", display: "flex", justifyContent:"center"}}> 
+                    <Row className={styles.titleStyle}> 
                         <Col>
                             <TwitterTimelineEmbed
                                 sourceType="profile"
