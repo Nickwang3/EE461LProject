@@ -9,7 +9,7 @@ import {
   Row,
   Button, 
 } from 'reactstrap';
-import './CarouselContainer.css'
+import styles from './CarouselContainer.css'
 import { Link } from 'react-router-dom';
 
 const items = [
@@ -82,8 +82,8 @@ const CarouselContainer = (props) => {
         className="carouselItem"
         key={item.src}
       >
-        <Container className="carouselContainerStyle" style={{width: "400px", height: "100px", position:"absolute"}}>
-            <Row style={carouselRowStyle}>
+        <Container className="carouselContainerStyle" >
+            <Row className = {styles.carouselRowStyle}>
                 <Link to={`/${item.page}`} className="titleStyle" style={{color:"white", fontSize: "30px"}}>Explore {item.page}</Link>
             </Row>
         </Container>

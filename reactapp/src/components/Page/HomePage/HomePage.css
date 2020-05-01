@@ -47,7 +47,7 @@
 
 :local(.titleStyle){
     width: auto;
-    margin:50px auto;
+    margin:50px 0 !important;
     display: flex;
     justify-content:center;
     font: 400 60px/1.5 'Pacifico', Helvetica, sans-serif;
