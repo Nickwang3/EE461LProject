@@ -2,12 +2,14 @@ import React from "react";
 import ApiService from "../../../api/ApiService";
 import ScoreBoard from "./Scoreboard";
 import DatePicker from 'react-datepicker';
-import { Container, Button, Form, FormGroup, Input, Label, Row, Col, Spinner } from "reactstrap";
+import { Container, Button, Row, Spinner } from "reactstrap";
 import './ScoresPage.css';
 import "react-datepicker/dist/react-datepicker.css";
+import SearchController from "../../Controllers/SearchController";
+import PaginationController from "../../Controllers/PaginationController";
 
 
-const apiService = new ApiService();
+const apiService = ApiService.getInstance();
 const monthMapping = {'Jan': '01', 'Feb': '02', 'Mar': '03', 'Apr': '04', 'May': '05', 'Jun': '06','Jul': '07', 'Aug': '08', 
                       'Sep': '09', 'Oct': '10', 'Nov': '11', 'Dec': '12'}
 
@@ -73,115 +75,6 @@ class ScoresPage extends React.Component {
     }
   }
 
-  nextPage() {
-    if (this.state.nextPage == null) {
-      return;
-    }
-    this.setState({
-      isLoaded: false,
-    })
-    apiService
-      .getGamesBySearch(this.state.page + 1, this.state.searchValue, this.state.searchFields, this.state.ordering)
-      .then(result => {
-        this.setState({
-          isLoaded: true,
-          games: result.data.results,
-          page: this.state.page + 1,
-          prevPage: result.data.previous,
-          nextPage: result.data.next,
-        });
-      })
-      .catch(error => {
-        this.setState({
-          isLoaded: true,
-          error
-        });
-      });
-  }
-
-  prevPage() {
-    if (this.state.prevPage == null) {
-      return;
-    }
-    this.setState({
-      isLoaded: false,
-    })
-    apiService
-      .getGamesBySearch(this.state.page - 1, this.state.searchValue, this.state.searchFields, this.state.ordering)
-      .then(result => {
-        this.setState({
-          isLoaded: true,
-          games: result.data.results,
-          page: this.state.page - 1,
-          prevPage: result.data.previous,
-          nextPage: result.data.next,
-        });
-      })
-      .catch(error => {
-        this.setState({
-          isLoaded: true,
-          error
-        });
-      });
-  }
-
-  onSubmit = (e) => {
-    e.preventDefault()
-    this.setState({
-      isLoaded: false,
-    })
-    apiService
-    .getGamesBySearch(1, this.state.searchValue, this.state.searchFields, this.state.ordering)
-    .then(result => {
-      this.setState({
-        isLoaded: true,
-        games: result.data.results,
-        page: 1,
-        prevPage: result.data.previous,
-        nextPage: result.data.next,
-        count: result.data.count
-      });
-    })
-    .catch(error => {
-      this.setState({
-        isLoaded: true,
-        error
-      });
-    });
-  }
-
-  onEnterPressed = (e) => {
-    if (e.key === 'Enter') {
-      e.preventDefault(); 
-      this.onSubmit(e);
-    }
-  }
-
-  orderingChanged = (e) => {
-    this.setState({ 
-      ordering: e.target.value,
-      isLoaded: false
-    })
-    apiService
-    .getGamesBySearch(1, this.state.searchValue, this.state.searchFields, e.target.value)
-    .then(result => {
-      this.setState({
-        isLoaded: true,
-        games: result.data.results,
-        page: 1,
-        prevPage: result.data.previous,
-        nextPage: result.data.next,
-        count: result.data.count
-      });
-    })
-    .catch(error => {
-      this.setState({
-        isLoaded: true,
-        error
-      });
-    });
-  }
-
   formatDate(date) {
     var temp = (date.toString().split(" "))
     return (temp[3] + "-" + monthMapping[temp[1]] + "-" + temp[2])
@@ -227,6 +120,21 @@ class ScoresPage extends React.Component {
     }
   }
 
+  setResults(isLoaded, error, results, page, prevPage, nextPage, count, searchValue, searchFields, ordering) {
+    this.setState({
+      isLoaded: isLoaded,
+      error: error,
+      games: results,
+      page: page,
+      prevPage: prevPage,
+      nextPage: nextPage,
+      count: count,
+      searchValue: searchValue, 
+      searchFields: searchFields,
+      ordering: ordering,
+    })
+  }
+
   render() {
     const { error, isLoaded, games, startDate } = this.state;
 
@@ -236,6 +144,9 @@ class ScoresPage extends React.Component {
     let results;
     let paginationButtons;
 
+    let searchFieldOptions = ["home_team_name", "away_team_name"]
+    let orderingOptions = ["home_team_name", "away_team_name", "datetime_local"]
+
     if (this.state.filterByDate) {
       criteria = "Search For Games"
       datePickerRow =   <Row className="datePickerRow">
@@ -243,63 +154,27 @@ class ScoresPage extends React.Component {
                         </Row>;
     } else {
       criteria = "Use Date Picker";
-      paginationButtons = <Row style={{width: "100%", display: "flex", justifyContent: "center"}}>
-                            <Button style={{margin: "20px"}} color="info" onClick={() => this.prevPage()} disabled={this.state.prevPage == null}>Previous</Button>
-                            <h4 style={{margin: "23px"}}>Page {this.state.page}</h4>
-                            <Button style={{margin: "20px"}} color="info" onClick={() => this.nextPage()} disabled={this.state.nextPage == null}>Next</Button>
-                          </Row>
-      searchFormRow = <Form className="ticketsFormStyle" onSubmit={this.onSubmit}>
-                        <Row form>
-                          <Col md={9}>
-                            <FormGroup className="ticketsSearchBar">
-                                {/* <Label for="exampleSearch">Search</Label> */}
-                                <Input
-                                type="search"
-                                name="search"
-                                id="ticketSearch"
-                                placeholder="Search for games..."
-                                value={this.state.searchValue}
-                                onChange={e => this.setState({ searchValue: e.target.value })}
-                                onKeyDown={this.onEnterPressed}
-                                />
-                            </FormGroup>
-                          </Col>
-                          <Col style={{display:"flex", justifyContent: "center"}} md={3}>
-                            <Button type="submit" style={{width: "80%", height:"70%"}} className="btn btn-success">Search</Button>
-                          </Col>
-                        </Row>
-                        <Row form>
-                          <Col md={6}>
-                            <FormGroup>
-                              <Label style={{fontSize: "medium"}} for="ticketSearchSelect">Search by</Label>
-                              <Input 
-                              type="select" 
-                              name="searchSelect" 
-                              id="ticketSearchSelect"
-                              onChange={e => this.setState({ searchFields: e.target.value })}
-                              >
-                                <option>home_team_name</option>
-                                <option>away_team_name</option>
-                              </Input>
-                            </FormGroup>
-                          </Col>
-                          <Col md={6}>
-                            <FormGroup>
-                              <Label style={{fontSize: "medium"}} for="playerOrderSelect">Order by</Label>
-                              <Input 
-                              type="select" 
-                              name="playerOrderSelect" 
-                              id="playerOrderSelect"
-                              onChange={e => this.orderingChanged(e)}
-                              >
-                                <option>home_team_name</option>
-                                <option>away_team_name</option>
-                                <option>datetime_local</option>
-                              </Input>
-                            </FormGroup>
-                          </Col>
-                        </Row>
-                      </Form>;  
+      searchFormRow = <SearchController
+                        getResults={apiService.getGamesBySearch.bind(apiService)}
+                        defaultSearchField="home_team_name"
+                        defaultOrdering="home_team_name"
+                        setResults={this.setResults.bind(this)}
+                        placeholderText="Search for games..."
+                        searchFieldOptions={searchFieldOptions}
+                        orderingOptions={orderingOptions}
+                      />;
+
+      paginationButtons = <PaginationController
+                            getResults={apiService.getGamesBySearch.bind(apiService)}
+                            setResults={this.setResults.bind(this)}
+                            count={this.state.count}
+                            page={this.state.page}
+                            prevPage={this.state.prevPage}
+                            nextPage={this.state.nextPage}
+                            searchValue={this.state.searchValue} 
+                            searchFields={this.state.searchFields}
+                            ordering={this.state.ordering}
+                          />;
     }
 
     if (error) {

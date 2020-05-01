@@ -6,6 +6,7 @@
     min-height: 720px;
     min-width: 1079px;
     /* opacity: .4; */
+
 }
 
 .carouselContainerStyle {
@@ -35,6 +36,7 @@
     font: 400 60px/1.5 'Pacifico', Helvetica, sans-serif;
     color: white;
 }
+
 
 .carouselStyle {
     width: 100%;

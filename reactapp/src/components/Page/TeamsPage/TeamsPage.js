@@ -1,10 +1,12 @@
 import React from "react";
 import Team from "./Team.js";
 import ApiService from "../../../api/ApiService";
-import { Spinner, Container, Button, Row , Form, FormGroup, Input, Label, Col} from "reactstrap"
+import { Spinner, Container, Row, Col} from "reactstrap"
 import './TeamsPage.css'
+import SearchController from "../../Controllers/SearchController";
+import PaginationController from "../../Controllers/PaginationController";
 
-const apiService = new ApiService();
+const apiService = ApiService.getInstance();
 
 class TeamsPage extends React.Component {
   constructor(props) {
@@ -43,118 +45,27 @@ class TeamsPage extends React.Component {
       });
   }
 
-  nextPage() {
-    if (this.state.nextPage == null) {
-      return;
-    }
+  setResults(isLoaded, error, results, page, prevPage, nextPage, count, searchValue, searchFields, ordering) {
     this.setState({
-      isLoaded: false,
+      isLoaded: isLoaded,
+      error: error,
+      teams: results,
+      page: page,
+      prevPage: prevPage,
+      nextPage: nextPage,
+      count: count,
+      searchValue: searchValue, 
+      searchFields: searchFields,
+      ordering: ordering,
     })
-    apiService
-    .getTeamsBySearch(this.state.page + 1, this.state.searchValue, this.state.searchFields, this.state.ordering)
-    .then(result => {
-        this.setState({
-          isLoaded: true,
-          teams: result.data.results,
-          page: this.state.page + 1,
-          prevPage: result.data.previous,
-          nextPage: result.data.next,
-        });
-      })
-      .catch(error => {
-        this.setState({
-          isLoaded: true,
-          error
-        });
-      });
-  }
-
-  prevPage() {
-    if (this.state.prevPage == null) {
-      return;
-    }
-    this.setState({
-      isLoaded: false,
-    })
-    apiService
-    .getTeamsBySearch(this.state.page - 1, this.state.searchValue, this.state.searchFields, this.state.ordering)
-    .then(result => {
-        this.setState({
-          isLoaded: true,
-          teams: result.data.results,
-          page: this.state.page - 1,
-          prevPage: result.data.previous,
-          nextPage: result.data.next,
-        });
-      })
-      .catch(error => {
-        this.setState({
-          isLoaded: true,
-          error
-        });
-      });
-  }
-
-  onSubmit = (e) => {
-    e.preventDefault()
-    this.setState({
-      isLoaded: false,
-    })
-    apiService
-    .getTeamsBySearch(1, this.state.searchValue, this.state.searchFields, this.state.ordering)
-    .then(result => {
-      this.setState({
-        isLoaded: true,
-        teams: result.data.results,
-        page: 1,
-        prevPage: result.data.previous,
-        nextPage: result.data.next,
-        count: result.data.count
-      });
-    })
-    .catch(error => {
-      this.setState({
-        isLoaded: true,
-        error
-      });
-    });
-  }
-
-  onEnterPressed = (e) => {
-    if (e.key === 'Enter') {
-      e.preventDefault(); 
-      this.onSubmit(e);
-    }
-  }
-
-  orderingChanged = (e) => {
-    this.setState({ 
-      ordering: e.target.value,
-      isLoaded: false
-    })
-    apiService
-    .getTeamsBySearch(1, this.state.searchValue, this.state.searchFields, e.target.value)
-    .then(result => {
-      this.setState({
-        isLoaded: true,
-        teams: result.data.results,
-        page: 1,
-        prevPage: result.data.previous,
-        nextPage: result.data.next,
-        count: result.data.count
-      });
-    })
-    .catch(error => {
-      this.setState({
-        isLoaded: true,
-        error
-      });
-    });
   }
 
   render() {
     const { error, isLoaded, teams } = this.state;
     let results;
+    let searchFieldOptions = ["name", "division", "venue"]
+    let orderingOptions = ["name", "division"]
+
     if (error) {
       return <div>Error: {error.message}</div>;
     } else if (!isLoaded) {
@@ -173,64 +84,27 @@ class TeamsPage extends React.Component {
     return (
       <Container className="teamsPageContainer">
         <Row className="titleRow">Teams</Row>
-        <Form className="teamFormStyle" onSubmit={this.onSubmit}>
-          <Row form>
-            <Col md={9}>
-              <FormGroup className="teamSearchBar">
-                  {/* <Label for="exampleSearch">Search</Label> */}
-                  <Input
-                  type="search"
-                  name="search"
-                  id="teamSearch"
-                  placeholder="Search for teams..."
-                  value={this.state.searchValue}
-                  onChange={e => this.setState({ searchValue: e.target.value })}
-                  onKeyDown={this.onEnterPressed}
-                  />
-              </FormGroup>
-            </Col>
-            <Col style={{display: "flex", justifyContent:"center"}} md={3}>
-              <Button type="submit" style={{width: "80%", height: "70%"}} className="btn btn-success">Search</Button>
-            </Col>
-          </Row>
-          <Row form>
-            <Col md={6}>
-              <FormGroup>
-                <Label style={{fontSize: "medium"}} for="teamSearchSelect">Search by</Label>
-                <Input 
-                type="select" 
-                name="searchSelect" 
-                id="teamSearchSelect"
-                onChange={e => this.setState({ searchFields: e.target.value })}
-                >
-                  <option>name</option>
-                  <option>division</option>
-                  <option>venue</option>
-                </Input>
-              </FormGroup>
-            </Col>
-            <Col md={6}>
-              <FormGroup>
-                <Label style={{fontSize: "medium"}} for="teamOrderSelect">Order by</Label>
-                <Input 
-                type="select" 
-                name="teamOrderSelect" 
-                id="teamOrderSelect"
-                onChange={e => this.orderingChanged(e)}
-                >
-                  <option>name</option>
-                  <option>division</option>
-                </Input>
-              </FormGroup>
-            </Col>
-          </Row>
-        </Form>   
+        <SearchController
+          getResults={apiService.getTeamsBySearch.bind(apiService)}
+          defaultSearchField="name"
+          defaultOrdering="name"
+          setResults={this.setResults.bind(this)}
+          placeholderText="Search for teams..."
+          searchFieldOptions={searchFieldOptions}
+          orderingOptions={orderingOptions}
+        />
         {results}
-        <Row style={{width: "100%", display: "flex", justifyContent: "center"}}>
-          <Button style={{margin: "20px"}} color="info" onClick={() => this.prevPage()} disabled={this.state.prevPage == null}>Previous</Button>
-          <h4 style={{margin: "23px"}}>Page {this.state.page}</h4>
-          <Button style={{margin: "20px"}} color="info" onClick={() => this.nextPage()} disabled={this.state.nextPage == null}>Next</Button>
-        </Row>
+        <PaginationController
+          getResults={apiService.getTeamsBySearch.bind(apiService)}
+          setResults={this.setResults.bind(this)}
+          count={this.state.count}
+          page={this.state.page}
+          prevPage={this.state.prevPage}
+          nextPage={this.state.nextPage}
+          searchValue={this.state.searchValue} 
+          searchFields={this.state.searchFields}
+          ordering={this.state.ordering}
+        />
       </Container>
     );
   }

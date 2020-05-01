@@ -41,7 +41,6 @@ class Team extends React.Component {
                         <CardBody style={{padding: "50px"}}><CardImg className="cardImageStyle" src={this.props.team.logo} alt="Card image cap" /></CardBody>
                         <CardBody>
                             <CardTitle style={cardTitleStyle}>{this.props.team.name}</CardTitle>
-                            {/* <CardSubtitle>Card subtitle</CardSubtitle> */}
                             <CardText style={cardTextStyle}>{this.props.team.division}</CardText>
                             <CardText style={cardTextStyle}>{this.props.team.venue}</CardText>
                         </CardBody>

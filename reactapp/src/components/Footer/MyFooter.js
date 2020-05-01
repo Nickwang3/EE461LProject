@@ -6,11 +6,6 @@ import './MyFooter.css'
 class MyFooter extends React.Component {
     render() {
         return (
-            // <div className="MyFooter" onClick={() => window.scrollTo({top: 0, behavior: 'smooth'})}>
-            //     <i className="fa fa-angle-up" />
-            //     <p>Scroll to top</p>
-            // </div>
-
             <div>
             <Navbar className="bgColor" expand="lg">
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />

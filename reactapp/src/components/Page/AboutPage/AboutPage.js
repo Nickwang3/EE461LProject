@@ -9,7 +9,7 @@ import {
 
 
 import mlbstatsapi from "../../../statics/mlbstatsapi.png";
-const apiService = new ApiService();
+const apiService = new ApiService.getInstance();
 
 
 
@@ -45,7 +45,6 @@ class AboutPage extends React.Component {
     
 
     render() {
-
         const {error, isLoaded } = this.state;
         if (error) {
             return <div>Error: {error.message}</div>

@@ -10,7 +10,7 @@ import MapContainer from "../../Map/MapContainer";
 import YouTube from 'react-youtube';
 import { SocialIcon } from 'react-social-icons';
 
-const apiService = new ApiService();
+const apiService = ApiService.getInstance();
 const monthMapping = {'Jan': '01', 'Feb': '02', 'Mar': '03', 'Apr': '04', 'May': '05', 'Jun': '06','Jul': '07', 'Aug': '08', 
                       'Sep': '09', 'Oct': '10', 'Nov': '11', 'Dec': '12'}
 
@@ -43,7 +43,6 @@ class DetailedTeamPage extends React.Component {
             this.setState({
               roster: res.data
             })
-            // console.log(res.data)
         })
         .then(() => apiService.getRecordByTeamIdAndSeason(this.state.team.team_id.concat("2020")))
         .then(res => {
@@ -165,7 +164,6 @@ class DetailedTeamPage extends React.Component {
               <TabPane className="contentRow" tabId="2">
                 <Row>
                   <Row className="rosterRow">
-                    {/* <h2 style={{width: "100%",marginBottom: "30px"}}>Roster</h2> */}
                     <Table className="tableStyle">
                       <thead  style={{color: "white"}}>
                         <tr>
