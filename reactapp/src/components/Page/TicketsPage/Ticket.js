@@ -19,8 +19,6 @@ class Ticket extends React.Component {
     render() {
         const extraStyle = {
             borderRadius: "1%",
-            // border: "solid rgb(240, 211, 211)",
-            // borderWidth: "3px 3px",
             backgroundColor: "white"
         }
 
