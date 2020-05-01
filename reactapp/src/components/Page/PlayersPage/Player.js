@@ -37,9 +37,6 @@ class Player extends React.Component {
         const playerPictureStyle = {
             height: "100%",
             width: "75%",
-        
-            // borderRadius: "50%",
-            // border: "2px solid white"
         }
 
             return (
@@ -51,8 +48,6 @@ class Player extends React.Component {
                         <CardBody>
                             <CardTitle style={cardTitleStyle}>{this.props.player.name}</CardTitle>
                             <CardText style={cardTextStyle}>#{this.props.player.number}</CardText>
-                            {/* <CardText style={cardTextStyle}>Division: {this.props.division}</CardText>
-                            <CardText style={cardTextStyle}>Venue: {this.props.venue}</CardText> */}
                         </CardBody>
                     </Card>
                 </Link>

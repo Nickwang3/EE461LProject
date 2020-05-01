@@ -45,7 +45,6 @@ class AboutPage extends React.Component {
     
 
     render() {
-
         const {error, isLoaded } = this.state;
         if (error) {
             return <div>Error: {error.message}</div>

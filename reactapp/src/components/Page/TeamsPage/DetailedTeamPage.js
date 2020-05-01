@@ -43,7 +43,6 @@ class DetailedTeamPage extends React.Component {
             this.setState({
               roster: res.data
             })
-            // console.log(res.data)
         })
         .then(() => apiService.getRecordByTeamIdAndSeason(this.state.team.team_id.concat("2020")))
         .then(res => {
@@ -165,7 +164,6 @@ class DetailedTeamPage extends React.Component {
               <TabPane className="contentRow" tabId="2">
                 <Row>
                   <Row className="rosterRow">
-                    {/* <h2 style={{width: "100%",marginBottom: "30px"}}>Roster</h2> */}
                     <Table className="tableStyle">
                       <thead  style={{color: "white"}}>
                         <tr>
