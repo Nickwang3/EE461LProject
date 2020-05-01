@@ -25,19 +25,19 @@
     width: 100%;
 }
 
-/* .row {
+ .row {
     width: 100%;
     padding-right: 0;
     padding-left: 0;
     margin-right: 0 !important;
     margin-left: 0 !important;
-} */
+}
 
-/* .col{
+.col{
     align-content: center;
     padding-right: 0 !important;
     padding-left: 0 !important;
-} */
+}
 
 :local(.titleStyle){
     width: auto;
