@@ -8,11 +8,7 @@ from django.core.management.base import BaseCommand
 
 class Command(BaseCommand):
     help = 'grabs team info from statsapi'
-
-    def handle(self, *args, **options):
-        teams = statsapi.get('teams', {'sportIds': 1, 'activeStatus':'Yes' })['teams']
-        time.sleep(6)
-
+    def insert(teams):
         if (teams):
             for team in teams:
                 team_id = team['id']
@@ -27,3 +23,7 @@ class Command(BaseCommand):
                     team = Team(team_id=team_id, name=name, venue=venue, division=division)
                     team.save()
                     print(team_id,name,venue,division)
+
+    def handle(self, *args, **options):
+        teams = statsapi.get('teams', {'sportIds': 1, 'activeStatus':'Yes' })['teams']
+        time.sleep(6)
