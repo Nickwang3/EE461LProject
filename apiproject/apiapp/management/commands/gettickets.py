@@ -9,25 +9,7 @@ from django.core.management.base import BaseCommand
 
 class Command(BaseCommand):
     help = 'grab ticket info from seatgeek'
-
-    def handle(self, *args, **options):
-        client_id = 'MjExNDYxNTJ8MTU4NTUzMjI0Mi4xNg'
-        client_secret = 'b2397740dd7c66708985882006fae5879e11235d9cc9808bc4e9c11ef87299ce'
-        url = 'https://api.seatgeek.com/2/events'
-        params=  {
-            'q' : 'mlb',
-            'client_id' : client_id,
-            'client_secret' : client_secret,
-            'format' : 'json',
-            'per_page' : 256,
-        }
-        ticket_params = {
-            'client_id' : client_id,
-            'client_secret' : client_secret,
-        }
-        response = requests.get(url, params=params)
-        response_json = json.loads(response.content)
-        event_dict = response_json['events']
+    def insert(event_dict):
         if (event_dict):
             for event in event_dict:
                 ticket_id = event['id']
@@ -54,3 +36,24 @@ class Command(BaseCommand):
                     ticket = Ticket(ticket_id=ticket_id, title=title, datetime_local=datetime_local, image_url=image_url, venue=venue, home_team=home_team, away_team=away_team, average_price=average_price, event_url=event_url)
                     ticket.save()
                     print('saved: ' + str(ticket_id), title, datetime_local, image_url, venue, home_team, away_team, average_price, event_url)
+
+    def handle(self, *args, **options):
+        client_id = 'MjExNDYxNTJ8MTU4NTUzMjI0Mi4xNg'
+        client_secret = 'b2397740dd7c66708985882006fae5879e11235d9cc9808bc4e9c11ef87299ce'
+        url = 'https://api.seatgeek.com/2/events'
+        params=  {
+            'q' : 'mlb',
+            'client_id' : client_id,
+            'client_secret' : client_secret,
+            'format' : 'json',
+            'per_page' : 256,
+        }
+        ticket_params = {
+            'client_id' : client_id,
+            'client_secret' : client_secret,
+        }
+        response = requests.get(url, params=params)
+        response_json = json.loads(response.content)
+        event_dict = response_json['events']
+        insert(event_dict)
+        

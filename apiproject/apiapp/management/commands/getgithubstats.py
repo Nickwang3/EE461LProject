@@ -7,6 +7,13 @@ from apiapp.models import TeamMember
 class Command(BaseCommand):
 
     help = 'grabs player info from statsapi'
+    def insert(user_issues):
+        for user in user_issues.keys():
+            teammember = TeamMember.objects.get(github_username=user)
+            teammember.commits = user_commits[user]
+            teammember.issues = user_issues[user]
+            teammember.save(update_fields=['commits','issues'])     
+
     def handle(self, *args, **options):
         # url = "http://django-env.zphgcpmf2t.us-west-2.elasticbeanstalk.com/api/v1/teammembers"
         # response = requests.request("GET", url)
@@ -41,10 +48,6 @@ class Command(BaseCommand):
                 for assignee in assignees:
                     user_issues[assignee['login']] += 1
         
-        # Now we update actual entries
-        for user in user_issues.keys():
-            teammember = TeamMember.objects.get(github_username=user)
-            teammember.commits = user_commits[user]
-            teammember.issues = user_issues[user]
-            teammember.save(update_fields=['commits','issues'])     
+        insert(user_issues)
+        
         

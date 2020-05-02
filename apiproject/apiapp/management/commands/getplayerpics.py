@@ -7,6 +7,19 @@ from django.core.management.base import BaseCommand
 class Command(BaseCommand):
 
     help = 'grabs player info from statsapi'
+    
+    def insert(players):
+        for player in players:
+            fullName = player['FirstName'] + " " + player['LastName']
+
+            try:
+                db_player = Player.objects.get(name=fullName)
+                db_player.picture = player['PhotoUrl']
+                db_player.save(update_fields=['picture'])
+            except:
+                pass
+                # print("{} not found in db".format(fullName))
+
     def handle(self, *args, **options):
         url = "https://api.sportsdata.io/v3/mlb/scores/json/Players"
 
@@ -18,14 +31,3 @@ class Command(BaseCommand):
 
         response = requests.request("GET", url, headers=headers)
         players = response.json()
-        
-        for player in players:
-            fullName = player['FirstName'] + " " + player['LastName']
-
-            try:
-                db_player = Player.objects.get(name=fullName)
-                db_player.picture = player['PhotoUrl']
-                db_player.save(update_fields=['picture'])
-            except:
-                pass
-                # print("{} not found in db".format(fullName))

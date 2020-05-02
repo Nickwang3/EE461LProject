@@ -8,6 +8,7 @@ from django.core.management.base import BaseCommand
 class Command(BaseCommand):
 
     help = 'grabs player info from statsapi'
+    
     def handle(self, *args, **options):
 
         BoxScore.objects.all().delete()
